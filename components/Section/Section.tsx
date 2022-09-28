@@ -8,7 +8,7 @@ const Section = ({ children, id }: Props) => {
   return (
     <div
       id={id}
-      className="bg-white w-11/12 m-auto mb-5 rounded min-h-96 h-fit rounded-lg shadow"
+      className="w-11/12 m-auto mb-5 rounded min-h-96 h-fit rounded-lg shadow"
     >
       {children}
     </div>

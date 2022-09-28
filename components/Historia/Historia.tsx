@@ -4,12 +4,12 @@ import Image from "next/image";
 const Historia = () => {
   return (
     <div className="bg-opacity-100 p-4">
-      <h3 className="text-black text-center text-4xl p-4">
+      <h3 className="text-gold-500 header-font text-left text-4xl p-4">
         {" "}
         Nuestra Historia{" "}
       </h3>
-      <article className="bg-white p-4 rounded shadow-xl m-4 flex justify-between">
-        <div className="basis-3/4">
+      <article className="bg-white p-4 paragraph-font rounded shadow-xl m-4 flex justify-around">
+        <div className="w-8/12">
           <h5 className="font-bold mb-2 text-2xl text-gold-500">
             {" "}
             Acto Fundacional{" "}
@@ -36,7 +36,7 @@ const Historia = () => {
         </div>
         <Image src={escudo} height={100} width={200} />
       </article>
-      <article className="bg-white p-4 w-fit rounded shadow-xl m-4 flex flex-col justify-between">
+      <article className="bg-white paragraph-font p-8 w-fit rounded shadow-xl m-4 flex flex-col justify-between">
         <h5 className="font-bold mb-2 text-2xl text-gold-500">
           {" "}
           Socios Fundadores{" "}

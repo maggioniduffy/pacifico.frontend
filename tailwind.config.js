@@ -26,7 +26,8 @@ module.exports = {
         },
       },
       fontFamily: {
-        regular: ["Regular", "sans-serif"],
+        header: ["header", "sans-serif"],
+        paragraph: ["paragraph", "sans-serif"],
       },
     },
   },

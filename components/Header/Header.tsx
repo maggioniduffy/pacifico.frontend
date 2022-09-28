@@ -48,14 +48,14 @@ const Header = ({ sections, socialMedia }: Props) => {
       </header>
       <nav
         id="nav"
-        className="flex sticker h-12 mt-0 bg-black border-b-2 border-b-yellow z-50"
+        className="flex sticker h-12 mt-0 bg-black border-b-2 border-b-yellow z-40"
       >
         <NavMenu options={sections} />
         <div className="m-auto bg-transparent rounded-xl basis-3/4 sm:basis-2/4">
           <h1
             className={`${
               isOnTop ? "" : "hidden"
-            } text-2xl pr-2 pacifico uppercase text-right sm:text-4xl sm:text-center text-yellow font-thin text-center header-font`}
+            } text-2xl pr-2 pacifico text-right sm:text-4xl sm:text-center text-yellow font-thin text-center header-font`}
           >
             Pacifico Basquet
           </h1>

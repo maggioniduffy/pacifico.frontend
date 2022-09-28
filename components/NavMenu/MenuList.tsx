@@ -22,7 +22,7 @@ const MenuList = ({ visible, options, toggleVisible }: Props) => {
       onClick={toggleVisible}
       className={`${
         visible ? "" : "hidden"
-      } z-10 absolute bg-black bg-opacity-60 w-full h-screen top-0 left-0 overflow-visible`}
+      } z-50 absolute bg-black bg-opacity-60 w-full h-screen top-0 left-0 overflow-visible`}
     >
       <div className="bg-white w-44 md:w-3/12 lg:w-2/12 h-screen">
         <MenuButton toggleVisible={toggleVisible}>

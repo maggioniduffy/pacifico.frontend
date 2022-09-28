@@ -13,13 +13,13 @@ body {
 }
 
 @font-face {
-  font-family: "regular";
-  src: url("/fonts/SEGOEUII_italic.TTF");
+  font-family: "paragraph";
+  src: url("/fonts/SEGOEUI_regular.TTF");
 }
 
 @font-face {
-  font-family: "semibold_italic";
-  src: url("/fonts/SEGOEUIB_bold.TTF");
+  font-family: "header";
+  src: url("/fonts/SEGOEUISL_semilight_regular.TTF");
 }
 
 /* In your css file where you want to use the font */
@@ -28,8 +28,12 @@ a {
   text-decoration: none;
 }
 
+.paragraph-font {
+  font-family: "paragraph";
+}
+
 .header-font {
-  font-family: "regular";
+  font-family: "header";
 }
 
 * {

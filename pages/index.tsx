@@ -7,7 +7,7 @@ import styles from "../styles/Home.module.css";
 import facebook from "../public/assets/facebook.png";
 import instagram from "../public/assets/instagram.png";
 import youtube from "../public/assets/youtube.png";
-import { Header, Section, Link, Historia } from "../components";
+import { Header, Section, Link, Historia, News } from "../components";
 
 const sections = [
   {
@@ -78,10 +78,7 @@ const Home: NextPage = () => {
       <Header sections={sections} socialMedia={socialMedia} />
       <main className="relative min-h-screen mt-10">
         <Section id="inicio">
-          <>
-            {" "}
-            <h1>Hola</h1>{" "}
-          </>
+          <News />
         </Section>
         <Section id="fixture">
           <>
