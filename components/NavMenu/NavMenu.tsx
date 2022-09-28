@@ -20,9 +20,7 @@ const NavMenu = ({ options }: Props) => {
   };
 
   return (
-    <div
-      className={`${visible ? "mt-2" : "mt-2 m-auto"} sm:basis-1/4 ml-6 block`}
-    >
+    <div className={`${visible ? "" : "m-auto"} sm:basis-1/4 ml-6 block z-50`}>
       <button
         id="dropdownDefault"
         data-dropdown-toggle="dropdown"

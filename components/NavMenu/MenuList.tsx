@@ -22,7 +22,7 @@ const MenuList = ({ visible, options, toggleVisible }: Props) => {
       onClick={toggleVisible}
       className={`${
         visible ? "" : "hidden"
-      } z-10 absolute bg-dark bg-opacity-70 w-full h-screen top-0 left-0 bg-white overflow-visible divide-y divide-gray-100`}
+      } z-10 absolute bg-black bg-opacity-60 w-full h-screen top-0 left-0 overflow-visible`}
     >
       <div className="bg-white w-44 md:w-3/12 lg:w-2/12 h-screen">
         <MenuButton toggleVisible={toggleVisible}>
@@ -39,7 +39,7 @@ const MenuList = ({ visible, options, toggleVisible }: Props) => {
                 className="block py-2 px-4 hover:text-gold-500 dark:hover:bg-gray-600 dark:hover:text-white"
               >
                 <Link url={section} target="_self" onClick={toggleVisible}>
-                  <p className="font-medium text-sm md:text-xl">{name}</p>
+                  <p className="font-medium text-sm md:text-lg">{name}</p>
                 </Link>
               </span>
             );

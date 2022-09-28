@@ -7,7 +7,7 @@ import styles from "../styles/Home.module.css";
 import facebook from "../public/assets/facebook.png";
 import instagram from "../public/assets/instagram.png";
 import youtube from "../public/assets/youtube.png";
-import { Header, Section, Link } from "../components";
+import { Header, Section, Link, Historia } from "../components";
 
 const sections = [
   {
@@ -21,6 +21,10 @@ const sections = [
   {
     name: "Videos",
     section: "#videos",
+  },
+  {
+    name: "Historia",
+    section: "#historia",
   },
 ];
 
@@ -47,9 +51,9 @@ const Home: NextPage = () => {
         <title> Pacifico Basquet </title>
         <meta
           name="description"
-          content="Club Pacifico Basquet #SomosDecanos. Neuquen"
+          content="Club Pacifico Basquet #DecanoPasion. Neuquen"
         />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/Logo.png" />
       </Head>
 
       <div className="background">
@@ -91,14 +95,17 @@ const Home: NextPage = () => {
             <h1>Hola</h1>{" "}
           </>
         </Section>
+        <Section id="historia">
+          <Historia />
+        </Section>
+
+        <footer className="bg-black h-16 w-full p-auto">
+          <h5 className="text-white text-center text-sm">
+            {" "}
+            Made by Faustino Maggioni Duffy
+          </h5>
+        </footer>
       </main>
-      <footer className="flex flex-row w-full justify-items-end m-auto">
-        {socialMedia.map(({ url, image }) => (
-          <Link key={url} url={url}>
-            <Image src={image} className="m-auto bg-dark" />
-          </Link>
-        ))}
-      </footer>
     </div>
   );
 };

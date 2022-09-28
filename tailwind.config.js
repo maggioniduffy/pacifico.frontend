@@ -11,7 +11,7 @@ module.exports = {
       colors: {
         transparent: "transparent",
         current: "currentColor",
-        black: "#191919",
+        black: "#000",
         white: "#f5f5f5",
         gray: "#a4a3a2",
         emerald: colors.emerald,
@@ -24,6 +24,9 @@ module.exports = {
           400: "#fcce3d",
           500: "#fec200",
         },
+      },
+      fontFamily: {
+        regular: ["Regular", "sans-serif"],
       },
     },
   },
