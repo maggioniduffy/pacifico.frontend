@@ -25,7 +25,6 @@ const Header = ({ sections, socialMedia }: Props) => {
   useEffect(() => {
     let elem = document?.querySelector("nav");
     const handleScroll = () => {
-      console.log("window.scrollY", window.scrollY);
       let rect = elem?.getBoundingClientRect();
       if (rect?.y == 0) {
         setIsOnTop(true);

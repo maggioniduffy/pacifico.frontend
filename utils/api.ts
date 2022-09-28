@@ -6,7 +6,11 @@ export interface ApiNew {
   id: string;
   body: string;
   time: Date;
-  image: Object;
+  image: Image;
+}
+
+interface Image {
+  id: string;
 }
 
 export async function getMainNews(): Promise<ApiNew[] | undefined> {
@@ -17,4 +21,14 @@ export async function getMainNews(): Promise<ApiNew[] | undefined> {
   } catch (error) {
     console.error(error);
   }
+}
+
+export async function getImage(id: string) {
+  try {
+    const res = await fetch(BASE_API_URL + "attachment/files/" + id);
+    const image = await res.blob();
+    const src = URL.createObjectURL(image);
+    console.log("src in api.ts: ", src);
+    return src;
+  } catch (error) {}
 }
