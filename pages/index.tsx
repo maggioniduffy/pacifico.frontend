@@ -1,8 +1,6 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
 
 import facebook from "../public/assets/facebook.png";
 import instagram from "../public/assets/instagram.png";
@@ -44,7 +42,21 @@ const socialMedia = [
 ];
 
 const Home: NextPage = () => {
-  const [isMenuOpen, setMenuOpen] = useState(false);
+  useEffect(() => {
+    scrollToBottom();
+  }, []);
+
+  const [alreadyScrolled, setAlreadyScrolled] = useState(false);
+
+  const main = useRef<null | HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    setTimeout(() => {
+      main.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+      setAlreadyScrolled(true);
+    }, 1000);
+  };
+
   return (
     <div>
       <Head>
@@ -56,27 +68,12 @@ const Home: NextPage = () => {
         <link rel="icon" href="/Logo.png" />
       </Head>
 
-      <div className="background">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-
-      <Header sections={sections} socialMedia={socialMedia} />
-      <main className="relative min-h-screen mt-10">
+      <Header
+        sections={sections}
+        socialMedia={socialMedia}
+        alreadyScrolled={alreadyScrolled}
+      />
+      <main className="min-h-screen mt-10" ref={main}>
         <Section id="inicio">
           <News />
         </Section>
@@ -96,7 +93,7 @@ const Home: NextPage = () => {
           <Historia />
         </Section>
 
-        <footer className="bg-black h-16 w-full p-auto">
+        <footer className="h-16 w-full p-auto">
           <h5 className="text-white text-center text-sm">
             {" "}
             Made by Faustino Maggioni Duffy
