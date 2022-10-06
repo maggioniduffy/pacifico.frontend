@@ -52,7 +52,7 @@ const Home: NextPage = () => {
 
   const scrollToBottom = () => {
     setTimeout(() => {
-      main.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+      main.current?.scrollIntoView({ behavior: "smooth" });
       setAlreadyScrolled(true);
     }, 1000);
   };
@@ -77,18 +77,8 @@ const Home: NextPage = () => {
         <Section id="inicio">
           <News />
         </Section>
-        <Section id="fixture">
-          <>
-            {" "}
-            <h1>Hola</h1>{" "}
-          </>
-        </Section>
-        <Section id="videos">
-          <>
-            {" "}
-            <h1>Hola</h1>{" "}
-          </>
-        </Section>
+        <Section id="fixture"></Section>
+        <Section id="videos"></Section>
         <Section id="historia">
           <Historia />
         </Section>

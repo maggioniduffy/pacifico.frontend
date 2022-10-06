@@ -20,19 +20,25 @@ const News = () => {
 
   useEffect(() => {
     const setImage = async (id: string, i: number) => {
+      const j = i + 1;
       try {
         const res = await fetch(BASE_API_URL + "attachment/files/" + id);
         const image = await res.blob();
         const src = URL.createObjectURL(image);
         return src;
-      } catch (e) {}
+      } catch (e) {
+        if (j < 4) {
+          setImage(id, j);
+        }
+      }
     };
+
     const getNews = async () => {
       const res = await getMainNews();
       const auxImages: string[] = [];
       const auxNews: NewArticle[] = [];
       res?.forEach(async ({ image, title, subtitle, id }, i) => {
-        const src = await setImage(image.id, i);
+        const src = await setImage(image.id, 0);
         auxImages.push(src!);
         const article = {
           title,
@@ -47,28 +53,35 @@ const News = () => {
       setMainNews(auxNews);
     };
     getNews();
-    setTimeout(() => {
-      if (mainNews && images) {
-        const newOrderNews = [...mainNews!];
-        const newOrderImages = [...images];
-        mainNews?.forEach((mNew, i) => {
-          newOrderNews[(i + 1) % mainNews.length] = mNew;
-        });
-        images?.forEach((image, i) => {
-          newOrderImages[(i + 1) % images.length] = image;
-        });
-        setImages(newOrderImages);
-        setMainNews(newOrderNews);
-      }
-    }, 1000);
-    return;
+    const rotateNewsInterval = setInterval(() => {
+      console.log("interval");
+      rotate();
+    }, 2000);
+
+    return () => clearInterval(rotateNewsInterval);
   }, []);
 
+  const rotate = () => {
+    if (mainNews && images) {
+      console.log("time to a change");
+      const firstNew = mainNews.shift()!;
+      const newOrderNews = JSON.parse(JSON.stringify(mainNews));
+      newOrderNews.push(firstNew);
+      console.log("newOrderNews len: ", newOrderNews.length);
+      const firstImage = images.shift()!;
+      const newOrderImages = JSON.parse(JSON.stringify(images));
+      const imagesLen = newOrderImages.push(firstImage);
+      console.log("newOrderImages len: ", imagesLen);
+      setImages(newOrderImages);
+      setMainNews(newOrderNews);
+    }
+  };
+
   return (
-    <div className="h-96">
+    <div className="main-new pt-10">
       {mainNews && images && images[0] && (
         <div className="flex h-full justify-between">
-          <div className="main-new bg-black text-white h-full w-full basis-10/12 mr-4 rounded-xl relative shadow">
+          <div className="main-new w-full basis-9/12 mr-4 relative">
             <Image
               src={images[0]}
               height={20}
@@ -78,46 +91,48 @@ const News = () => {
               priority
               className="rounded-lg"
             />
-            <div className="z-40 absolute bg-black bg-opacity-20 bottom-0 w-full p-2 rounded-b-xl">
-              <h3 className="text-white text-left text-2xl">
+            <div className="z-10 absolute bg-realwhite bottom-0 rounded-b w-full h-20 text-center p-2 px-32 ">
+              <h3 className="text-black font-bold text-2xl">
                 {" "}
                 {mainNews[0].title}
               </h3>
-              <h5 className="text-white text-left text-xl">
-                {mainNews[0].subtitle}
-              </h5>
+              <h5 className="text-gray text-xl">{mainNews[0].subtitle}</h5>
             </div>
           </div>
-          <aside className="basis-2/12">
-            <ul className="h-full">
+          <aside className="basis-3/12 main-new">
+            <div
+              className={`h-full flex flex-col ${
+                images.length <= 3 ? "mb-4" : "justify-between"
+              }`}
+            >
               {mainNews.slice(1).map((item, i) => {
                 return (
-                  <li
+                  <div
                     key={images[i + 1]}
-                    className="h-4/12 w-full mb-2 rounded-lg relative shadow"
+                    className="little-new relative w-full"
                   >
-                    <div className="z-40 absolute bg-black bg-opacity-20 bottom-0 w-full p-2 rounded-b-xl">
-                      <h5 className="text-white text-left text-xl">
-                        {" "}
-                        {item.title}
-                      </h5>
-                      <p className="text-white text-left text-l">
-                        {item.subtitle}
-                      </p>
-                    </div>
                     <Image
                       src={images[i + 1]}
                       layout="fill"
-                      height={20}
-                      width={20}
+                      height={10}
+                      width={10}
                       alt={mainNews[i + 1].title}
                       priority
-                      className="rounded"
+                      className="rounded-lg"
                     />
-                  </li>
+                    <div className="z-10 bg-realwhite w-full rounded-b h-20 p-2 absolute bottom-0">
+                      <h5 className="text-black font-bold text-left text-xl">
+                        {" "}
+                        {item.title}
+                      </h5>
+                      <p className="text-gray text-left text-l">
+                        {item.subtitle}
+                      </p>
+                    </div>
+                  </div>
                 );
               })}
-            </ul>
+            </div>
           </aside>
         </div>
       )}
