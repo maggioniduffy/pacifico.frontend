@@ -17,7 +17,7 @@ interface Image {
 
 export async function getMainNews(): Promise<ApiNew[] | undefined> {
   try {
-    const res = await fetch(BASE_API_URL + "news?skip=0&limit=4");
+    const res = await fetch(BASE_API_URL + "news?skip=0&limit=3");
     const mainNews: ApiNew[] = await res.json();
     return mainNews;
   } catch (error) {

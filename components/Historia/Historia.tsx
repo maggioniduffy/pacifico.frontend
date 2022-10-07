@@ -3,7 +3,11 @@ import Image from "next/image";
 
 const Historia = () => {
   return (
-    <div className="bg-opacity-100 p-4 mt-16 bg-realwhite rounded-xl">
+    <div
+      data-aos="fade-right"
+      data-aos-duration="1000"
+      className="bg-opacity-100 p-4 mt-16 bg-realwhite rounded-xl shadow"
+    >
       <h3 className="text-black header-font font-bold text-center text-4xl p-4">
         {" "}
         Nuestra Historia{" "}

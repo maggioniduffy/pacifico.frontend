@@ -6,6 +6,8 @@ import facebook from "../public/assets/facebook.png";
 import instagram from "../public/assets/instagram.png";
 import youtube from "../public/assets/youtube.png";
 import { Header, Section, Link, Historia, News } from "../components";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const sections = [
   {
@@ -43,6 +45,9 @@ const socialMedia = [
 
 const Home: NextPage = () => {
   useEffect(() => {
+    AOS.init({
+      mirror: false,
+    });
     scrollToBottom();
   }, []);
 

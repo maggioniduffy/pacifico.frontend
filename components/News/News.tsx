@@ -53,35 +53,13 @@ const News = () => {
       setMainNews(auxNews);
     };
     getNews();
-    const rotateNewsInterval = setInterval(() => {
-      console.log("interval");
-      rotate();
-    }, 2000);
-
-    return () => clearInterval(rotateNewsInterval);
   }, []);
-
-  const rotate = () => {
-    if (mainNews && images) {
-      console.log("time to a change");
-      const firstNew = mainNews.shift()!;
-      const newOrderNews = JSON.parse(JSON.stringify(mainNews));
-      newOrderNews.push(firstNew);
-      console.log("newOrderNews len: ", newOrderNews.length);
-      const firstImage = images.shift()!;
-      const newOrderImages = JSON.parse(JSON.stringify(images));
-      const imagesLen = newOrderImages.push(firstImage);
-      console.log("newOrderImages len: ", imagesLen);
-      setImages(newOrderImages);
-      setMainNews(newOrderNews);
-    }
-  };
 
   return (
     <div className="main-new pt-10">
       {mainNews && images && images[0] && (
         <div className="flex h-full justify-between">
-          <div className="main-new w-full basis-9/12 mr-4 relative">
+          <div className="main-new w-full basis-9/12 mr-4 relative shadow">
             <Image
               src={images[0]}
               height={20}
@@ -91,7 +69,10 @@ const News = () => {
               priority
               className="rounded-lg"
             />
-            <div className="z-10 absolute bg-realwhite bottom-0 rounded-b w-full h-20 text-center p-2 px-32 ">
+            <div
+              data-aos="fade-up"
+              className="z-10 absolute bg-realwhite bottom-0 rounded-b rounded-t-2xl w-full h-24 flex flex-col text-center justify-center "
+            >
               <h3 className="text-black font-bold text-2xl">
                 {" "}
                 {mainNews[0].title}
@@ -102,7 +83,9 @@ const News = () => {
           <aside className="basis-3/12 main-new">
             <div
               className={`h-full flex flex-col ${
-                images.length <= 3 ? "mb-4" : "justify-between"
+                images.length <= 3
+                  ? "justify-start space-y-4"
+                  : "justify-between"
               }`}
             >
               {mainNews.slice(1).map((item, i) => {
@@ -120,7 +103,10 @@ const News = () => {
                       priority
                       className="rounded-lg"
                     />
-                    <div className="z-10 bg-realwhite w-full rounded-b h-20 p-2 absolute bottom-0">
+                    <div
+                      data-aos="fade-up"
+                      className="z-10 bg-realwhite w-full rounded-b rounded-t-xl h-20 p-2 absolute bottom-0"
+                    >
                       <h5 className="text-black font-bold text-left text-xl">
                         {" "}
                         {item.title}
@@ -132,6 +118,13 @@ const News = () => {
                   </div>
                 );
               })}
+
+              <div className="h-1/6 bg-white bg-opacity-50 w-full rounded-xl shadow">
+                <h5 className="m-auto text-center text-black text-xl">
+                  {" "}
+                  Ver mas{" "}
+                </h5>
+              </div>
             </div>
           </aside>
         </div>
