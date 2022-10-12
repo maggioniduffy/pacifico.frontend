@@ -73,7 +73,7 @@ const Header = ({
       )}
       <nav
         id="nav"
-        className="flex sticky place-items-center p-1 h-12 mt-0 bg-black z-40"
+        className="flex sticky place-items-center p-1 h-12 mt-0 bg-transparent z-40"
       >
         {showMenu ? (
           <NavMenu options={sections} />
@@ -86,7 +86,7 @@ const Header = ({
           <Link href="/">
             <div className={`flex w-fit place-items-center pacifico`}>
               <h1
-                className={`text-2xl pr-2 pacifico text-right sm:text-4xl sm:text-center text-yellow font-bold text-center header-font`}
+                className={`text-3xl pr-2 pacifico text-right sm:text-4xl sm:text-center text-black font-bold text-center header-font`}
               >
                 Pacifico Basquet{" "}
               </h1>

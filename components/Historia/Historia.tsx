@@ -33,10 +33,9 @@ const Historia = () => {
               {" "}
               <h3
                 data-aos="fade-up"
-                className="my-8 mr-4 text-left w-24"
+                className="my-8 mr-8 text-left w-32 text-xl"
                 data-aos-duration="2000"
               >
-                {"- "}
                 {socio}{" "}
               </h3>{" "}
             </div>
