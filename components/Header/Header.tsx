@@ -20,9 +20,15 @@ interface Props {
   sections: Section[];
   socialMedia: SocialMedia[];
   alreadyScrolled: boolean;
+  showImage?: boolean;
 }
 
-const Header = ({ sections, socialMedia, alreadyScrolled }: Props) => {
+const Header = ({
+  sections,
+  socialMedia,
+  alreadyScrolled,
+  showImage = true,
+}: Props) => {
   const [isOnTop, setIsOnTop] = useState(false);
   const [liga, setLiga] = useState(false);
 
@@ -50,13 +56,15 @@ const Header = ({ sections, socialMedia, alreadyScrolled }: Props) => {
 
   return (
     <>
-      <header className={alreadyScrolled ? "h-fit" : "h-screen"}>
-        <Image
-          src={liga ? pacificoEsDeLiga : banner}
-          height={500}
-          layout={alreadyScrolled ? "responsive" : "fill"}
-        />
-      </header>
+      {showImage && (
+        <header className={alreadyScrolled ? "h-fit" : "h-screen"}>
+          <Image
+            src={liga ? pacificoEsDeLiga : banner}
+            height={500}
+            layout={alreadyScrolled ? "responsive" : "fill"}
+          />
+        </header>
+      )}
       <nav
         id="nav"
         className="flex sticker place-items-center p-1 h-12 mt-0 bg-black z-40"

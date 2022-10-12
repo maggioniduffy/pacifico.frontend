@@ -6,7 +6,7 @@ export class ApiNew {
     public subtitle: string,
     public id: string,
     public body: string,
-    public time: Date,
+    public time: string,
     public image: Image
   ) {}
 }

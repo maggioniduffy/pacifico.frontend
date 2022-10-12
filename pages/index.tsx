@@ -1,47 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
-
-import facebook from "../public/assets/facebook.png";
-import instagram from "../public/assets/instagram.png";
-import youtube from "../public/assets/youtube.png";
-import { Header, Section, Link, Historia, News } from "../components";
+import { Header, Section, Historia, News } from "../components";
 import AOS from "aos";
 import "aos/dist/aos.css";
-
-const sections = [
-  {
-    name: "Inicio",
-    section: "#inicio",
-  },
-  {
-    name: "Fixture",
-    section: "#fixture",
-  },
-  {
-    name: "Videos",
-    section: "#videos",
-  },
-  {
-    name: "Historia",
-    section: "#historia",
-  },
-];
-
-const socialMedia = [
-  {
-    url: "https://www.youtube.com/channel/UCrnbut7cU3Fbvb8_c3-2M9Q",
-    image: youtube,
-  },
-  {
-    url: "https://www.instagram.com/clubatleticopacificoneuquen/",
-    image: instagram,
-  },
-  {
-    url: "https://www.facebook.com/clubatleticopacificoneuquenbasquet",
-    image: facebook,
-  },
-];
+import { sections, socialMedia } from "../utils/constants";
 
 const Home: NextPage = () => {
   useEffect(() => {
