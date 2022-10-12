@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import Link from "../Link/Link";
+import CustomLink from "../CustomLink/CustomLink";
 import Image from "next/image";
 import menu from "../../public/assets/menuitem.png";
 import MenuButton from "./MenuButton";
@@ -38,9 +38,13 @@ const MenuList = ({ visible, options, toggleVisible }: Props) => {
                 key={section}
                 className="block py-2 px-4 hover:text-gold-500 dark:hover:bg-gray-600 dark:hover:text-white"
               >
-                <Link url={section} target="_self" onClick={toggleVisible}>
+                <CustomLink
+                  url={section}
+                  target="_self"
+                  onClick={toggleVisible}
+                >
                   <p className="font-medium text-sm md:text-lg">{name}</p>
-                </Link>
+                </CustomLink>
               </span>
             );
           })}

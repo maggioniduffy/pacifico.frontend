@@ -1,0 +1,22 @@
+export const weekDays = new Map();
+weekDays.set(0, "Domingo");
+weekDays.set(1, "Lunes");
+weekDays.set(2, "Martes");
+weekDays.set(3, "Miercoles");
+weekDays.set(4, "Jueves");
+weekDays.set(5, "Viernes");
+weekDays.set(6, "Sabado");
+
+export const months = new Map();
+months.set(0, "Enero");
+months.set(1, "Febrero");
+months.set(2, "Marzo");
+months.set(3, "Abril");
+months.set(4, "Mayo");
+months.set(5, "Junio");
+months.set(6, "Julio");
+months.set(7, "Agosto");
+months.set(8, "Septiembre");
+months.set(9, "Octubre");
+months.set(10, "Noviembre");
+months.set(11, "Diciembre");

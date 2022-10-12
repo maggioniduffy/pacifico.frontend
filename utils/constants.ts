@@ -19,6 +19,10 @@ export const sections = [
     name: "Historia",
     section: "#historia",
   },
+  {
+    name: "Newsletter",
+    section: "#newsletter",
+  },
 ];
 
 export const socialMedia = [

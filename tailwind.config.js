@@ -25,6 +25,8 @@ module.exports = {
           400: "#fcce3d",
           500: "#fec200",
         },
+        red: "#D0342C",
+        green: "#4caf50",
       },
       fontFamily: {
         header: ["header", "sans-serif"],

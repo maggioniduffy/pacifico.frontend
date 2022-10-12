@@ -2,32 +2,40 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Header from "../../components/Header";
+import { months, weekDays } from "../../utils";
 import { sections, socialMedia } from "../../utils/constants";
+import Image from "next/image";
 
-interface NewArticle {
+interface NewArticleQuery {
   title: string;
   subtitle: string;
   id: string;
   body: string;
-  time: string;
+  time: Date;
+  src: string;
 }
 
 const NewPage = () => {
   const router = useRouter();
-  const [data, setData] = useState<NewArticle>();
+  const [data, setData] = useState<NewArticleQuery>();
   const [loaded, setLoaded] = useState(false);
   useEffect(() => {
     console.log("effect", router.isReady);
-    if (router.isReady) {
-      console.log("is ready");
-      const { query } = router.query;
-      if (query) {
-        console.log("query", query);
-        const auxQuery = query!.toString();
-        setData(JSON.parse(auxQuery));
-        setLoaded(true);
-      }
-    }
+    if (!router.isReady) return;
+    console.log(router);
+    console.log("is ready");
+    const { query } = router;
+    console.log("query", query);
+    const auxQuery: NewArticleQuery = {
+      title: query.title as string,
+      subtitle: query.subtitle as string,
+      id: query.id as string,
+      body: query.body as string,
+      time: new Date(query.time as string),
+      src: query.src as string,
+    };
+    setLoaded(true);
+    setData(auxQuery);
   }, [router, router.isReady, router.query]);
 
   return (
@@ -45,15 +53,34 @@ const NewPage = () => {
         socialMedia={socialMedia}
         alreadyScrolled={true}
         showImage={false}
+        showMenu={false}
       />
       <div className="min-h-screen">
         {loaded && data ? (
-          <div className="bg-realwhite p-8 px-16 w-10/12 md:w-8/12 mt-10 m-auto mb-5 rounded h-fit rounded-lg">
-            <h1 className="text-left text-6xl camelcase font-bold ">
+          <div className="bg-realwhite p-8 px-16 w-10/12 md:w-8/12 mt-10 m-auto mb-5 rounded h-fit shadow rounded-lg">
+            <h1 className="text-left text-6xl camelcase font-medium ">
               {data.title}
             </h1>
+
             <h3 className="text-lext text-3xl mt-1">{data.subtitle}</h3>
-            <h5> {data.time}</h5>
+            <h5 className="text-gray">
+              {" "}
+              {weekDays.get(data.time.getDay()) + " " + data.time.getDate()}
+              {" de "}
+              {months.get(data.time.getMonth())}
+              {", "}
+              {data.time.getFullYear()}
+            </h5>
+            <div className="w-10/12 h-fit relative m-auto my-8 rounded-xl">
+              <Image
+                src={data.src}
+                layout="responsive"
+                width={16}
+                height={9}
+                className="rounded-lg"
+                alt=""
+              />
+            </div>
             <p className="mt-8 text-lg">{data.body}</p>
           </div>
         ) : (

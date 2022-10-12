@@ -11,12 +11,21 @@ body {
   background-image: url("../public/assets/fondo.png");
   background-position: center;
   background-repeat: no-repeat;
+  background-attachment: fixed;
   background-size: cover;
   scroll-behavior: smooth;
 }
 
 .main-new {
   height: 90vh;
+}
+
+.blob {
+  border-radius: 30% 70% 40% 60% / 35% 42% 58% 65%;
+}
+
+.timelineitem {
+  border-radius: 29% 71% 25% 75% / 62% 45% 55% 38%;
 }
 
 .little-new {
