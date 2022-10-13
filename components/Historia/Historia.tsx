@@ -17,23 +17,23 @@ const sociosFundadores = [
 ];
 const Historia = () => {
   return (
-    <div data-aos="fade-up" data-aos-duration="2000" className="mt-16">
+    <div data-aos="fade-up" data-aos-duration="2000" className="mt-32">
       <h3 className="text-black header-font font-bold text-left text-5xl">
         {" "}
         Nuestra Historia{" "}
       </h3>
-      <article className="paragraph-font w-full py-8  pr-20 rounded flex flex-col justify-between">
+      <article className="paragraph-font w-full py-8 rounded flex flex-col justify-between">
         <h5 className="font-bold mb-4 text-3xl text-gold-500">
           {" "}
           Socios Fundadores{" "}
         </h5>
-        <div className="flex flex-wrap font-bold">
+        <div className="flex flex-wrap space-x-2 font-bold justify-between">
           {sociosFundadores.map((socio) => (
             <div key={socio}>
               {" "}
               <h3
                 data-aos="fade-up"
-                className="my-8 mr-8 text-left w-32 text-xl"
+                className="my-8 text-left w-32 text-xl"
                 data-aos-duration="2000"
               >
                 {socio}{" "}
@@ -42,9 +42,13 @@ const Historia = () => {
           ))}
         </div>
       </article>
-      <article className="history-article py-8 paragraph-font rounded pr-20 w-full">
+      <article className="history-article py-8 paragraph-font rounded w-full">
         <h5 className="font-bold mb-4 text-3xl text-gold-500"> Cronologia </h5>
-        <div className="flex justify-between">
+        <div
+          data-aos="fade-right"
+          data-aos-duration="2000"
+          className="flex w-full space-x-4 justify-between"
+        >
           <div className="timelineitem shadow-xl h-56 w-56 bg-gold-300 m-8 flex flex-col justify-center p-8">
             <h3 className="font-bold m-auto text-center text-xl ">
               {" "}

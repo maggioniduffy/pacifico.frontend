@@ -41,7 +41,7 @@ const Newsletter = () => {
         <input
           className={`p-2 w-full rounded-lg shadow ${
             failed && "ring-2 ring-red"
-          } ${sended && "ring-2 ring-green"}`}
+          } ${sended && "ring-2 ring-green"} email-input`}
           placeholder="Tu email"
           value={email}
           onChange={handleChange}

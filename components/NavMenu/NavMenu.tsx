@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import menu from "../../public/assets/menuitem.png";
+import menu from "../../public/assets/menu.svg";
 import MenuList from "./MenuList";
 
 interface Option {
@@ -32,7 +32,7 @@ const NavMenu = ({ options }: Props) => {
         type="button"
         onClick={toggleVisible}
       >
-        <Image src={menu} layout="fixed" height={30} width={40} />
+        <Image src={menu} layout="fixed" height={40} width={40} />
       </button>
       <MenuList
         visible={visible}

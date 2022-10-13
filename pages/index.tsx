@@ -3,7 +3,14 @@ import { useEffect, useRef, useState } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import { Header, Section, Historia, News, Newsletter } from "../components";
+import {
+  Header,
+  Section,
+  Historia,
+  News,
+  Newsletter,
+  Fixture,
+} from "../components";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { sections, socialMedia } from "../utils/constants";
@@ -36,26 +43,16 @@ const Home: NextPage = () => {
         />
         <link rel="icon" href="/Logo.png" />
       </Head>
-
-      <header className="h-fit z-50">
-        <Image
-          src={liga ? pacificoEsDeLiga : banner}
-          height={500}
-          layout="fill"
-        />
-      </header>
       <div data-aos="fade-up">
         <>
-          <Header
-            sections={sections}
-            socialMedia={socialMedia}
-            alreadyScrolled={false}
-          />
+          <Header sections={sections} socialMedia={socialMedia} />
           <main className="min-h-screen mt-10" ref={main}>
             <Section id="inicio">
               <News />
             </Section>
-            <Section id="fixture"></Section>
+            <Section id="fixture">
+              <Fixture />
+            </Section>
             <Section id="videos"></Section>
             <Section id="historia">
               <Historia />

@@ -16,8 +16,16 @@ body {
   scroll-behavior: smooth;
 }
 
+#nav {
+  background: linear-gradient(195deg, #f0c808, rgb(240, 240, 240, 0.5));
+}
+
 .main-new {
   height: 90vh;
+}
+
+td {
+  background-color: white;
 }
 
 .blob {
@@ -28,8 +36,15 @@ body {
   border-radius: 29% 71% 25% 75% / 62% 45% 55% 38%;
 }
 
+.email-input {
+  min-width: 8rem;
+}
 .little-new {
   height: 31%;
+}
+
+.fixture-bg {
+  background: linear-gradient(195deg, #f0c808, rgb(240, 240, 240));
 }
 
 @font-face {

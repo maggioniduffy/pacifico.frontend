@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import CustomLink from "../CustomLink/CustomLink";
 import Image from "next/image";
-import menu from "../../public/assets/menuitem.png";
+import menu from "../../public/assets/menu.svg";
 import MenuButton from "./MenuButton";
 
 interface Option {
@@ -26,7 +26,7 @@ const MenuList = ({ visible, options, toggleVisible }: Props) => {
     >
       <div className="bg-white w-44 md:w-3/12 lg:w-2/12 h-screen">
         <MenuButton toggleVisible={toggleVisible}>
-          <Image src={menu} layout="fixed" height={30} width={40} />
+          <Image src={menu} layout="fixed" height={40} width={40} />
         </MenuButton>
         <ul
           className="py-1 text-sm text-gray-700 ml-6 dark:text-gray-200"

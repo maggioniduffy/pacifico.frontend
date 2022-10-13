@@ -15,7 +15,7 @@ const CustomLink = ({ url, children, target = "_blank", onClick }: Props) => {
       target={target}
       href={url}
       rel="noreferrer"
-      className="m-1 content-center h-32 w-24 p-auto"
+      className="m-1 content-center p-auto"
       onClick={onClick}
     >
       {children}
