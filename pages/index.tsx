@@ -5,6 +5,7 @@ import construction from "../public/assets/construction.svg";
 import down from "../public/assets/down-arrow.png";
 import "animate.css";
 import { useRef, useReducer, useState, useEffect } from "react";
+import { sendEmailToAPI } from "../utils/api";
 
 interface Action {
   type: "EMAIL" | "NAME" | "SUBJECT" | "MESSAGE" | "CLEAR";
@@ -50,6 +51,8 @@ const Home: NextPage = () => {
   const [error, setError] = useState(false);
   const [sended, setSended] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+
+  const sendEmail = async () => sendEmailToAPI(state);
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
