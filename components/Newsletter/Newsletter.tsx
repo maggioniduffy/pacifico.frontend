@@ -61,11 +61,7 @@ const Newsletter = () => {
       )}
       {sended && (
         <div className="bg-green my-4 w-full p-4 rounded-lg">
-          <h5 className="text-white font-bold">
-            {" "}
-            <b className="font-bold"> OK </b>
-            Revise su casilla de correo{" "}
-          </h5>
+          <h5 className="text-white font-bold">Email enviado</h5>
         </div>
       )}
     </div>
