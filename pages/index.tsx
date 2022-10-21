@@ -5,7 +5,7 @@ import construction from "../public/assets/construction.svg";
 import down from "../public/assets/down-arrow.png";
 import "animate.css";
 import { useRef, useReducer, useState, useEffect } from "react";
-import { sendEmailToAPI } from "../utils/api";
+import { BASE_API_URL } from "../utils/constants";
 
 interface Action {
   type: "EMAIL" | "NAME" | "SUBJECT" | "MESSAGE" | "CLEAR";
@@ -52,7 +52,36 @@ const Home: NextPage = () => {
   const [sended, setSended] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  const sendEmail = async () => sendEmailToAPI(state);
+  const sendEmail = async () => {
+    const { email, name, subject, message } = state;
+    const data = {
+      from: email,
+      name,
+      subject,
+      message,
+    };
+
+    try {
+      const res = await fetch(BASE_API_URL + "email", {
+        method: "POST",
+        mode: "cors", // no-cors, *cors, same-origin
+        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: "same-origin", // include, *same-origin, omit
+        headers: {
+          "Content-Type": "application/json",
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        redirect: "follow", // manual, *follow, error
+        referrerPolicy: "no-referrer",
+        body: JSON.stringify(data),
+      });
+      const response = await res.json();
+      console.log("Res" + response);
+      return res;
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
@@ -73,6 +102,7 @@ const Home: NextPage = () => {
             setError(true);
             setErrorMessage("Por favor ingrese un mensaje");
           } else {
+            sendEmail();
             setSended(true);
           }
         }
@@ -110,7 +140,7 @@ const Home: NextPage = () => {
       </Head>
       <main className="h-screen flex flex-col justify-center">
         <div className="m-auto w-full h-10/12">
-          <div className="w-96 h-96 m-auto bg-gold-200 construction shadow">
+          <div className="w-96 h-96 m-auto bg-gold-300 construction shadow">
             <Image
               src={construction}
               layout="responsive"
@@ -135,7 +165,7 @@ const Home: NextPage = () => {
         </button>
       </main>
       <div className="h-screen flex flex-col justify-center" ref={emailForm}>
-        <div className="bg-realwhite h-fit w-auto m-8 rounded-xl shadow">
+        <div className="bg-realwhite h-fit w-auto m-32 rounded-xl shadow">
           <form className="my-16 mx-32 h-full" onSubmit={handleSubmit}>
             <h2 className="text-gold-500 text-4xl"> Contactanos </h2>
             <h5 className="text-gray"> En que te podemos ayudar?</h5>
@@ -143,7 +173,7 @@ const Home: NextPage = () => {
               <input
                 name="name"
                 placeholder="Nombre"
-                className="border-b w-full h-12"
+                className="border-b w-full h-12 p-2"
                 value={state.name}
                 onChange={(e) =>
                   dispatch({ type: "NAME", payload: e.target.value })
@@ -152,7 +182,7 @@ const Home: NextPage = () => {
               <input
                 name="email"
                 placeholder="Email"
-                className="border-b w-full h-12"
+                className="border-b w-full h-12 p-2"
                 value={state.email}
                 onChange={(e) =>
                   dispatch({ type: "EMAIL", payload: e.target.value })
@@ -162,7 +192,7 @@ const Home: NextPage = () => {
             <input
               name="asunto"
               placeholder="Asunto"
-              className="border-b w-full mt-4 h-12"
+              className="border-b w-full mt-4 h-12 p-2"
               value={state.subject}
               onChange={(e) =>
                 dispatch({ type: "SUBJECT", payload: e.target.value })
@@ -171,7 +201,7 @@ const Home: NextPage = () => {
             <textarea
               name="message"
               placeholder="Tu mensaje"
-              className="border-b w-full mt-6 break-words h-32"
+              className="border-b w-full mt-6 break-words h-32 p-2"
               value={state.message}
               onChange={(e) =>
                 dispatch({ type: "MESSAGE", payload: e.target.value })

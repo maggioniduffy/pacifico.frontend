@@ -90,14 +90,3 @@ interface SendEmailDto {
   subject: string;
   message: string;
 }
-
-export async function sendEmailToAPI(sendEmailDto: SendEmailDto) {
-  try {
-    const res = await fetch(BASE_API_URL + "email", {
-      body: JSON.stringify(sendEmailDto),
-    });
-    return res;
-  } catch (error) {
-    console.error(error);
-  }
-}
