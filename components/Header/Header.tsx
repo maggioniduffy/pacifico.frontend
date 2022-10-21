@@ -38,7 +38,7 @@ const Header = ({ sections, socialMedia, showMenu = true }: Props) => {
           <Link href="/">
             <a className={`flex w-fit place-items-center pacifico`}>
               <h1
-                className={`text-4xl pr-2 pacifico text-right sm:text-4xl sm:text-center text-black font-bold text-center header-font`}
+                className={`text-4xl pr-2 pacifico text-right sm:text-4xl sm:text-center text-yellow font-bold text-center header-font`}
               >
                 Pacifico Basquet{" "}
               </h1>

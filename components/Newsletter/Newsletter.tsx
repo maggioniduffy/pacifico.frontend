@@ -15,12 +15,12 @@ const Newsletter = () => {
       setSended(true);
       setTimeout(() => {
         setSended(false);
-      }, 1000);
+      }, 1500);
     } else {
       setFailed(true);
       setTimeout(() => {
         setFailed(false);
-      }, 1000);
+      }, 1500);
     }
   };
 
@@ -35,35 +35,42 @@ const Newsletter = () => {
         Suscribite a nuestro Newsletter
       </h3>
       <form
-        className={`mt-4 ${failed && "ring-red"} flex`}
+        className={`mt-4 ${failed && "ring-red"} flex space-x-2`}
         onSubmit={handleSubmit}
       >
-        <input
-          className={`p-2 w-full rounded-lg shadow ${
-            failed && "ring-2 ring-red"
-          } ${sended && "ring-2 ring-green"} email-input`}
-          placeholder="Tu email"
-          value={email}
-          onChange={handleChange}
-        ></input>
-        <button className="ml-4">
-          {" "}
-          <Image src={send} height={20} width={20} alt="send" />{" "}
-        </button>
+        {!failed && !sended && (
+          <>
+            <input
+              className={`p-2 w-full h-12 rounded-lg shadow email-input`}
+              placeholder="Tu email"
+              value={email}
+              onChange={handleChange}
+              name="Email"
+            ></input>
+            <button className="h-12 w-12">
+              {" "}
+              <Image
+                src={send}
+                height={100}
+                width={100}
+                layout="responsive"
+                alt="send"
+              />{" "}
+            </button>
+          </>
+        )}
+
+        {failed && (
+          <div className="bg-red h-12 w-full rounded-lg flex justify-center">
+            <p className="text-white text-center m-auto"> Email invalido </p>
+          </div>
+        )}
+        {sended && (
+          <div className="bg-green h-12 w-full rounded-lg flex justify-center">
+            <p className="text-white text-center m-auto">Email enviado</p>
+          </div>
+        )}
       </form>
-      {failed && (
-        <div className="bg-red my-4 w-full p-4 rounded-lg">
-          <h5 className="text-white font-bold">
-            {" "}
-            <b className="font-bold"> X </b>Ingrese un email valido{" "}
-          </h5>
-        </div>
-      )}
-      {sended && (
-        <div className="bg-green my-4 w-full p-4 rounded-lg">
-          <h5 className="text-white font-bold">Email enviado</h5>
-        </div>
-      )}
     </div>
   );
 };

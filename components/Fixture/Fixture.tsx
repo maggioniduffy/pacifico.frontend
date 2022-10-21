@@ -62,9 +62,9 @@ const Fixture = () => {
       </h3>
       {matchs && matchs?.length > 0 ? (
         <div className="h-full my-8 mb-16">
-          <table className="table-auto h-full border-separate rounded-xl border-spacing-1 w-full">
-            <thead className="bg-black text-yellow shadow-b-xl">
-              <tr>
+          <table className="table-auto h-full rounded-xl border-spacing-1 bg-realwhite shadow-xl w-full">
+            <thead className="bg-black text-yellow text-md">
+              <tr className="p-2">
                 <th className="rounded-tl-xl">Fecha</th>
                 <th>Categoria</th>
                 <th>Local</th>

@@ -11,10 +11,10 @@ module.exports = {
       colors: {
         transparent: "transparent",
         current: "currentColor",
-        black: "#000",
+        black: "#212121",
         white: "#f5f5f5",
         realwhite: "#fff",
-        gray: "#a4a3a2",
+        gray: "#383838",
         emerald: colors.emerald,
         indigo: colors.indigo,
         yellow: "#f0c808",

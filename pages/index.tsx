@@ -139,8 +139,8 @@ const Home: NextPage = () => {
         <link rel="icon" href="/Logo.png" />
       </Head>
       <main className="h-screen flex flex-col justify-center">
-        <div className="m-auto w-full h-10/12">
-          <div className="w-96 h-96 m-auto bg-gold-300 construction shadow">
+        <div className="m-auto w-screen h-10/12">
+          <div className="w-72 h-72 md:w-96 md:h-96 m-auto bg-gold-300 construction shadow">
             <Image
               src={construction}
               layout="responsive"
@@ -148,11 +148,11 @@ const Home: NextPage = () => {
               width={100}
             />
           </div>
-          <h1 className="text-center mt-8 font-thin text-4xl">
+          <h1 className="text-center mt-8 font-thin text-2xl md:text-4xl">
             {" "}
             Este sitio esta en construccion{" "}
           </h1>
-          <h3 className="text-center text-gray text-xl mt-4">
+          <h3 className="text-center text-gray text-lg md:text-xl mt-4">
             {" "}
             Ya queda poco!{" "}
           </h3>
@@ -165,8 +165,11 @@ const Home: NextPage = () => {
         </button>
       </main>
       <div className="h-screen flex flex-col justify-center" ref={emailForm}>
-        <div className="bg-realwhite h-fit w-auto m-32 rounded-xl shadow">
-          <form className="my-16 mx-32 h-full" onSubmit={handleSubmit}>
+        <div className="bg-realwhite h-fit w-auto m-auto md:m-40 rounded-xl shadow">
+          <form
+            className="m-8 md:my-16 md:mx-32 h-full"
+            onSubmit={handleSubmit}
+          >
             <h2 className="text-gold-500 text-4xl"> Contactanos </h2>
             <h5 className="text-gray"> En que te podemos ayudar?</h5>
             <div className="mt-4 flex space-x-4 justify-between w-full">
