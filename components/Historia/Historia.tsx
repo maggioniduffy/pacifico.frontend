@@ -23,7 +23,7 @@ const Historia = () => {
         Nuestra Historia{" "}
       </h3>
       <article className="paragraph-font w-full py-8 rounded flex flex-col justify-between">
-        <h5 className="font-bold mb-4 text-3xl text-gold-500">
+        <h5 className="font-bold mb-4 text-3xl text-gray">
           {" "}
           Socios Fundadores{" "}
         </h5>
@@ -43,14 +43,14 @@ const Historia = () => {
         </div>
       </article>
       <article className="history-article py-8 paragraph-font rounded w-full">
-        <h5 className="font-bold mb-4 text-3xl text-gold-500"> Cronologia </h5>
+        <h5 className="font-bold mb-4 text-3xl text-gray"> Cronologia </h5>
         <div
           data-aos="fade-right"
           data-aos-duration="2000"
           className="flex w-full space-x-4 justify-between"
         >
-          <div className="timelineitem shadow-xl h-56 w-56 bg-gold-300 m-8 flex flex-col justify-center p-8">
-            <h3 className="font-bold m-auto text-center text-xl ">
+          <div className="timelineitem shadow-xl h-56 w-56 bg-black m-8 flex flex-col justify-center p-8">
+            <h3 className="font-bold m-auto text-center text-xl text-yellow">
               {" "}
               16 de Septiembre de 1916{" "}
             </h3>

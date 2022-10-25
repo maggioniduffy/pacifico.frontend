@@ -5,37 +5,31 @@ import Header from "../../components/Header";
 import { months, weekDays } from "../../utils";
 import { sections, socialMedia } from "../../utils/constants";
 import Image from "next/image";
+import { ApiNew, getNew } from "../../utils/api";
 
-interface NewArticleQuery {
+interface NewArticle {
   title: string;
   subtitle: string;
-  id: string;
+  _id: string;
   body: string;
   time: Date;
-  src: string;
+  image: string;
 }
 
 const NewPage = () => {
   const router = useRouter();
-  const [data, setData] = useState<NewArticleQuery>();
+  const [data, setData] = useState<NewArticle>();
   const [loaded, setLoaded] = useState(false);
+
+  const setNewQuery = async () => {
+    getNew(router!.query!.id as string).then((res) => {
+      const auxRes = { ...res!, time: new Date(res!.time) };
+      setLoaded(true);
+      setData(auxRes);
+    });
+  };
   useEffect(() => {
-    console.log("effect", router.isReady);
-    if (!router.isReady) return;
-    console.log(router);
-    console.log("is ready");
-    const { query } = router;
-    console.log("query", query);
-    const auxQuery: NewArticleQuery = {
-      title: query.title as string,
-      subtitle: query.subtitle as string,
-      id: query.id as string,
-      body: query.body as string,
-      time: new Date(query.time as string),
-      src: query.src as string,
-    };
-    setLoaded(true);
-    setData(auxQuery);
+    setNewQuery();
   }, [router, router.isReady, router.query]);
 
   return (
@@ -48,16 +42,10 @@ const NewPage = () => {
         />
         <link rel="icon" href="/Logo.png" />
       </Head>
-      <Header
-        sections={sections}
-        socialMedia={socialMedia}
-        alreadyScrolled={true}
-        showImage={false}
-        showMenu={false}
-      />
+      <Header sections={sections} socialMedia={socialMedia} showMenu={false} />
       <div className="min-h-screen">
         {loaded && data ? (
-          <div className="bg-realwhite p-8 px-16 w-10/12 md:w-8/12 mt-10 m-auto mb-5 rounded h-fit shadow rounded-lg">
+          <div className="bg-realwhite p-8 px-16 w-10/12 md:w-8/12 mt-16 m-auto mb-5 rounded h-fit shadow rounded-lg">
             <h1 className="text-left text-6xl camelcase font-medium ">
               {data.title}
             </h1>
@@ -73,7 +61,7 @@ const NewPage = () => {
             </h5>
             <div className="w-10/12 h-fit relative m-auto my-8 rounded-xl">
               <Image
-                src={data.src}
+                src={data.image}
                 layout="responsive"
                 width={16}
                 height={9}

@@ -13,10 +13,10 @@ export const sections = [
     name: "Fixture",
     section: "#fixture",
   },
-  {
-    name: "Videos",
-    section: "#videos",
-  },
+  // {
+  //   name: "Videos",
+  //   section: "#videos",
+  // },
   {
     name: "Historia",
     section: "#historia",

@@ -7,7 +7,7 @@ export class ApiNew {
     public _id: string,
     public body: string,
     public time: string,
-    public image: Image
+    public image: string
   ) {}
 }
 
@@ -31,7 +31,7 @@ export class ApiMatch {
     public time: string,
     public condition: "Local" | "Visita",
     public played: boolean,
-    public rival_icon: Image,
+    public rival_icon: string,
     public _id: string,
     public field: string,
     public stats_link?: string,
@@ -39,10 +39,6 @@ export class ApiMatch {
     public our_score?: number,
     public rival_score?: number
   ) {}
-}
-
-export async function getMainNews(): Promise<ApiNew[] | undefined> {
-  return getNews();
 }
 
 export async function getNews(
@@ -58,6 +54,16 @@ export async function getNews(
   }
 }
 
+export async function getNew(id: string): Promise<ApiNew | undefined> {
+  try {
+    const res = await fetch(BASE_API_URL + `news/` + id);
+    const data: ApiNew = await res.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export async function getMatchs(
   skip: number = 0,
   limit: number = 3
@@ -68,17 +74,6 @@ export async function getMatchs(
     );
     const mainNews: ApiMatch[] = await res.json();
     return mainNews;
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-export async function getImage(id: string) {
-  try {
-    const res = await fetch(BASE_API_URL + "attachment/files/" + id);
-    const image = await res.blob();
-    const src = URL.createObjectURL(image);
-    return src;
   } catch (error) {
     console.error(error);
   }

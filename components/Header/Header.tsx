@@ -25,7 +25,7 @@ const Header = ({ sections, socialMedia, showMenu = true }: Props) => {
     <div>
       <nav
         id="nav"
-        className="flex w-full top-0 fixed place-items-center p-1 h-16 mt-0 bg-transparent z-40"
+        className="flex w-full top-0 fixed place-items-center p-1 h-12 mt-0 bg-transparent z-40"
       >
         {showMenu ? (
           <NavMenu options={sections} />

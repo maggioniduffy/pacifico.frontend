@@ -1,115 +1,72 @@
 import React, { useEffect, useState } from "react";
-import { getMainNews } from "../../utils/api";
+import { ApiNew, getNews as getNewsApi } from "../../utils/api";
+import LoadingSpinner from "../LoadingSpinner";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from "react-responsive-carousel";
 import Image from "next/image";
 import Link from "next/link";
-import { BASE_API_URL } from "../../utils/constants";
-import LoadingSpinner from "../LoadingSpinner";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from "react-responsive-carousel";
-
-interface NewArticle {
-  title: string;
-  subtitle: string;
-  id: string;
-  body: string;
-  time: string;
-}
-
-interface Image {
-  src: string;
-  id: string;
-}
 
 const News = () => {
-  const [mainNews, setMainNews] = useState<NewArticle[]>();
-  const [images, setImages] = useState<string[]>([]);
+  const [mainNews, setMainNews] = useState<ApiNew[]>();
 
   useEffect(() => {
-    const setImage = async (id: string, i: number) => {
-      const j = i + 1;
-      try {
-        const res = await fetch(BASE_API_URL + "attachment/files/" + id);
-        const image = await res.blob();
-        const src = URL.createObjectURL(image);
-        return src;
-      } catch (e) {
-        if (j < 4) {
-          setImage(id, j);
-        }
-      }
-    };
-
     const getNews = async () => {
-      const res = await getMainNews();
-      const auxImages: string[] = [];
-      const auxNews: NewArticle[] = [];
-      res?.forEach(async ({ image, title, subtitle, _id, body, time }, i) => {
-        const src = await setImage(image.id, 0);
-        auxImages.push(src!);
-        console.log(time);
-        const article = {
-          title,
-          subtitle,
-          id: _id,
-          body,
-          time,
-        };
-        auxNews.push(article);
-      });
-      console.log("images len: ", auxImages);
-      console.log("news len: ", auxNews);
-      setImages(auxImages);
-      setMainNews(auxNews);
+      const res = await getNewsApi();
+      setMainNews(res);
+      console.log(mainNews);
     };
     getNews();
   }, []);
 
   return (
-    <div className="main-new pt-10">
-      {mainNews && images && images.length > 0 ? (
-        <div className="flex h-full justify-between">
-          <Carousel>
-            {mainNews.map((mNew, i) => {
-              return (
-                <Link
-                  key={mNew.time}
-                  href={{
-                    pathname: `/news/${mNew.title}`,
-                    query: {
-                      title: mNew.title,
-                      subtitle: mNew.subtitle,
-                      body: mNew.body,
-                      time: mNew.time,
-                      src: images[i],
-                    },
-                  }}
-                >
-                  <a className="main-new w-full basis-9/12 mr-4 relative shadow">
+    <div className="main-new pt-10 w-full rounded-xl overflow-hidden">
+      {mainNews ? (
+        <Carousel
+          swipeable
+          stopOnHover
+          dynamicHeight
+          showIndicators
+          autoPlay
+          infiniteLoop
+          emulateTouch
+          axis="horizontal"
+          className="shadow rounded-xl overflow-hidden h-fit"
+        >
+          {mainNews.map((mNew) => {
+            return (
+              <Link
+                href={{
+                  pathname: "/news/[title]",
+                  query: {
+                    title: mNew.title,
+                    id: mNew._id,
+                  },
+                }}
+                key={mNew.image}
+                target="_blank"
+                className="w-full h-full shadow relative rounded-xl"
+              >
+                <a className="rounded-xl h-full">
+                  <div className="w-full h-full rounded-xl">
                     <Image
-                      src={images[i]}
-                      height={20}
-                      width={30}
-                      layout="fill"
-                      alt={mNew.title}
-                      priority
-                      className="rounded-lg"
+                      src={mNew.image}
+                      layout="responsive"
+                      height={9}
+                      width={16}
+                      alt={mNew.subtitle}
                     />
-                    <div
-                      data-aos="fade-up"
-                      className="z-10 absolute bg-realwhite bottom-0 rounded-b rounded-t-2xl w-full h-24 flex flex-col text-center justify-center "
-                    >
-                      <h3 className="text-black font-bold text-2xl">
-                        {" "}
-                        {mNew.title}
-                      </h3>
-                      <h5 className="text-gray text-xl">{mNew.subtitle}</h5>
-                    </div>
-                  </a>
-                </Link>
-              );
-            })}
-          </Carousel>
-        </div>
+                  </div>
+                  <div className="rounded-t-xl w-full h-fit absolute bottom-0">
+                    <h2 className="text-4xl drop-shadow-xl text-center text-shadow mb-8 font-bold text-white">
+                      {" "}
+                      {mNew.title}{" "}
+                    </h2>
+                  </div>
+                </a>
+              </Link>
+            );
+          })}
+        </Carousel>
       ) : (
         <LoadingSpinner />
       )}

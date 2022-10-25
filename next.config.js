@@ -11,4 +11,7 @@ module.exports = withFonts({
   webpack(config, options) {
     return config;
   },
+  images: {
+    domains: ["clubimages.s3.amazonaws.com"],
+  },
 });
