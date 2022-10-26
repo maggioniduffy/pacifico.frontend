@@ -19,16 +19,10 @@ import banner from "../public/assets/Banner.png";
 import pacificoEsDeLiga from "../public/assets/PacificoEsDeLiga.png";
 
 const Home: NextPage = () => {
-  const [liga, setLiga] = useState(false);
   useEffect(() => {
     AOS.init({
       mirror: false,
     });
-    const interval = setInterval(() => {
-      setLiga(!liga);
-    }, 10000);
-
-    return () => clearInterval(interval);
   }, []);
 
   const main = useRef<null | HTMLDivElement>(null);
@@ -43,7 +37,7 @@ const Home: NextPage = () => {
         />
         <link rel="icon" href="/Logo.png" />
       </Head>
-      <div data-aos="fade-up">
+      <div>
         <>
           <Header sections={sections} socialMedia={socialMedia} />
           <main className="min-h-screen mt-10" ref={main}>

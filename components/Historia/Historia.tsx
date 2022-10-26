@@ -18,12 +18,12 @@ const sociosFundadores = [
 const Historia = () => {
   return (
     <div data-aos="fade-up" data-aos-duration="2000" className="mt-32">
-      <h3 className="text-black header-font font-bold text-left text-5xl">
+      <h3 className="text-black header-font font-bold text-left text-3xl">
         {" "}
         Nuestra Historia{" "}
       </h3>
       <article className="paragraph-font w-full py-8 rounded flex flex-col justify-between">
-        <h5 className="font-bold mb-4 text-3xl text-gray">
+        <h5 className="font-bold mb-4 text-xl text-gray">
           {" "}
           Socios Fundadores{" "}
         </h5>
@@ -33,7 +33,7 @@ const Historia = () => {
               {" "}
               <h3
                 data-aos="fade-up"
-                className="my-8 text-left w-32 text-xl"
+                className="my-8 text-left w-32 text-md"
                 data-aos-duration="2000"
               >
                 {socio}{" "}
@@ -43,20 +43,20 @@ const Historia = () => {
         </div>
       </article>
       <article className="history-article py-8 paragraph-font rounded w-full">
-        <h5 className="font-bold mb-4 text-3xl text-gray"> Cronologia </h5>
+        <h5 className="font-bold mb-4 text-xl text-gray"> Cronologia </h5>
         <div
           data-aos="fade-right"
           data-aos-duration="2000"
           className="flex w-full space-x-4 justify-between"
         >
-          <div className="timelineitem shadow-xl h-56 w-56 bg-black m-8 flex flex-col justify-center p-8">
-            <h3 className="font-bold m-auto text-center text-xl text-yellow">
+          <div className="timelineitem shadow-xl h-32 w-32 bg-black m-8 flex flex-col justify-center p-8">
+            <h3 className="m-auto text-left text-yellow">
               {" "}
               16 de Septiembre de 1916{" "}
             </h3>
           </div>
 
-          <div className="m-8 shadow-xl bg-white bg-opacity-50 rounded-xl p-4 h-fit text-xl">
+          <div className="m-8 shadow-xl bg-white bg-opacity-50 rounded-xl p-4 h-fit text-sm">
             <p>
               {" "}
               Un grupo decidido de deportistas hizo los primeros intentos de

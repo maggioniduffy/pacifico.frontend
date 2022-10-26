@@ -77,7 +77,7 @@ const Fixture = () => {
 
   return (
     <div className="my-8 w-full h-fit rounded-xl flex flex-col justify-center">
-      <h3 className="text-black header-font font-bold text-left text-5xl">
+      <h3 className="text-black header-font font-bold text-left text-3xl">
         {" "}
         Proximos Partidos{" "}
       </h3>

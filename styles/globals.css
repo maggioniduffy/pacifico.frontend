@@ -30,6 +30,7 @@ td {
 
 .blob {
   border-radius: 30% 70% 40% 60% / 35% 42% 58% 65%;
+  min-height: 10rem;
 }
 
 .timelineitem {

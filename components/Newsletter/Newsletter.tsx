@@ -29,25 +29,25 @@ const Newsletter = () => {
   };
 
   return (
-    <div className="bg-gold-400 relative blob min-h-72 w-8/12 mx-auto my-16 flex justify-center flex-col p-32">
-      <h3 className="text-3xl font-bold text-left">
+    <div className="bg-gold-400 relative blob w-8/12 mx-auto my-16 flex justify-center flex-col">
+      <h3 className="mb-0 mx-auto text-lg text-left">
         {" "}
         Suscribite a nuestro Newsletter
       </h3>
       <form
-        className={`mt-4 ${failed && "ring-red"} flex space-x-2`}
+        className={`mx-auto my-2 w-full${failed && "ring-red"} flex space-x-2`}
         onSubmit={handleSubmit}
       >
         {!failed && !sended && (
           <>
             <input
-              className={`p-2 w-full h-12 rounded-lg shadow email-input`}
+              className={`p-2 w-full h-8 rounded-lg shadow email-inputs`}
               placeholder="Tu email"
               value={email}
               onChange={handleChange}
               name="Email"
             ></input>
-            <button className="h-12 w-12">
+            <button className="h-8 w-8">
               {" "}
               <Image
                 src={send}
