@@ -30,8 +30,10 @@ const News = () => {
             autoPlay
             infiniteLoop
             emulateTouch
+            showStatus
+            showArrows
             axis="horizontal"
-            className="shadow rounded-xl overflow-hidden h-fit"
+            className="overflow-hidden h-fit"
           >
             {mainNews.map((mNew) => {
               return (
@@ -45,7 +47,7 @@ const News = () => {
                   }}
                   key={mNew.image}
                   target="_blank"
-                  className="w-full h-full shadow relative rounded-xl"
+                  className="w-full h-full relative rounded-xl"
                 >
                   <a className="rounded-xl h-full">
                     <div className="w-full h-full rounded-xl">
@@ -57,12 +59,12 @@ const News = () => {
                         alt={mNew.subtitle}
                       />
                     </div>
-                    <div className="rounded-t-xl w-full h-fit absolute bottom-0">
-                      <h2 className="text-4xl drop-shadow-xl text-center text-shadow font-bold text-white">
+                    <div className="rounded-t-xl bg-realwhite border-t-4 border-yellow w-full h-fit absolute bottom-0">
+                      <h2 className="text-4xl drop-shadow-xl mt-2 text-center text-shadow text-black">
                         {" "}
                         {mNew.title}{" "}
                       </h2>
-                      <p className="text-xl drop-shadow-xl text-center text-shadow mb-8 font-medium text-white">
+                      <p className="text-xl drop-shadow-xl text-center text-shadow mb-8 font-medium text-gray">
                         {mNew.subtitle}
                       </p>
                     </div>
@@ -71,11 +73,12 @@ const News = () => {
               );
             })}
           </Carousel>
-          <Link href="/news" className="w-full h-12 mt-4">
-            <button className="bg-white mt-4 w-full h-12 font-bold text-black rounded shadow shadow-yellow">
-              {" "}
-              Ver todas las noticias
-            </button>
+          <Link href="/news" className="w-full h-12 mt-1">
+            <div className="w-full flex justify-center">
+              <button className="bg-realwhite rounded p-2 shadow shadow-yellow">
+                <h4 className="text-black"> Ver todas las noticias</h4>
+              </button>
+            </div>
           </Link>
         </>
       ) : (

@@ -22,22 +22,19 @@ const Historia = () => {
         {" "}
         Nuestra Historia{" "}
       </h3>
-      <article className="paragraph-font w-full py-8 rounded flex flex-col justify-between">
+      <article className="paragraph-font w-full py-4 rounded flex flex-col justify-between">
         <h5 className="font-bold mb-4 text-xl text-gray">
           {" "}
           Socios Fundadores{" "}
         </h5>
-        <div className="flex flex-wrap space-x-2 font-bold justify-between">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 font-bold justify-between">
           {sociosFundadores.map((socio) => (
-            <div key={socio}>
+            <div
+              key={socio}
+              className="shadow w-full m-auto h-16 shadow-yellow rounded-xl flex place-items-center px-2 overflow-auto"
+            >
               {" "}
-              <h3
-                data-aos="fade-up"
-                className="my-8 text-left w-32 text-md"
-                data-aos-duration="2000"
-              >
-                {socio}{" "}
-              </h3>{" "}
+              <h3 className="w-full text-center text-sm">{socio} </h3>{" "}
             </div>
           ))}
         </div>

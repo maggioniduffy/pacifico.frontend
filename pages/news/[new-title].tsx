@@ -41,7 +41,7 @@ const NewPage = () => {
   };
 
   const setOtherNewsCall = async () => {
-    getNews().then((res) => {
+    getNews(0, 15).then((res) => {
       const auxRes = res
         ?.filter(({ _id }) => _id != data?._id)
         .map(({ title, _id, image, subtitle }) => ({
@@ -74,8 +74,8 @@ const NewPage = () => {
       <Header sections={sections} socialMedia={socialMedia} showMenu={false} />
       <div className="min-h-screen">
         <Link href="/news">
-          <button className="fixed top-15 left-10 h-fit w-12">
-            <div className="h-12 w-12 shadow shadow-yellow rounded-full">
+          <button className="fixed top-15 left-10 h-fit w-8">
+            <div className="h-8 w-8 shadow shadow-yellow rounded-full">
               <Image src={left} layout="fill" alt="Volver a noticias" />
             </div>
           </button>
@@ -107,24 +107,35 @@ const NewPage = () => {
             {", "}
             {data?.time.getFullYear()}
           </h5>
-          <p className="mt-8 indent-3 leading-relaxed text-justify text-lg">
+          <p className="mt-8 indent-3 leading-relaxed text-justify text-sm">
             {data?.body}
           </p>
         </div>
-        <div className="bg-realwhite shadow shadow-yellow mt-8">
+        <div className="bg-realwhite shadow shadow-yellow mt-8 p-4">
           <h4 className="text-center text-xl mt-2">
             {" "}
             Tambien te puede interesar{" "}
           </h4>
-          <div className="flex flex-row w-10/12 my-4 mx-auto overflow-x-auto place-items-center justify-center">
+          <div className="flex flex-row w-full my-4 mx-auto overflow-x-auto place-items-center justify-center space-x-2">
             {otherNews?.map(({ title, id, image, subtitle }) => (
-              <NewCard
-                title={title}
-                image={image}
-                id={id}
-                key={id}
-                subtitle={subtitle}
-              />
+              <div
+                key={Date.now() + id}
+                className={`w-56 h-44 p-2 rounded-xl overflow-hidden`}
+              >
+                <NewCard title={title} id={id} key={Date.now() + id}>
+                  <div className="relative">
+                    <div className="w-56 h-44">
+                      <Image src={image} layout="fill" alt={title} />
+                    </div>
+                    <div className="rounded-t-lg bg-realwhite border-t-4 border-yellow absolute bottom-0 w-full h-16 flex flex-col place-items-center justify-center text-ellipsis">
+                      <h5 className="text-md text-center text-black">
+                        {" "}
+                        {title}{" "}
+                      </h5>
+                    </div>
+                  </div>
+                </NewCard>
+              </div>
             ))}
           </div>
         </div>

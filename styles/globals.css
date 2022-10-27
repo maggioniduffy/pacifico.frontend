@@ -37,6 +37,10 @@ td {
   border-radius: 29% 71% 25% 75% / 62% 45% 55% 38%;
 }
 
+.card-bg {
+  background: linear-gradient();
+}
+
 .email-input {
   min-width: 8rem;
 }
@@ -44,8 +48,8 @@ td {
   height: 31%;
 }
 
-.fixture-bg {
-  background: linear-gradient(195deg, #f0c808, rgb(240, 240, 240));
+.card-bg {
+  background-image: url("../public/assets/fondo.png");
 }
 
 @font-face {
