@@ -29,7 +29,7 @@ const Newsletter = () => {
   };
 
   return (
-    <div className="bg-gold-400 relative blob w-8/12 mx-auto my-16 flex justify-center flex-col">
+    <div className="bg-gold-400 relative shadow-lg shadow-yellow blob w-8/12 mx-auto my-16 flex justify-center flex-col">
       <h3 className="mb-0 mx-auto text-lg text-left">
         {" "}
         Suscribite a nuestro Newsletter

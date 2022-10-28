@@ -34,7 +34,7 @@ const NewsPage = () => {
 
   useEffect(() => {
     setNewsCall(from, to);
-  }, [from, to]);
+  }, [from, to, loadMore]);
 
   const loadMore = () => {
     setFrom(from + STEP);
@@ -59,10 +59,6 @@ const NewsPage = () => {
         />
         <main className="h-screen mt-10 p-4">
           <div className="w-10/12 m-auto">
-            <h3 className="text-black header-font font-bold text-left text-3xl">
-              {" "}
-              Noticias{" "}
-            </h3>
             <div className="flex mt-2 flex-wrap place-items-center justify-center">
               {news.map(({ image, id, title, subtitle }, i) => {
                 const w =
@@ -79,7 +75,7 @@ const NewsPage = () => {
                         <div className="w-96 h-96">
                           <Image src={image} layout="fill" alt={title} />
                         </div>
-                        <div className="rounded-t-xl bg-realwhite border-t-4 border-yellow absolute bottom-0 w-full h-20 flex flex-col place-items-center justify-center">
+                        <div className="rounded-tr-2xl bg-realwhite border-t-6 border-yellow absolute bottom-0 w-full h-20 flex flex-col place-items-center justify-center">
                           <h5 className="text-xl text-center text-black">
                             {" "}
                             {title}{" "}

@@ -6,3 +6,4 @@ export { default as News } from "./News";
 export { default as Newsletter } from "./Newsletter";
 export { default as Fixture } from "./Fixture";
 export { default as LoadingSpinner } from "./LoadingSpinner";
+export { default as Videos } from "./VIdeos";

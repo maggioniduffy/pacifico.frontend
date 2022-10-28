@@ -88,13 +88,12 @@ const NewPage = () => {
 
           <h3 className="text-lext text-3xl mt-1">{data?.subtitle}</h3>
           {data?.image && (
-            <div className="w-10/12 h-fit relative my-8 rounded-xl">
+            <div className="w-full h-fit relative my-8">
               <Image
                 src={data?.image}
                 layout="responsive"
                 width={16}
                 height={9}
-                className="rounded-lg"
                 alt=""
               />
             </div>
@@ -127,7 +126,7 @@ const NewPage = () => {
                     <div className="w-56 h-44">
                       <Image src={image} layout="fill" alt={title} />
                     </div>
-                    <div className="rounded-t-lg bg-realwhite border-t-4 border-yellow absolute bottom-0 w-full h-16 flex flex-col place-items-center justify-center text-ellipsis">
+                    <div className="rounded-tr-2xl bg-realwhite border-t-4 border-yellow absolute bottom-0 w-full h-16 flex flex-col place-items-center justify-center text-ellipsis">
                       <h5 className="text-md text-center text-black">
                         {" "}
                         {title}{" "}

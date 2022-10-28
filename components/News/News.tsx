@@ -59,7 +59,7 @@ const News = () => {
                         alt={mNew.subtitle}
                       />
                     </div>
-                    <div className="rounded-t-xl bg-realwhite border-t-4 border-yellow w-full h-fit absolute bottom-0">
+                    <div className="rounded-tr-2xl bg-realwhite border-t-6 border-yellow w-full h-fit absolute shadow-inner bottom-0">
                       <h2 className="text-4xl drop-shadow-xl mt-2 text-center text-shadow text-black">
                         {" "}
                         {mNew.title}{" "}
