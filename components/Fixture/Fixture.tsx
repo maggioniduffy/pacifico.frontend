@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Category, getMatchs } from "../../utils/api";
-import LoadingSpinner from "../LoadingSpinner";
 import clublogo from "../../public/assets/clublogo.png";
 import Image, { StaticImageData } from "next/image";
-import { months } from "../../utils";
 
 const STEP = 5;
 const LOAD_STEP = 20;
@@ -50,12 +48,20 @@ const Fixture = () => {
   const [to, setTo] = useState(STEP);
   const [fromLoad, setFromLoad] = useState(0);
   const [toLoad, setToLoad] = useState(LOAD_STEP);
+  const [nextAllowed, setNextAllowed] = useState(true);
 
   useEffect(() => {
     const getGames = async () => {
       const res = await getMatchs(fromLoad, toLoad);
       const auxRes = res?.map((r) => ({ ...r, time: new Date(r.time) }));
-      setMatchs([...matchs, ...auxRes!]);
+      if (auxRes?.length) {
+        setMatchs([...matchs, ...auxRes!]);
+        if (auxRes?.length < STEP) {
+          setNextAllowed(false);
+        } else {
+          setNextAllowed(true);
+        }
+      }
     };
     getGames();
   }, [fromLoad, toLoad]);
@@ -158,7 +164,9 @@ const Fixture = () => {
             Atras
           </button>
           <button
-            className=" bg-yellow text-realwhite h-full w-32 p-1"
+            className={`${
+              !nextAllowed && "cursor-not-allowed opacity-50"
+            } bg-yellow text-realwhite h-full w-32 p-1`}
             onClick={next}
           >
             {" "}

@@ -11,6 +11,7 @@ import {
   Newsletter,
   Fixture,
   Videos,
+  Team,
 } from "../components";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -48,9 +49,8 @@ const Home: NextPage = () => {
             <Section id="fixture">
               <Fixture />
             </Section>
-            <Section id="videos">
-              <Videos />
-            </Section>
+            <Videos id="videos" />
+            <Team id="team" />
             <Section id="historia">
               <Historia />
             </Section>

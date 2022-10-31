@@ -5,6 +5,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from "react-responsive-carousel";
 import Image from "next/image";
 import Link from "next/link";
+import MyButton from "../MyButton/MyButton";
 
 const News = () => {
   const [mainNews, setMainNews] = useState<ApiNew[]>();
@@ -75,9 +76,9 @@ const News = () => {
           </Carousel>
           <Link href="/news" className="w-full h-12 mt-1">
             <div className="w-full flex justify-center">
-              <button className="bg-realwhite rounded p-2 shadow shadow-yellow">
-                <h4 className="text-black"> Ver todas las noticias</h4>
-              </button>
+              <MyButton>
+                <h4>Ver todas las noticias</h4>
+              </MyButton>
             </div>
           </Link>
         </>

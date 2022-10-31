@@ -5,6 +5,7 @@ import NewCard from "../../components/NewCard";
 import { getNews } from "../../utils/api";
 import { sections, socialMedia } from "../../utils/constants";
 import Image from "next/image";
+import MyButton from "../../components/MyButton/MyButton";
 
 interface NewInfo {
   title: string;
@@ -97,7 +98,11 @@ const NewsPage = () => {
                 );
               })}{" "}
             </div>
-            <button onClick={loadMore}> Cargar mas </button>
+            <div className="mx-auto w-fit mb-8">
+              <MyButton onClick={loadMore}>
+                <h4> Cargar mas </h4>
+              </MyButton>
+            </div>
           </div>
         </main>
       </>

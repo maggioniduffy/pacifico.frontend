@@ -23,7 +23,11 @@ const PlaylistCard = ({ src, text }: YoutubeElem) => (
   </div>
 );
 
-const Videos = () => {
+interface Props {
+  id: string;
+}
+
+const Videos = ({ id }: Props) => {
   const [youtube, setYoutubeData] = useState<YoutubeElem[]>([]);
   const [from, setFrom] = useState(0);
   const [to, setTo] = useState(10);
@@ -40,11 +44,12 @@ const Videos = () => {
   }, [from, to]);
 
   return (
-    <div data-aos="fade-up" data-aos-duration="2000" className="mt-32">
-      <h3 className="text-black header-font font-bold text-left text-3xl">
-        {" "}
-        Videos{" "}
-      </h3>
+    <div
+      id={id}
+      data-aos="fade-up"
+      data-aos-duration="2000"
+      className="mt-16 w-11/12 m-auto justify-start"
+    >
       <div className="flex overflow-x-auto space-x-4 pt-2">
         {youtube.map(({ src, text }) => (
           <PlaylistCard key={src} src={src} text={text} />
