@@ -16,6 +16,7 @@ interface FixtureImageProps {
 interface Match {
   gender: "F" | "M";
   category: Category;
+  tournament: string;
   rival_name: string;
   time: Date;
   condition: "Local" | "Visita";
@@ -86,6 +87,7 @@ const Fixture = () => {
           <thead className="bg-black text-yellow text-sm font-thin">
             <tr className="p-2 text-sm font-thin">
               <th className="rounded-tl-xl p-3 font-thin">Fecha</th>
+              <th className="p-3 font-thin"> Torneo </th>
               <th className="p-3 font-thin">Categoria</th>
               <th className="p-3 font-thin">Local</th>
               <th className="p-3 font-thin">Visita</th>
@@ -99,17 +101,19 @@ const Fixture = () => {
               <tr key={match._id} className="h-16">
                 <td className={`${i == matchs.length - 1 && "rounded-bl-xl"}`}>
                   {" "}
-                  {match.time.getDate()} {" de "}
-                  {months.get(match.time.getMonth())}
-                  {", "}
+                  {match.time.getDate()}
+                  {"/"}
+                  {match.time.getMonth() + 1}
+                  {"/"}
                   {match.time.getFullYear()}
-                  {" - "}
+                  {", "}
                   {match.time.getHours()}
                   {":"}
                   {match.time.getMinutes() < 10
                     ? match.time.getMinutes() + "0"
                     : match.time.getMinutes()}
                 </td>
+                <td>{match.tournament}</td>
                 <td>
                   {match.category}
                   {"-"}

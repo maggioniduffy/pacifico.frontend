@@ -41,7 +41,7 @@ const NewPage = () => {
   };
 
   const setOtherNewsCall = async () => {
-    getNews(0, 15).then((res) => {
+    getNews(0, 8).then((res) => {
       const auxRes = res
         ?.filter(({ _id }) => _id != data?._id)
         .map(({ title, _id, image, subtitle }) => ({
@@ -115,19 +115,16 @@ const NewPage = () => {
             {" "}
             Tambien te puede interesar{" "}
           </h4>
-          <div className="flex flex-row w-full my-4 mx-auto overflow-x-auto place-items-center justify-center space-x-2">
+          <div className="flex flex-row w-full my-4 overflow-x-auto overflow-y-hidden place-items-center justify-start space-x-2">
             {otherNews?.map(({ title, id, image, subtitle }) => (
-              <div
-                key={Date.now() + id}
-                className={`w-56 h-44 p-2 rounded-xl overflow-hidden`}
-              >
+              <div key={Date.now() + id} className={`w-56 h-44 p-2 rounded-xl`}>
                 <NewCard title={title} id={id} key={Date.now() + id}>
-                  <div className="relative">
+                  <div className="relative h-fit w-fit">
                     <div className="w-56 h-44">
                       <Image src={image} layout="fill" alt={title} />
                     </div>
                     <div className="rounded-tr-2xl bg-realwhite border-t-4 border-yellow absolute bottom-0 w-full h-16 flex flex-col place-items-center justify-center text-ellipsis">
-                      <h5 className="text-md text-center text-black">
+                      <h5 className="text-sm text-center text-black">
                         {" "}
                         {title}{" "}
                       </h5>

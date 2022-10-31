@@ -26,6 +26,7 @@ body {
 
 td {
   background-color: white;
+  overflow-x: auto;
 }
 
 .blob {

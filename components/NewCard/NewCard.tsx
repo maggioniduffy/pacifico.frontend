@@ -18,11 +18,7 @@ const NewCard = ({ title, id, children }: Props) => {
         },
       }}
     >
-      <a
-        className={
-          "relative w-fit m-auto h-fit rounded-lg overflow-hidden shadow"
-        }
-      >
+      <a className={"relative w-fit m-auto h-fit rounded-lg shadow"}>
         {children}
       </a>
     </Link>

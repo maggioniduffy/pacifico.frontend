@@ -60,11 +60,11 @@ const News = () => {
                       />
                     </div>
                     <div className="rounded-tr-2xl bg-realwhite border-t-6 border-yellow w-full h-fit absolute shadow-inner bottom-0">
-                      <h2 className="text-4xl drop-shadow-xl mt-2 text-center text-shadow text-black">
+                      <h2 className="text-2xl drop-shadow-xl mt-2 text-center text-shadow text-black">
                         {" "}
                         {mNew.title}{" "}
                       </h2>
-                      <p className="text-xl drop-shadow-xl text-center text-shadow mb-8 font-medium text-gray">
+                      <p className="text-md drop-shadow-xl text-center text-shadow mb-8 font-medium text-gray">
                         {mNew.subtitle}
                       </p>
                     </div>

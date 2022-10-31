@@ -27,6 +27,7 @@ export class ApiMatch {
   constructor(
     public gender: "F" | "M",
     public category: Category,
+    public tournament: string,
     public rival_name: string,
     public time: string,
     public condition: "Local" | "Visita",

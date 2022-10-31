@@ -1,18 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { BASE_API_URL } from "../../utils/constants";
 
-interface PlaylistCardProps {
+interface YoutubeElem {
   src: string;
   text: string;
 }
 
-const PlaylistCard = ({ src, text }: PlaylistCardProps) => (
-  <div className="h-fit rounded-b-xl overflow-hidden border-b-2 border-yellow">
+const PlaylistCard = ({ src, text }: YoutubeElem) => (
+  <div className="h-fit rounded-b-xl w-fit border-b-2 border-yellow">
     <iframe
       width="560"
       height="315"
       src={src}
       title="YouTube video player"
-      frameBorder="0"
+      frameBorder="2"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowFullScreen
     ></iframe>
@@ -22,21 +23,22 @@ const PlaylistCard = ({ src, text }: PlaylistCardProps) => (
   </div>
 );
 
-const playlists = [
-  {
-    src: "https://www.youtube.com/embed/videoseries?list=PLRkIjXKovdlqofvjr4u6qQSg2Pr1qpcRw",
-    text: "Torneo Provincial 2022 - Primera Femenina",
-  },
-
-  {
-    src: "https://www.youtube.com/embed/videoseries?list=PLRkIjXKovdlrhFl4Nu6r8tuifynhJZcET",
-    text: "Torneo Prefederal 2022 - Primera Masculina",
-  },
-];
-
-// Pasar esto a la api asi puede ser editado
-
 const Videos = () => {
+  const [youtube, setYoutubeData] = useState<YoutubeElem[]>([]);
+  const [from, setFrom] = useState(0);
+  const [to, setTo] = useState(10);
+
+  useEffect(() => {
+    const setYoutubeElems = async () => {
+      const res = await fetch(
+        BASE_API_URL + "youtube/?skip=" + from + "&limit=" + to
+      );
+      const data = await res.json();
+      setYoutubeData(data);
+    };
+    setYoutubeElems();
+  }, [from, to]);
+
   return (
     <div data-aos="fade-up" data-aos-duration="2000" className="mt-32">
       <h3 className="text-black header-font font-bold text-left text-3xl">
@@ -44,7 +46,7 @@ const Videos = () => {
         Videos{" "}
       </h3>
       <div className="flex overflow-x-auto space-x-4 pt-2">
-        {playlists.map(({ src, text }) => (
+        {youtube.map(({ src, text }) => (
           <PlaylistCard key={src} src={src} text={text} />
         ))}
       </div>

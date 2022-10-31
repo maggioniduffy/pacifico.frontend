@@ -21,25 +21,31 @@ const NewsPage = () => {
   const [to, setTo] = useState(9);
 
   const setNewsCall = (from: number, to: number) => {
-    getNews(from, to).then((res) => {
-      const aux = res?.map(({ _id, title, subtitle, image }) => ({
-        id: _id,
-        title,
-        subtitle,
-        image,
-      }));
-      if (aux) setNews([...news, ...aux]);
-    });
-  };
+    console.log("set news");
 
-  useEffect(() => {
-    setNewsCall(from, to);
-  }, [from, to, loadMore]);
+    getNews(from, to)
+      .then((res) => {
+        console.log("res: ", res);
+        const aux = res?.map(({ _id, title, subtitle, image }) => ({
+          id: _id,
+          title,
+          subtitle,
+          image,
+        }));
+        if (aux) setNews([...news, ...aux]);
+      })
+      .catch((e) => console.error(e));
+  };
 
   const loadMore = () => {
     setFrom(from + STEP);
     setTo(to + STEP);
   };
+
+  useEffect(() => {
+    console.log("load more");
+    setNewsCall(from, to);
+  }, [from, to]);
 
   return (
     <div>
@@ -76,11 +82,11 @@ const NewsPage = () => {
                           <Image src={image} layout="fill" alt={title} />
                         </div>
                         <div className="rounded-tr-2xl bg-realwhite border-t-6 border-yellow absolute bottom-0 w-full h-20 flex flex-col place-items-center justify-center">
-                          <h5 className="text-xl text-center text-black">
+                          <h5 className="text-lg text-center text-black">
                             {" "}
                             {title}{" "}
                           </h5>
-                          <p className="text-md text-center text-gray">
+                          <p className="text-sm text-center text-gray">
                             {" "}
                             {subtitle}{" "}
                           </p>
