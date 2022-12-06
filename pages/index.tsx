@@ -17,9 +17,6 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { sections, socialMedia } from "../utils/constants";
 
-import banner from "../public/assets/Banner.png";
-import pacificoEsDeLiga from "../public/assets/PacificoEsDeLiga.png";
-
 const Home: NextPage = () => {
   useEffect(() => {
     AOS.init({
