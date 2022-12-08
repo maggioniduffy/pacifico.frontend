@@ -6,6 +6,7 @@ import { getNews } from "../../utils/api";
 import { sections, socialMedia } from "../../utils/constants";
 import Image from "next/image";
 import MyButton from "../../components/MyButton/MyButton";
+import Search from "./Search";
 
 interface NewInfo {
   title: string;
@@ -17,14 +18,13 @@ interface NewInfo {
 const STEP = 9;
 
 const NewsPage = () => {
+  const [search, setSearch] = useState("");
   const [news, setNews] = useState<NewInfo[]>([]);
   const [from, setFrom] = useState(0);
   const [to, setTo] = useState(9);
 
   const setNewsCall = (from: number, to: number) => {
-    console.log("set news");
-
-    getNews(from, to)
+    getNews(from, to, search)
       .then((res) => {
         console.log("res: ", res);
         const aux = res?.map(({ _id, title, subtitle, image }) => ({
@@ -48,6 +48,27 @@ const NewsPage = () => {
     setNewsCall(from, to);
   }, [from, to]);
 
+  const setNewsSearch = (from: number, to: number, search: string) => {
+    getNews(from, to, search)
+      .then((res) => {
+        console.log("res: ", res);
+        const aux = res?.map(({ _id, title, subtitle, image }) => ({
+          id: _id,
+          title,
+          subtitle,
+          image,
+        }));
+        if (aux) setNews(aux);
+      })
+      .catch((e) => console.error(e));
+  };
+
+  useEffect(() => {
+    setFrom(0);
+    setTo(9);
+    setNewsSearch(from, to, search);
+  }, [search]);
+
   return (
     <div>
       <Head>
@@ -64,7 +85,8 @@ const NewsPage = () => {
           sections={sections}
           socialMedia={socialMedia}
         />
-        <main className="h-screen mt-10 p-4">
+        <Search search={search} setSearch={setSearch} />
+        <main className="h-screen mt-4 p-4">
           <div className="w-10/12 m-auto">
             <div className="flex mt-2 flex-wrap place-items-center justify-center">
               {news.map(({ image, id, title, subtitle }, i) => {
@@ -79,10 +101,15 @@ const NewsPage = () => {
                   >
                     <NewCard title={title} id={id} key={Date.now() + id}>
                       <div className="relative">
-                        <div className="w-96 h-96">
-                          <Image src={image} layout="fill" alt={title} />
+                        <div className="w-96 h-96 rounded-xl">
+                          <Image
+                            src={image}
+                            layout="fill"
+                            alt={title}
+                            className="rounded-xl"
+                          />
                         </div>
-                        <div className="rounded-tr-2xl bg-realwhite border-t-6 border-yellow absolute bottom-0 w-full h-20 flex flex-col place-items-center justify-center">
+                        <div className="rounded-tr-2xl overflow-hidden bg-white bg-opacity-80 border-t-6 border-yellow absolute bottom-0 w-full h-20 flex flex-col place-items-center drop-shadow-xl shadow-white justify-center">
                           <h5 className="text-lg text-center text-black">
                             {" "}
                             {title}{" "}
@@ -98,9 +125,9 @@ const NewsPage = () => {
                 );
               })}{" "}
             </div>
-            <div className="mx-auto w-fit mb-8">
+            <div className="mx-auto w-fit mb-8 pb-8 pt-8">
               <MyButton onClick={loadMore}>
-                <h4> Cargar mas </h4>
+                <h4 className="font-bold"> Cargar mas </h4>
               </MyButton>
             </div>
           </div>

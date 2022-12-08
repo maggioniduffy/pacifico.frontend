@@ -7,7 +7,7 @@ interface YoutubeElem {
 }
 
 const PlaylistCard = ({ src, text }: YoutubeElem) => (
-  <div className="h-fit rounded-b-xl w-fit border-b-2 border-yellow">
+  <div className="h-fit m-2 shadow-xl rounded-b-xl w-fit border-b-2 border-yellow">
     <iframe
       width="560"
       height="315"
@@ -16,8 +16,9 @@ const PlaylistCard = ({ src, text }: YoutubeElem) => (
       frameBorder="2"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowFullScreen
+      className="rounded-t-xl"
     ></iframe>
-    <div className="h-12 flex rounded-b-xl justify-center border-yellow border-r-2 border-l-2 place-items-center">
+    <div className="h-12 flex w-full rounded-b-xl justify-center border-yellow border-r-2 border-l-2 place-items-center">
       <h5 className="text-gray text-lg">{text}</h5>
     </div>
   </div>

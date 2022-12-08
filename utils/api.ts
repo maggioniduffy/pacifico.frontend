@@ -44,10 +44,14 @@ export class ApiMatch {
 
 export async function getNews(
   skip: number = 0,
-  limit: number = 3
+  limit: number = 3,
+  search = ""
 ): Promise<ApiNew[] | undefined> {
   try {
-    const res = await fetch(BASE_API_URL + `news?skip=${skip}&limit=${limit}`);
+    const searchQuery = search.length > 2 ? `&search=${search}` : "";
+    const res = await fetch(
+      BASE_API_URL + `news?skip=${skip}&limit=${limit}${searchQuery}`
+    );
     const mainNews: ApiNew[] = await res.json();
     return mainNews;
   } catch (error) {

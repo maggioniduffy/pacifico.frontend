@@ -1,21 +1,48 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import send from "../../public/assets/send.png";
+import { BASE_API_URL } from "../../utils/constants";
 
 const Newsletter = () => {
   const [email, setEmail] = useState("");
   const [failed, setFailed] = useState(false);
   const [sended, setSended] = useState(false);
 
-  const handleSubmit = (e: any) => {
+  const addToNewsletter = async (email: string) => {
+    try {
+      const data = await fetch(BASE_API_URL + "newsletter/register", {
+        method: "POST",
+        body: JSON.stringify({ email }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const res = await data.json();
+      if (res.statusCode == 400) {
+        throw new Error(res.message);
+      }
+      return res;
+    } catch (e) {
+      throw e;
+    }
+  };
+
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     if (email.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g)) {
-      //addToNewsletter(email)
-      setEmail("");
-      setSended(true);
-      setTimeout(() => {
-        setSended(false);
-      }, 1500);
+      try {
+        await addToNewsletter(email);
+        setEmail("");
+        setSended(true);
+        setTimeout(() => {
+          setSended(false);
+        }, 1500);
+      } catch (error) {
+        setFailed(true);
+        setTimeout(() => {
+          setFailed(false);
+        }, 1500);
+      }
     } else {
       setFailed(true);
       setTimeout(() => {
@@ -61,12 +88,15 @@ const Newsletter = () => {
         )}
 
         {failed && (
-          <div className="bg-red h-12 w-full rounded-lg flex justify-center">
-            <p className="text-white text-center m-auto"> Email invalido </p>
+          <div className="bg-red h-8 w-full rounded-lg px-2 flex justify-center">
+            <p className="text-white text-center m-auto">
+              {" "}
+              Email invalido o ha ocurrido un error{" "}
+            </p>
           </div>
         )}
         {sended && (
-          <div className="bg-green h-12 w-full rounded-lg flex justify-center">
+          <div className="bg-green h-8 w-full rounded-lg px-2 flex justify-center">
             <p className="text-white text-center m-auto">Email enviado</p>
           </div>
         )}

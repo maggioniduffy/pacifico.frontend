@@ -18,9 +18,7 @@ const NewCard = ({ title, id, children }: Props) => {
         },
       }}
     >
-      <a className={"relative w-fit m-auto h-fit rounded-lg shadow"}>
-        {children}
-      </a>
+      <a className={"relative w-fit m-auto h-fit"}>{children}</a>
     </Link>
   );
 };

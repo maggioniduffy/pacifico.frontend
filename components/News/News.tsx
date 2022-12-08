@@ -31,7 +31,7 @@ const News = () => {
         showStatus
         showArrows
         axis="horizontal"
-        className="overflow-hidden h-fit"
+        className="overflow-hidden h-fit rounded-xl"
       >
         {mainNews?.map((mNew) => {
           return (
@@ -55,14 +55,15 @@ const News = () => {
                     height={9}
                     width={16}
                     alt={mNew.subtitle}
+                    className="rounded-xl"
                   />
                 </div>
-                <div className="rounded-tr-2xl bg-realwhite border-t-6 border-yellow w-full h-fit absolute shadow-inner bottom-0">
-                  <h2 className="text-2xl drop-shadow-xl mt-2 text-center text-shadow text-black">
+                <div className="rounded-tr-2xl overflow-hidden bg-white bg-opacity-80 border-t-6 border-yellow w-full h-fit absolute shadow-inner bottom-0">
+                  <h2 className="text-3xl drop-shadow-xl mt-2 text-center text-shadow text-black">
                     {" "}
                     {mNew.title}{" "}
                   </h2>
-                  <p className="text-md drop-shadow-xl text-center text-shadow mb-8 font-medium text-gray">
+                  <p className="text-sm drop-shadow-xl text-center text-shadow mb-8 font-medium text-gray">
                     {mNew.subtitle}
                   </p>
                 </div>
