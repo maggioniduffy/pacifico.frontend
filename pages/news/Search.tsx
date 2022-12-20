@@ -1,11 +1,9 @@
-import React, { useState } from "react";
-
 interface Props {
   search: string;
   setSearch: (s: string) => void;
 }
 
-const options = ["ligafemenina", "federal", "formativas"];
+const options = ["Todos", "ligafemenina", "federal", "formativas"];
 
 const Search = ({ search, setSearch }: Props) => {
   const handleSubmit = (e: any) => {
@@ -24,8 +22,7 @@ const Search = ({ search, setSearch }: Props) => {
       </form>
       <div className="w-full h-12 flex mb-2 mt-2">
         {options.map((option) => (
-          <button key={option} className="bg-yellow  m-2 rounded shadow p-1">
-            {"#"}
+          <button key={option} className="bg-gold-300 m-2 rounded shadow p-1">
             {option}
           </button>
         ))}

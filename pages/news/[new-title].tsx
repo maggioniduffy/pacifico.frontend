@@ -81,7 +81,7 @@ const NewPage = () => {
           </button>
         </Link>
 
-        <div className="bg-transparent p-8 px-16 w-10/12 md:w-8/12 mt-16 m-auto mb-5 h-fit">
+        <div className="bg-white rounded-xl bg-opacity-50  p-8 px-16 w-10/12 md:w-8/12 mt-16 m-auto mb-5 h-fit">
           <h1 className="text-left text-6xl camelcase font-medium ">
             {data?.title}
           </h1>
@@ -121,7 +121,12 @@ const NewPage = () => {
                 <NewCard title={title} id={id} key={Date.now() + id}>
                   <div className="relative h-fit w-fit">
                     <div className="w-56 h-44">
-                      <Image src={image} layout="fill" alt={title} />
+                      <Image
+                        src={image}
+                        layout="fill"
+                        alt={title}
+                        className="rounded"
+                      />
                     </div>
                     <div className="rounded-tr-2xl bg-realwhite border-t-4 border-yellow absolute bottom-0 w-full h-16 flex flex-col place-items-center justify-center text-ellipsis">
                       <h5 className="text-sm text-center text-black">

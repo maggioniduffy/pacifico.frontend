@@ -8,3 +8,4 @@ export { default as Fixture } from "./Fixture";
 export { default as LoadingSpinner } from "./LoadingSpinner";
 export { default as Videos } from "./VIdeos";
 export { default as Team } from "./Team";
+export { default as Footer } from "./Footer";
