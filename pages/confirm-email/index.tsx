@@ -19,10 +19,9 @@ const ConfirmEmailPage = () => {
           "Content-Type": "application/json",
         },
       });
-      console.log(JSON.stringify({ token: token }));
-      const data = await res.json();
-      console.log(data);
-      //router.push("/");
+      // const data = await res.json();
+      // console.log(data);
+      router.push("/");
     } catch (error) {
       console.log(error);
     }

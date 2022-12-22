@@ -58,7 +58,7 @@ const News = () => {
                     className="rounded-xl"
                   />
                 </div>
-                <div className="rounded-tr-2xl overflow-hidden bg-white bg-opacity-80 border-t-6 border-yellow w-full h-fit absolute shadow-inner bottom-0">
+                <div className="rounded-tr-2xl rounded-b-xl overflow-hidden bg-white bg-opacity-80 border-t-6 border-yellow w-full h-fit absolute shadow-inner bottom-0">
                   <h2 className="text-3xl drop-shadow-xl mt-2 text-center text-shadow text-black">
                     {" "}
                     {mNew.title}{" "}

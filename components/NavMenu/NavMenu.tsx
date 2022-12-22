@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import menu from "../../public/assets/menu.svg";
+import menu from "../../public/assets/menu.png";
 import MenuList from "./MenuList";
 
 interface Option {
@@ -28,11 +28,11 @@ const NavMenu = ({ options }: Props) => {
       <button
         id="dropdownDefault"
         data-dropdown-toggle="dropdown"
-        className="max-h-10 text-white hover:bg-yellow font-medium rounded-lg text-sm px-2 py-2.5 text-center inline-flex items-center"
+        className="max-h-10 text-white font-medium rounded-lg text-sm px-2 py-2.5 text-center inline-flex items-center"
         type="button"
         onClick={toggleVisible}
       >
-        <Image src={menu} layout="fixed" height={40} width={40} />
+        <Image src={menu} layout="fixed" height={30} width={30} />
       </button>
       <MenuList
         visible={visible}

@@ -1,5 +1,4 @@
 import Image, { StaticImageData } from "next/image";
-import CustomLink from "../CustomLink/CustomLink";
 import NavMenu from "../NavMenu/NavMenu";
 import logo from "../../public/Logo.png";
 import Link from "next/link";
@@ -48,16 +47,21 @@ const Header = ({ sections, socialMedia, showMenu = true }: Props) => {
             </a>
           </Link>
         </div>
-        <div className="social-media flex flex-row w-full place-items-start justify-end text-yellow basis-1/4 m-auto">
+        <div className="social-media flex flex-row w-full h-full place-items-start justify-end text-yellow basis-1/4 m-auto">
           {socialMedia.map(({ url, image }) => (
-            <CustomLink key={url} url={url}>
+            <a
+              className="h-full basis-1/6 relative h-full"
+              href={url}
+              key={url}
+            >
               <Image
                 src={image}
-                height={30}
-                width={30}
-                className="rounded-full hover:bg-white"
+                layout="fill"
+                width={100}
+                height={100}
+                className="rounded-full w-full hover:bg-black"
               />
-            </CustomLink>
+            </a>
           ))}
         </div>
       </nav>

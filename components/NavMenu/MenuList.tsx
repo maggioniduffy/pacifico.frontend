@@ -25,9 +25,6 @@ const MenuList = ({ visible, options, toggleVisible }: Props) => {
       } z-50 absolute bg-black bg-opacity-60 w-full h-screen top-0 left-0 overflow-visible`}
     >
       <div className="bg-white w-44 md:w-3/12 lg:w-2/12 h-screen">
-        <MenuButton toggleVisible={toggleVisible}>
-          <Image src={menu} layout="fixed" height={40} width={40} />
-        </MenuButton>
         <ul
           className="py-1 text-sm text-gray-700 ml-6 dark:text-gray-200"
           aria-labelledby="dropdownDefault"
