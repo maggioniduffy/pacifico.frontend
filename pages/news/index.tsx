@@ -88,9 +88,9 @@ const NewsPage = () => {
         />
         <Search search={search} setSearch={setSearch} />
         <main className="h-screen w-full mt-4">
-          <div className="w-10/12 m-auto h-full">
+          <div className="w-full m-auto h-full">
             {news.length <= 0 ? (
-              <div className="h-4/6 m-auto flex place-items-center">
+              <div className="h-full m-auto flex place-items-center">
                 <div className="w-72 m-auto text-center flex flex-col place-items-center h-fit">
                   <Image src={buscar} height={200} width={200} />
                   <h3 className="m-4 text-center text-gray">
@@ -101,7 +101,7 @@ const NewsPage = () => {
               </div>
             ) : (
               <>
-                <div className="flex mt-2 flex-wrap place-items-center justify-center">
+                <div className="flex mt-2 m-auto w-10/12 flex-wrap place-items-center justify-center">
                   {news.map(({ image, id, title, subtitle }, i) => {
                     const w =
                       (i + 1) % 5 == 0
@@ -123,11 +123,11 @@ const NewsPage = () => {
                               />
                             </div>
                             <div className="rounded-tr-2xl overflow-hidden bg-white bg-opacity-80 border-t-6 border-yellow absolute bottom-0 w-full h-20 flex flex-col place-items-center drop-shadow-xl shadow-white justify-center">
-                              <h5 className="text-lg text-center text-black">
+                              <h5 className="md:text-xl text-ellipsis text-center text-black">
                                 {" "}
                                 {title}{" "}
                               </h5>
-                              <p className="text-sm text-center text-gray">
+                              <p className="text-xs md:text-sm text-ellipsis text-center text-gray">
                                 {" "}
                                 {subtitle}{" "}
                               </p>
@@ -145,8 +145,8 @@ const NewsPage = () => {
                 </div>
               </>
             )}
+            <Footer />
           </div>
-          <Footer />
         </main>
       </>
     </div>

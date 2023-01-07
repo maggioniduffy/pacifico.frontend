@@ -19,7 +19,7 @@ const News = () => {
   }, []);
 
   return (
-    <div className="main-new pt-10 w-full rounded-xl">
+    <div className="pt-10 w-full rounded-xl">
       <Carousel
         swipeable
         stopOnHover
@@ -31,7 +31,7 @@ const News = () => {
         showStatus
         showArrows
         axis="horizontal"
-        className="overflow-hidden h-fit rounded-xl"
+        className="overflow-hidden h-full rounded-xl"
       >
         {mainNews?.map((mNew) => {
           return (
@@ -52,18 +52,18 @@ const News = () => {
                   <Image
                     src={mNew.image}
                     layout="responsive"
-                    height={9}
+                    height={16}
                     width={16}
                     alt={mNew.subtitle}
-                    className="rounded-xl"
+                    className="rounded-xl h-full"
                   />
                 </div>
                 <div className="rounded-tr-2xl rounded-b-xl overflow-hidden bg-white bg-opacity-80 border-t-6 border-yellow w-full h-fit absolute shadow-inner bottom-0">
-                  <h2 className="text-3xl drop-shadow-xl mt-2 text-center text-shadow text-black">
+                  <h2 className="font-bold md:text-md md:text-3xl drop-shadow-xl mt-2 text-center text-shadow text-black">
                     {" "}
                     {mNew.title}{" "}
                   </h2>
-                  <p className="text-sm drop-shadow-xl text-center text-shadow mb-8 font-medium text-gray">
+                  <p className="text-xs md:text-sm drop-shadow-xl text-center text-shadow mb-8 font-medium text-gray">
                     {mNew.subtitle}
                   </p>
                 </div>

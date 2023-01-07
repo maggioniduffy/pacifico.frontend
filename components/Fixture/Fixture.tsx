@@ -1,7 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Category, getMatchs } from "../../utils/api";
-import clublogo from "../../public/assets/clublogo.png";
+import clublogo from "../../public/assets/PacificoEscudo.png";
 import Image, { StaticImageData } from "next/image";
+import stats from "../../public/assets/stats.png";
+import tv from "../../public/assets/tv.png";
+import stadium from "../../public/assets/stadium.png";
+import away from "../../public/assets/away.png";
+import home from "../../public/assets/home.png";
+import gender from "../../public/assets/gender.png";
+import torneo from "../../public/assets/torneo.png";
+import calendar from "../../public/assets/calendar.png";
 
 const STEP = 5;
 const LOAD_STEP = 20;
@@ -29,14 +37,14 @@ interface Match {
 }
 
 const FixtureImage = ({ source, alt }: FixtureImageProps) => (
-  <div className="m-4">
+  <div className="m-6">
     <Image
       src={source}
       height={100}
       width={100}
       quality={100}
       className="shadow"
-      layout="responsive"
+      layout="intrinsic"
       alt={alt}
     />
   </div>
@@ -89,43 +97,76 @@ const Fixture = () => {
         Proximos Partidos{" "}
       </h3>
       <div className="h-full">
-        <table className="table-auto h-full rounded-xl bg-realwhite shadow-xl w-full my-8">
-          <thead className="bg-black text-yellow text-sm font-thin">
+        <table className="table-fixed h-full rounded-xl bg-realwhite shadow-xl w-full my-8">
+          <thead className="bg-black text-yellow text-sm font-thin w-full">
             <tr className="p-2 text-sm font-thin">
-              <th className="rounded-tl-xl p-3 font-thin">Fecha</th>
-              <th className="p-3 font-thin"> Torneo </th>
-              <th className="p-3 font-thin">Categoria</th>
-              <th className="p-3 font-thin">Local</th>
-              <th className="p-3 font-thin">Visita</th>
-              <th className="p-3 font-thin">Estadio</th>
-              <th className="p-3 font-thin">Transmision</th>
-              <th className="rounded-tr-xl p-3 font-thin">Estadisticas</th>
+              <th className="rounded-tl-xl p-3 font-thin">
+                {" "}
+                <Image
+                  src={calendar}
+                  height={30}
+                  width={30}
+                  className="m-auto"
+                />
+              </th>
+              <th className="p-3 font-thin">
+                {" "}
+                <Image
+                  src={torneo}
+                  height={30}
+                  width={30}
+                  className="m-auto"
+                />{" "}
+              </th>
+              <th className="p-3 font-thin">
+                <Image src={gender} height={30} width={30} className="m-auto" />
+              </th>
+              <th className="p-3 font-thin">
+                <Image src={home} height={30} width={30} className="m-auto" />
+              </th>
+              <th className="p-3 font-thin">
+                <Image src={away} height={30} width={30} className="m-auto" />
+              </th>
+              <th className="p-3 font-thin">
+                <Image
+                  src={stadium}
+                  height={30}
+                  width={30}
+                  className="m-auto"
+                />
+              </th>
+              <th className="p-3 font-thin">
+                <Image src={tv} height={30} width={30} className="m-auto" />
+              </th>
+              <th className="rounded-tr-xl p-3 font-thin">
+                <Image src={stats} height={30} width={30} className="m-auto" />
+              </th>
             </tr>
           </thead>
           <tbody className="text-center paragraph-font">
             {matchs.slice(from, to).map((match, i) => (
-              <tr key={match._id} className="h-16">
-                <td className={`${i == matchs.length - 1 && "rounded-bl-xl"}`}>
+              <tr key={match._id} className="">
+                <td
+                  className={`${
+                    i == matchs.length - 1 && "rounded-bl-xl"
+                  } text-xs h-fit w-fit`}
+                >
                   {" "}
                   {match.time.getDate()}
                   {"/"}
-                  {match.time.getMonth() + 1}
-                  {"/"}
-                  {match.time.getFullYear()}
-                  {", "}
-                  {match.time.getHours()}
+                  {match.time.getMonth() + 1} {match.time.getHours()}
                   {":"}
                   {match.time.getMinutes() < 10
                     ? match.time.getMinutes() + "0"
                     : match.time.getMinutes()}
                 </td>
-                <td>{match.tournament}</td>
-                <td>
+                <td className="text-xs">{match.tournament}</td>
+                <td className="text-xs">
                   {match.category}
                   {"-"}
                   {match.gender}
                 </td>
-                <td>
+                <td className="text-xs">
                   {match.condition == "Local" ? (
                     <FixtureImage source={clublogo} alt="Pacifico" />
                   ) : (
@@ -135,7 +176,7 @@ const Fixture = () => {
                     />
                   )}
                 </td>
-                <td>
+                <td className="text-xs">
                   {match.condition != "Local" ? (
                     <FixtureImage source={clublogo} alt="Pacifico" />
                   ) : (
@@ -145,9 +186,13 @@ const Fixture = () => {
                     />
                   )}
                 </td>
-                <td>{match.field}</td>
-                <td>{match.transmission_link}</td>
-                <td className={`${i == matchs.length - 1 && "rounded-br-xl"}`}>
+                <td className="text-xs">{match.field}</td>
+                <td className="text-xs">{match.transmission_link}</td>
+                <td
+                  className={`${
+                    i == matchs.length - 1 && "rounded-br-xl"
+                  } text-xs`}
+                >
                   {match.stats_link}
                 </td>
               </tr>

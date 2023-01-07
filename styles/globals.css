@@ -120,11 +120,11 @@ a {
   display: flex;
 }
 
-@media (max-width: 300px) {
+/* @media (max-width: 300px) {
   .pacifico {
     display: none;
   }
-}
+} */
 
 @media (max-width: 640px) {
   .social-media {

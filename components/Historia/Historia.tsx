@@ -79,7 +79,7 @@ const TimelineItem = ({ date, text, i }: TimelineProps) => {
       data-aos-duration="2000"
       className="flex place-items-center justify-center flex-col"
     >
-      <div className={"flex " + flexOrder}>
+      <div className={"flex flex-col md:" + flexOrder}>
         <div className="timelineitem shadow-xl h-32 w-32 bg-gray m-8 flex flex-col justify-center p-8">
           <h3 className="m-auto text-left text-gold-300">{date}</h3>
         </div>

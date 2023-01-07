@@ -48,7 +48,6 @@ const Home: NextPage = () => {
               <Fixture />
             </Section>
             <Videos id="videos" />
-            <Team id="team" />
             <Section id="historia">
               <Historia />
             </Section>

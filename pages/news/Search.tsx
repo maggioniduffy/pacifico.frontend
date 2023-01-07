@@ -20,13 +20,13 @@ const Search = ({ search, setSearch }: Props) => {
           onChange={(e) => setSearch(e.target.value)}
         />
       </form>
-      <div className="w-full h-12 flex mb-2 mt-2">
+      {/* <div className="w-full h-12 flex mb-2 mt-2">
         {options.map((option) => (
           <button key={option} className="bg-gold-300 m-2 rounded shadow p-1">
             {option}
           </button>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 };

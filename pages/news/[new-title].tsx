@@ -9,6 +9,7 @@ import NewCard from "../../components/NewCard";
 import { getNew, getNews } from "../../utils/api";
 import Link from "next/link";
 import left from "../../public/assets/left-arrow.png";
+import { Footer } from "../../components";
 
 interface NewArticle {
   title: string;
@@ -74,19 +75,21 @@ const NewPage = () => {
       <Header sections={sections} socialMedia={socialMedia} showMenu={false} />
       <div className="min-h-screen">
         <Link href="/news">
-          <button className="fixed top-15 left-10 h-fit w-8">
+          <button className="invisible md:visible fixed top-15 left-10 h-fit w-8">
             <div className="h-8 w-8 shadow shadow-yellow rounded-full">
               <Image src={left} layout="fill" alt="Volver a noticias" />
             </div>
           </button>
         </Link>
 
-        <div className="bg-white rounded-xl bg-opacity-50  p-8 px-16 w-10/12 md:w-8/12 mt-16 m-auto mb-5 h-fit">
-          <h1 className="text-left text-6xl camelcase font-medium ">
+        <div className="bg-white rounded-xl bg-opacity-50 p-4 lg:p-8 lg:px-16 w-10/12 md:w-8/12 mt-16 m-auto mb-5 h-fit">
+          <h1 className="text-left text-3xl md:text-5xl lg:text-6xl camelcase mb-4 font-medium ">
             {data?.title}
           </h1>
 
-          <h3 className="text-lext text-3xl mt-1">{data?.subtitle}</h3>
+          <h3 className="text-lext text-gray text-lg md:text-2xl lg:text-3xl mt-1">
+            {data?.subtitle}
+          </h3>
           {data?.image && (
             <div className="w-full h-fit relative my-8">
               <Image
@@ -98,7 +101,7 @@ const NewPage = () => {
               />
             </div>
           )}
-          <h5 className="text-gray">
+          <h5 className="text-gray text-sm lg:text-md">
             {" "}
             {weekDays.get(data?.time.getDay()) + " " + data?.time.getDate()}
             {" de "}
@@ -111,7 +114,7 @@ const NewPage = () => {
           </p>
         </div>
         <div className="bg-realwhite shadow shadow-yellow mt-8 p-4">
-          <h4 className="text-center text-xl mt-2">
+          <h4 className="text-center text-sm md:text-lg lg:text-xl mt-2">
             {" "}
             Tambien te puede interesar{" "}
           </h4>
@@ -141,12 +144,7 @@ const NewPage = () => {
           </div>
         </div>
       </div>
-      <footer className="h-16 w-full p-auto bottom-0">
-        <h5 className="text-white text-center text-sm">
-          {" "}
-          Made by Faustino Maggioni Duffy
-        </h5>
-      </footer>
+      <Footer />
     </>
   );
 };

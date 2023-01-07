@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import send from "../../public/assets/send.png";
+import x from "../../public/assets/x.png";
+import ok from "../../public/assets/tick.png";
 import { BASE_API_URL } from "../../utils/constants";
 
 const Newsletter = () => {
@@ -57,12 +59,14 @@ const Newsletter = () => {
 
   return (
     <div className="bg-gold-400 relative shadow-lg shadow-yellow blob w-8/12 mx-auto my-16 flex justify-center flex-col">
-      <h3 className="mb-0 mx-auto text-lg text-left">
+      <h3 className="mb-0 font-bold md:font-medium mx-auto md:text-lg text-sm text-center md:text-left">
         {" "}
         Suscribite a nuestro Newsletter
       </h3>
       <form
-        className={`mx-auto my-2 w-full${failed && "ring-red"} flex space-x-2`}
+        className={`mx-auto my-2 w-8/12 md:w-full${
+          failed && "ring-red"
+        } flex space-x-2 text-sm`}
         onSubmit={handleSubmit}
       >
         {!failed && !sended && (
@@ -89,15 +93,12 @@ const Newsletter = () => {
 
         {failed && (
           <div className="bg-red h-8 w-full rounded-lg px-2 flex justify-center">
-            <p className="text-white text-center m-auto">
-              {" "}
-              Email invalido o ha ocurrido un error{" "}
-            </p>
+            <Image src={x} height={30} width={30} />
           </div>
         )}
         {sended && (
           <div className="bg-green h-8 w-full rounded-lg px-2 flex justify-center">
-            <p className="text-white text-center m-auto">Email enviado</p>
+            <Image src={ok} height={30} width={30} />
           </div>
         )}
       </form>

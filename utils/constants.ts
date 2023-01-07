@@ -18,10 +18,6 @@ export const sections = [
     section: "#videos",
   },
   {
-    name: "Planteles",
-    section: "#team",
-  },
-  {
     name: "Historia",
     section: "#historia",
   },
