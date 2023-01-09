@@ -2,24 +2,19 @@ import Image, { StaticImageData } from "next/image";
 import NavMenu from "../NavMenu/NavMenu";
 import logo from "../../public/Logo.png";
 import Link from "next/link";
+import Social from "./Social";
 
 interface Section {
   section: string;
   name: string;
 }
 
-interface SocialMedia {
-  url: string;
-  image: StaticImageData;
-}
-
 interface Props {
   sections: Section[];
-  socialMedia: SocialMedia[];
   showMenu?: boolean;
 }
 
-const Header = ({ sections, socialMedia, showMenu = true }: Props) => {
+const Header = ({ sections, showMenu = true }: Props) => {
   return (
     <div>
       <nav
@@ -47,23 +42,7 @@ const Header = ({ sections, socialMedia, showMenu = true }: Props) => {
             </a>
           </Link>
         </div>
-        <div className="social-media flex flex-row w-full h-full place-items-start justify-end text-yellow basis-1/4 m-auto">
-          {socialMedia.map(({ url, image }) => (
-            <a
-              className="h-full basis-1/6 relative h-full"
-              href={url}
-              key={url}
-            >
-              <Image
-                src={image}
-                layout="fill"
-                width={100}
-                height={100}
-                className="rounded-full w-full hover:bg-black"
-              />
-            </a>
-          ))}
-        </div>
+        <Social />
       </nav>
     </div>
   );

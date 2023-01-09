@@ -1,1 +1,0 @@
-{"c":["pages/news","pages/index","pages/news/[new-title]","webpack"],"r":["pages/news"],"m":["./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?absolutePagePath=%2Fhome%2Ffm%2FDocuments%2FCode%2Fpacifico%2Ffrontend%2Fpages%2Fnews%2Findex.tsx&page=%2Fnews!","./pages/news/Search.tsx","./pages/news/index.tsx","./public/assets/buscar.png"]}

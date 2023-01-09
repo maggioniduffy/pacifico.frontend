@@ -37,14 +37,14 @@ interface Match {
 }
 
 const FixtureImage = ({ source, alt }: FixtureImageProps) => (
-  <div className="m-6">
+  <div className="h-5/6 w-10/12 m-auto md:p-4">
     <Image
       src={source}
-      height={100}
-      width={100}
+      height={40}
+      width={40}
       quality={100}
-      className="shadow"
-      layout="intrinsic"
+      layout="responsive"
+      className="shadow m-2"
       alt={alt}
     />
   </div>
@@ -91,21 +91,21 @@ const Fixture = () => {
   };
 
   return (
-    <div className="my-8 w-full h-fit rounded-xl flex flex-col justify-center">
-      <h3 className="text-black header-font font-bold text-left text-3xl">
+    <div className="mt-4 w-full h-fit rounded-xl flex flex-col justify-center">
+      <h3 className="text-black header-font font-bold text-left text-xl md:text-3xl">
         {" "}
         Proximos Partidos{" "}
       </h3>
       <div className="h-full">
         <table className="table-fixed h-full rounded-xl bg-realwhite shadow-xl w-full my-8">
           <thead className="bg-black text-yellow text-sm font-thin w-full">
-            <tr className="p-2 text-sm font-thin">
+            <tr className="p-2 font-thin">
               <th className="rounded-tl-xl p-3 font-thin">
                 {" "}
                 <Image
                   src={calendar}
-                  height={30}
-                  width={30}
+                  height={40}
+                  width={40}
                   className="m-auto"
                 />
               </th>
@@ -113,19 +113,19 @@ const Fixture = () => {
                 {" "}
                 <Image
                   src={torneo}
-                  height={30}
-                  width={30}
+                  height={40}
+                  width={40}
                   className="m-auto"
                 />{" "}
               </th>
               <th className="p-3 font-thin">
-                <Image src={gender} height={30} width={30} className="m-auto" />
+                <Image src={gender} height={40} width={40} className="m-auto" />
               </th>
               <th className="p-3 font-thin">
-                <Image src={home} height={30} width={30} className="m-auto" />
+                <Image src={home} height={40} width={40} className="m-auto" />
               </th>
               <th className="p-3 font-thin">
-                <Image src={away} height={30} width={30} className="m-auto" />
+                <Image src={away} height={40} width={40} className="m-auto" />
               </th>
               <th className="p-3 font-thin">
                 <Image
@@ -136,20 +136,20 @@ const Fixture = () => {
                 />
               </th>
               <th className="p-3 font-thin">
-                <Image src={tv} height={30} width={30} className="m-auto" />
+                <Image src={tv} height={40} width={40} className="m-auto" />
               </th>
               <th className="rounded-tr-xl p-3 font-thin">
-                <Image src={stats} height={30} width={30} className="m-auto" />
+                <Image src={stats} height={40} width={40} className="m-auto" />
               </th>
             </tr>
           </thead>
-          <tbody className="text-center paragraph-font">
+          <tbody className="text-center fixturetxt paragraph-font">
             {matchs.slice(from, to).map((match, i) => (
               <tr key={match._id} className="">
                 <td
                   className={`${
                     i == matchs.length - 1 && "rounded-bl-xl"
-                  } text-xs h-fit w-fit`}
+                  } h-fit w-fit`}
                 >
                   {" "}
                   {match.time.getDate()}
@@ -160,13 +160,13 @@ const Fixture = () => {
                     ? match.time.getMinutes() + "0"
                     : match.time.getMinutes()}
                 </td>
-                <td className="text-xs">{match.tournament}</td>
-                <td className="text-xs">
+                <td>{match.tournament}</td>
+                <td>
                   {match.category}
                   {"-"}
                   {match.gender}
                 </td>
-                <td className="text-xs">
+                <td>
                   {match.condition == "Local" ? (
                     <FixtureImage source={clublogo} alt="Pacifico" />
                   ) : (
@@ -176,7 +176,7 @@ const Fixture = () => {
                     />
                   )}
                 </td>
-                <td className="text-xs">
+                <td>
                   {match.condition != "Local" ? (
                     <FixtureImage source={clublogo} alt="Pacifico" />
                   ) : (
@@ -186,13 +186,9 @@ const Fixture = () => {
                     />
                   )}
                 </td>
-                <td className="text-xs">{match.field}</td>
-                <td className="text-xs">{match.transmission_link}</td>
-                <td
-                  className={`${
-                    i == matchs.length - 1 && "rounded-br-xl"
-                  } text-xs`}
-                >
+                <td>{match.field}</td>
+                <td>{match.transmission_link}</td>
+                <td className={`${i == matchs.length - 1 && "rounded-br-xl"}`}>
                   {match.stats_link}
                 </td>
               </tr>

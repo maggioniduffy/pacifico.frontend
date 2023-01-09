@@ -74,12 +74,8 @@ const TimelineItem = ({ date, text, i }: TimelineProps) => {
   const flexOrder = i! % 2 == 0 ? "" : "flex-row-reverse";
   const fade = i! % 2 == 0 ? "fade-left" : "fade-right";
   return (
-    <div
-      data-aos={fade}
-      data-aos-duration="2000"
-      className="flex place-items-center justify-center flex-col"
-    >
-      <div className={"flex flex-col md:" + flexOrder}>
+    <div className="flex place-items-center justify-center flex-col">
+      <div className={"flex place-items-center flex-col md:" + flexOrder}>
         <div className="timelineitem shadow-xl h-32 w-32 bg-gray m-8 flex flex-col justify-center p-8">
           <h3 className="m-auto text-left text-gold-300">{date}</h3>
         </div>
@@ -96,24 +92,26 @@ const TimelineItem = ({ date, text, i }: TimelineProps) => {
 
 const Historia = () => {
   return (
-    <div className="mt-16">
-      <h3 className="text-black header-font font-bold text-left text-3xl">
+    <div className="mt-8">
+      <h3 className="text-black header-font font-bold text-left text-xl md:text-3xl">
         {" "}
         Nuestra Historia{" "}
       </h3>
-      <article className="paragraph-font w-full py-4 rounded flex flex-col justify-between">
-        <h5 className="font-bold mb-4 text-xl text-gray">
+      <article className="paragraph-font w-full py-2 rounded flex flex-col justify-between">
+        <h5 className="font-bold mb-4 text-sm md:text-xl text-gray">
           {" "}
           Socios Fundadores{" "}
         </h5>
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 font-bold justify-between">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 md:font-bold justify-between">
           {sociosFundadores.map((socio) => (
             <div
               key={socio}
               className="shadow w-full m-auto h-16 shadow-yellow rounded-xl flex place-items-center px-2 overflow-auto"
             >
               {" "}
-              <h3 className="w-full text-center text-sm">{socio} </h3>{" "}
+              <h3 className="w-full text-center text-xs md:text-sm">
+                {socio}{" "}
+              </h3>{" "}
             </div>
           ))}
         </div>

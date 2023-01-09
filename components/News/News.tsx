@@ -6,9 +6,12 @@ import { Carousel } from "react-responsive-carousel";
 import Image from "next/image";
 import Link from "next/link";
 import MyButton from "../MyButton/MyButton";
+import { useWindowDimensions } from "../../hooks";
 
 const News = () => {
   const [mainNews, setMainNews] = useState<ApiNew[]>();
+  const { height, width } = useWindowDimensions();
+  let h = width > 768 ? 9 : 16;
 
   useEffect(() => {
     const getNews = async () => {
@@ -52,10 +55,11 @@ const News = () => {
                   <Image
                     src={mNew.image}
                     layout="responsive"
-                    height={16}
+                    height={h}
                     width={16}
+                    quality={100}
                     alt={mNew.subtitle}
-                    className="rounded-xl h-full"
+                    className="rounded-xl"
                   />
                 </div>
                 <div className="rounded-tr-2xl rounded-b-xl overflow-hidden bg-white bg-opacity-80 border-t-6 border-yellow w-full h-fit absolute shadow-inner bottom-0">
@@ -75,7 +79,7 @@ const News = () => {
       <Link href="/news" className="w-full h-12 mt-1">
         <div className="w-full flex justify-center">
           <MyButton>
-            <h4>Ver todas las noticias</h4>
+            <h4 className="text-xs md:text-sm">Ver todas las noticias</h4>
           </MyButton>
         </div>
       </Link>

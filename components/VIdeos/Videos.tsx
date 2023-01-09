@@ -9,11 +9,10 @@ interface YoutubeElem {
 const PlaylistCard = ({ src, text }: YoutubeElem) => (
   <div className="h-fit m-2 shadow-xl rounded-b-xl w-fit border-b-2 border-yellow">
     <iframe
-      width="560"
-      height="315"
       src={src}
       title="YouTube video player"
       frameBorder="2"
+      height="200"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowFullScreen
       className="rounded-t-xl"
@@ -45,12 +44,7 @@ const Videos = ({ id }: Props) => {
   }, [from, to]);
 
   return (
-    <div
-      id={id}
-      data-aos="fade-up"
-      data-aos-duration="2000"
-      className="mt-16 w-11/12 m-auto justify-start"
-    >
+    <div id={id} className="mt-8 w-11/12 m-auto rounded justify-start">
       <div className="flex overflow-x-auto space-x-4 pt-2">
         {youtube.map(({ src, text }) => (
           <PlaylistCard key={src} src={src} text={text} />
