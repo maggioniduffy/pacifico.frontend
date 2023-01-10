@@ -35,6 +35,7 @@ const NewPage = () => {
 
   const setNewQuery = async () => {
     getNew(router!.query!.id as string).then((res) => {
+      console.log("QUERY RES: ", res);
       const auxRes = { ...res!, time: new Date(res!.time) };
       setLoaded(true);
       setData(auxRes);
@@ -72,10 +73,13 @@ const NewPage = () => {
         />
         <link rel="icon" href="/Logo.png" />
       </Head>
-      <Header sections={sections} socialMedia={socialMedia} showMenu={false} />
+      <Header sections={sections} showMenu={false} />
       <div className="min-h-screen">
         <Link href="/news">
-          <button className="invisible md:visible fixed top-15 left-10 h-fit w-8">
+          <button
+            title="Volver a Noticias"
+            className="invisible md:visible fixed top-15 left-10 h-fit w-8"
+          >
             <div className="h-8 w-8 shadow shadow-yellow rounded-full">
               <Image src={left} layout="fill" alt="Volver a noticias" />
             </div>

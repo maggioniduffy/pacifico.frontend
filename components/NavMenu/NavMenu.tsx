@@ -32,7 +32,7 @@ const NavMenu = ({ options }: Props) => {
         type="button"
         onClick={toggleVisible}
       >
-        <Image src={menu} layout="fixed" height={30} width={30} />
+        <Image src={menu} height={25} width={25} />
       </button>
       <MenuList
         visible={visible}

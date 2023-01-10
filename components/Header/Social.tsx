@@ -15,7 +15,13 @@ const Social = () => {
         </button>
         <div className="w-12 p-1 shadow-xl h-fit bg-yellow rounded-full">
           {socialMedia.map(({ url, image }) => (
-            <a className="relative basis-1/6 h-4 w-8" href={url} key={url}>
+            <a
+              className="relative basis-1/6 h-4 w-8"
+              href={url}
+              key={url}
+              target="_blank"
+              rel="noreferrer"
+            >
               <Image
                 src={image}
                 width={100}

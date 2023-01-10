@@ -11,10 +11,6 @@ export class ApiNew {
   ) {}
 }
 
-interface Image {
-  id: string;
-}
-
 export enum Category {
   U13 = "U13",
   U15 = "U15",
@@ -52,7 +48,8 @@ export async function getNews(
     const res = await fetch(
       BASE_API_URL + `news?skip=${skip}&limit=${limit}${searchQuery}`
     );
-    const mainNews: ApiNew[] = await res.json();
+    const mainNews: ApiNew[] = await await res.json();
+    console.log("NEWS: ", mainNews[0]._id);
     return mainNews;
   } catch (error) {
     console.error(error);
@@ -61,8 +58,10 @@ export async function getNews(
 
 export async function getNew(id: string): Promise<ApiNew | undefined> {
   try {
+    console.log("ID: ", id);
     const res = await fetch(BASE_API_URL + `news/` + id);
     const data: ApiNew = await res.json();
+    console.log("NEW DOC: ", data);
     return data;
   } catch (error) {
     console.error(error);
@@ -77,8 +76,9 @@ export async function getMatchs(
     const res = await fetch(
       BASE_API_URL + `matches?skip=${skip}&limit=${limit}`
     );
-    const mainNews: ApiMatch[] = await res.json();
-    return mainNews;
+    const matches: ApiMatch[] = await res.json();
+    console.log("MATCH: ", matches);
+    return matches;
   } catch (error) {
     console.error(error);
   }

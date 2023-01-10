@@ -12,7 +12,6 @@ import torneo from "../../public/assets/torneo.png";
 import calendar from "../../public/assets/calendar.png";
 
 const STEP = 5;
-const LOAD_STEP = 20;
 
 interface FixtureImageProps {
   source: string | StaticImageData;
@@ -52,42 +51,35 @@ const FixtureImage = ({ source, alt }: FixtureImageProps) => (
 
 const Fixture = () => {
   const [matchs, setMatchs] = useState<Match[]>([]);
+  const [nextAllowed, setNextAllowed] = useState(true);
   const [from, setFrom] = useState(0);
   const [to, setTo] = useState(STEP);
-  const [fromLoad, setFromLoad] = useState(0);
-  const [toLoad, setToLoad] = useState(LOAD_STEP);
-  const [nextAllowed, setNextAllowed] = useState(true);
-
   useEffect(() => {
     const getGames = async () => {
-      const res = await getMatchs(fromLoad, toLoad);
+      console.log("get games");
+      const res = await getMatchs(0, 50);
       const auxRes = res?.map((r) => ({ ...r, time: new Date(r.time) }));
-      if (auxRes?.length) {
-        setMatchs([...matchs, ...auxRes!]);
-        if (auxRes?.length < STEP) {
-          setNextAllowed(false);
-        } else {
-          setNextAllowed(true);
-        }
+      if (auxRes) {
+        setMatchs(auxRes);
       }
     };
     getGames();
-  }, [fromLoad, toLoad]);
+  }, []);
 
   const back = () => {
-    if (from - STEP >= 0) {
-      setTo(from);
-      setFrom(from - STEP);
+    setFrom(from - STEP);
+    setTo(to - STEP);
+    if (!nextAllowed && from <= matchs.length) {
+      setNextAllowed(true);
     }
   };
 
   const next = () => {
-    setFrom(to);
-    if (to + STEP >= toLoad) {
-      setFromLoad(toLoad);
-      setToLoad(toLoad + LOAD_STEP);
-    }
+    setFrom(from + STEP);
     setTo(to + STEP);
+    if (to + STEP > matchs.length) {
+      setNextAllowed(false);
+    }
   };
 
   return (
@@ -200,6 +192,7 @@ const Fixture = () => {
             className={`${
               from < STEP && "cursor-not-allowed opacity-50"
             } bg-white text-black h-full w-32 p-1`}
+            disabled={from < STEP}
             onClick={back}
           >
             Atras
@@ -208,6 +201,7 @@ const Fixture = () => {
             className={`${
               !nextAllowed && "cursor-not-allowed opacity-50"
             } bg-yellow text-realwhite h-full w-32 p-1`}
+            disabled={!nextAllowed}
             onClick={next}
           >
             {" "}

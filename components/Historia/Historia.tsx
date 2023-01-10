@@ -1,5 +1,7 @@
 import Image from "next/image";
+import { useState } from "react";
 import down from "../../public/assets/down-curved.png";
+import "animate.css";
 
 const sociosFundadores = [
   "Francisco Mantelli (Presidente)",
@@ -76,8 +78,8 @@ const TimelineItem = ({ date, text, i }: TimelineProps) => {
   return (
     <div className="flex place-items-center justify-center flex-col">
       <div className={"flex place-items-center flex-col md:" + flexOrder}>
-        <div className="timelineitem shadow-xl h-32 w-32 bg-gray m-8 flex flex-col justify-center p-8">
-          <h3 className="m-auto text-left text-gold-300">{date}</h3>
+        <div className="timelineitem shadow-xl h-32 w-32 bg-black m-8 flex flex-col justify-center p-8">
+          <h3 className="m-auto text-left text-yellow font-bold">{date}</h3>
         </div>
         <div className="m-8 shadow-xl bg-white bg-opacity-50 rounded-xl p-4 h-fit text-sm">
           {text}
@@ -91,12 +93,38 @@ const TimelineItem = ({ date, text, i }: TimelineProps) => {
 };
 
 const Historia = () => {
+  const [hide, setHide] = useState(true);
+  const [inf, setInf] = useState("animate__infinite");
+  const open = () => {
+    console.log(inf);
+    setInf("");
+    setHide(false);
+  };
+  const close = () => {
+    setHide(true);
+  };
+  if (hide) {
+    return (
+      <div className={`mt-8 animate__animated animate__bounce ${inf}`}>
+        <button
+          onClick={open}
+          className="rounded-xl text-black header-font font-bold text-left text-xl md:text-3xl"
+        >
+          {" "}
+          Nuestra Historia{" "}
+        </button>
+      </div>
+    );
+  }
   return (
     <div className="mt-8">
-      <h3 className="text-black header-font font-bold text-left text-xl md:text-3xl">
+      <button
+        className="text-black header-font font-bold text-left text-xl md:text-3xl"
+        onClick={close}
+      >
         {" "}
         Nuestra Historia{" "}
-      </h3>
+      </button>
       <article className="paragraph-font w-full py-2 rounded flex flex-col justify-between">
         <h5 className="font-bold mb-4 text-sm md:text-xl text-gray">
           {" "}
@@ -138,20 +166,3 @@ const Historia = () => {
 };
 
 export default Historia;
-
-// {" "}
-//           En las primeras décadas del siglo XX comenzaron a surgir en el
-//           Territorio Nacional de Neuquén, diversas entidades deportivas que
-//           fueron impulsadas principalmente por la práctica del fútbol. El
-//           Neuquén Atlético Club inició sus actividades con un partido de fútbol
-//           jugado el 18 de marzo de 1909. Más adelante, un grupo decidido de
-//           deportistas hizo los primeros intentos de fundación en 1913, que con
-//           el correr del tiempo habrían de convertirse en una realidad, cuando el
-//           16 de septiembre de 1916 se constituye la primera Comisión Directiva
-//           del <b>Club Atlético Pacífico</b>, encabezada por su presidente
-//           Francisco Mantelli y otros socios fundadores ocupando los diferentes
-//           cargos. Según las fuentes históricas, los colores que identificaron a
-//           la institución tuvieron origen en el amarillo por los empleados del
-//           Correo y el negro por los empleados del Ferrocarril. El nombre hacía
-//           referencia al histórico proyecto nacional de{" "}
-//           <b>construcción del ferrocarril al Pacífico.</b>

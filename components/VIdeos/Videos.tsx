@@ -34,11 +34,15 @@ const Videos = ({ id }: Props) => {
 
   useEffect(() => {
     const setYoutubeElems = async () => {
-      const res = await fetch(
-        BASE_API_URL + "youtube/?skip=" + from + "&limit=" + to
-      );
-      const data = await res.json();
-      setYoutubeData(data);
+      try {
+        const res = await fetch(
+          BASE_API_URL + "youtube/?skip=" + from + "&limit=" + to
+        );
+        const data = await res.json();
+        setYoutubeData(data);
+      } catch (error) {
+        console.error(error);
+      }
     };
     setYoutubeElems();
   }, [from, to]);
