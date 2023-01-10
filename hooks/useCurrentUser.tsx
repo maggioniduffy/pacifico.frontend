@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { User } from "../models/User";
 
-const useCurrentUser = () => {
+export const useCurrentUser = () => {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
@@ -14,5 +14,3 @@ const useCurrentUser = () => {
 
   return user;
 };
-
-export default useCurrentUser;

@@ -1,14 +1,27 @@
-import { useRouter } from "next/router";
-import React from "react";
-import { useCurrentUser } from "../../hooks";
+import * as Components from "../../components/Admin";
 
 const Admin = () => {
-  const user = useCurrentUser();
-  // const router = useRouter();
-  // if (!user) {
-  //   router.push("/login");
-  // }
-  return <div> ADMIN </div>;
+  return (
+    <div>
+      <div>
+        {" "}
+        <h2> Noticias </h2>{" "}
+      </div>
+      <hr />
+      <div>
+        {" "}
+        <h2> Partidos </h2>{" "}
+      </div>
+      <hr />
+      <Components.MainYoutube />
+      <hr />
+      <div>
+        {" "}
+        <h2> Newsletter </h2>{" "}
+      </div>
+      <hr />
+    </div>
+  );
 };
 
 export default Admin;

@@ -1,11 +1,9 @@
 import Cookies from "js-cookie";
 
-const useLogout = () => {
+export const useLogout = () => {
   const logout = () => {
     Cookies.remove("currentUser");
   };
 
   return { logout };
 };
-
-export default useLogout;

@@ -2,7 +2,7 @@ import { login } from "../services/authService";
 import Cookies from "js-cookie";
 import { User } from "../models/User";
 
-const useLogin = () => {
+export const useLogin = () => {
   const log = async (username: string, password: string) => {
     const user = await login(username, password);
     console.log("USE LOGIN: ", user);
@@ -13,5 +13,3 @@ const useLogin = () => {
   };
   return { log };
 };
-
-export default useLogin;
