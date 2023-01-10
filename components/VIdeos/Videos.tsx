@@ -18,7 +18,7 @@ const PlaylistCard = ({ src, text }: YoutubeElem) => (
       className="rounded-t-xl"
     ></iframe>
     <div className="h-12 flex w-full rounded-b-xl justify-center border-yellow border-r-2 border-l-2 place-items-center">
-      <h5 className="text-gray text-lg">{text}</h5>
+      <h5 className="text-gray text-sm md:text-lg">{text}</h5>
     </div>
   </div>
 );
