@@ -3,22 +3,13 @@ import * as Components from "../../components/Admin";
 const Admin = () => {
   return (
     <div>
-      <div>
-        {" "}
-        <h2> Noticias </h2>{" "}
-      </div>
+      <Components.MainNews />
       <hr />
-      <div>
-        {" "}
-        <h2> Partidos </h2>{" "}
-      </div>
+      <Components.MainFixture />
       <hr />
       <Components.MainYoutube />
       <hr />
-      <div>
-        {" "}
-        <h2> Newsletter </h2>{" "}
-      </div>
+      <Components.MainNewsletter />
       <hr />
     </div>
   );

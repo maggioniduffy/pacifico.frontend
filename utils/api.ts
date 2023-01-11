@@ -77,16 +77,45 @@ export async function getMatchs(
       BASE_API_URL + `matches?skip=${skip}&limit=${limit}`
     );
     const matches: ApiMatch[] = await res.json();
-    console.log("MATCH: ", matches);
     return matches;
   } catch (error) {
     console.error(error);
   }
 }
 
-interface SendEmailDto {
-  email: string;
-  name: string;
-  subject: string;
-  message: string;
+export async function addVideo(
+  src: string,
+  text: string,
+  token: string | undefined
+) {
+  try {
+    const res = await fetch(BASE_API_URL + "youtube", {
+      method: "POST",
+      body: JSON.stringify({ src, text }),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+    });
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function deleteVideo(id: string, token: string | undefined) {
+  try {
+    const res = await fetch(BASE_API_URL + "youtube/" + id, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+    });
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
 }

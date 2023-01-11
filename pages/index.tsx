@@ -39,7 +39,7 @@ const Home: NextPage = () => {
       </Head>
       <div>
         <>
-          <Header sections={sections} socialMedia={socialMedia} />
+          <Header sections={sections} />
           <main className="min-h-screen mt-10" ref={main}>
             <Section id="inicio">
               <News />
