@@ -19,7 +19,7 @@ export async function login(
     return {
       username,
       token: data.token,
-      expiredAt: Date.now() + Number(data.expiresIn),
+      expiredAt: Date.now() + Number(data.expiresIn) * 1000,
     };
   } catch (error) {
     console.error(error);

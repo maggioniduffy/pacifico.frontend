@@ -2,12 +2,7 @@ import React, { useState } from "react";
 import { useCurrentUser } from "../../../hooks";
 import { addVideo } from "../../../utils/api";
 import AddComponent from "../AddComponent";
-
-interface InputProps {
-  placeholder: string;
-  value: any;
-  setter: (value: any) => void;
-}
+import { InputProps } from "../Fixture/interfaces";
 
 const AddVideo = () => {
   const [src, setSrc] = useState("");

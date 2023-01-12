@@ -1,10 +1,11 @@
 import React from "react";
 import AdminSection from "../AdminSection";
+import AddFixture from "./AddFixture";
 
 const MainFixture = () => {
   return (
     <AdminSection title="Fixture">
-      <span></span>
+      <AddFixture />
     </AdminSection>
   );
 };

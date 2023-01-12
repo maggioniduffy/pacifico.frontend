@@ -19,14 +19,17 @@ export enum Category {
   FIRST_TEAM = "1ra",
 }
 
+export type Gender = "F" | "M";
+export type Condition = "Local" | "Visita";
+
 export class ApiMatch {
   constructor(
-    public gender: "F" | "M",
+    public gender: Gender,
     public category: Category,
     public tournament: string,
     public rival_name: string,
     public time: string,
-    public condition: "Local" | "Visita",
+    public condition: Condition,
     public played: boolean,
     public rival_icon: string,
     public _id: string,
