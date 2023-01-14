@@ -3,7 +3,12 @@ import { useCurrentUser } from "../../../hooks";
 import { Category } from "../../../utils/api";
 import { BASE_API_URL } from "../../../utils/constants";
 import AddComponent from "../AddComponent";
-import { AddMatchType, InputProps } from "./interfaces";
+import { AddMatchType, EditMatchDto, InputProps } from "./interfaces";
+
+interface Props {
+  propState?: AddMatchType;
+  id?: string;
+}
 
 const initialState: AddMatchType = {
   rival_name: "",
@@ -44,6 +49,7 @@ interface Action {
 }
 
 function reducer(state = initialState, action: Action) {
+  console.log(state);
   switch (action.type) {
     case ActionType.CATEGORY:
       return { ...state, category: action.payload };
@@ -78,8 +84,9 @@ function reducer(state = initialState, action: Action) {
   }
 }
 
-const AddFixture = () => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+const AddFixture = ({ id, propState = initialState }: Props) => {
+  console.log("propState: ", propState);
+  const [state, dispatch] = useReducer(reducer, propState);
   const currentUser = useCurrentUser();
   const uploadImage = (event: any) => {
     if (event.target.files && event.target.files[0]) {
@@ -232,8 +239,16 @@ const AddFixture = () => {
         time,
         field,
         tournament,
+        our_score,
+        transmission_link,
+        stats_link,
       } = state;
-      console.log(state.rival_icon);
+      console.log("state en send: ", state);
+
+      const auxTime = time.replace("T", " ") + ":00.000";
+      console.log(auxTime);
+      let res;
+
       const body = new FormData();
       body.append("file", rival_icon);
       body.append("rival_name", rival_name);
@@ -241,30 +256,48 @@ const AddFixture = () => {
       body.append("played", played);
       body.append("category", category);
       body.append("gender", gender);
-      const auxTime = time.replace("T", " ") + ":00.000";
-      console.log(auxTime);
       body.append("time", auxTime);
       body.append("rival_score", rival_score);
       body.append("condition", condition);
       body.append("tournament", tournament);
-      console.log("BODY: ", body.values());
-      const res = await fetch(BASE_API_URL + "matches", {
-        method: "POST",
-        headers: {
-          Authorization: "Bearer " + currentUser?.token,
-        },
-        body,
-      });
+      body.append("our_score", our_score);
+      body.append("stats_link", stats_link);
+      body.append("transmission_link", transmission_link);
+      console.log("id: ", id);
+      if (id) {
+        res = await fetch(BASE_API_URL + "matches/" + id, {
+          method: "PATCH",
+          headers: {
+            Authorization: "Bearer " + currentUser?.token,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(state),
+        });
+      } else {
+        res = await fetch(BASE_API_URL + "matches", {
+          method: "POST",
+          headers: {
+            Authorization: "Bearer " + currentUser?.token,
+          },
+          body,
+        });
+      }
       const data = await res.json();
       console.log("FIXTURE RES DATA: ", data);
       dispatch({ type: ActionType.CLEAR });
       return data;
     } catch (error) {
+      alert(error);
       console.error(error);
     }
   };
 
-  return <AddComponent submit={send} inputs={inputs} />;
+  return (
+    <AddComponent
+      submit={send}
+      inputs={id ? inputs.slice(0, inputs.length - 1) : inputs}
+    />
+  );
 };
 
 export default AddFixture;

@@ -12,16 +12,20 @@ import torneo from "../../public/assets/torneo.png";
 import calendar from "../../public/assets/calendar.png";
 import { useCurrentUser } from "../../hooks";
 import { BASE_API_URL } from "../../utils/constants";
+import AddFixture from "../Admin/Fixture/AddFixture";
+import { AddMatchType } from "../Admin/Fixture/interfaces";
 
 const STEP = 5;
 
 interface Props {
-  canDelete: boolean;
+  canDelete?: boolean;
+  canEdit?: boolean;
 }
 
 interface FixtureImageProps {
   source: string | StaticImageData;
   alt: string;
+  score?: number;
 }
 
 interface Match {
@@ -41,8 +45,8 @@ interface Match {
   rival_score?: number;
 }
 
-const FixtureImage = ({ source, alt }: FixtureImageProps) => (
-  <div className="h-5/6 w-10/12 m-auto md:p-4">
+const FixtureImage = ({ source, alt, score }: FixtureImageProps) => (
+  <div className="h-3/6 w-10/12 m-auto md:p-4">
     <Image
       src={source}
       height={40}
@@ -52,14 +56,18 @@ const FixtureImage = ({ source, alt }: FixtureImageProps) => (
       className="shadow m-2"
       alt={alt}
     />
+    {score && <p className="font-bold bg-white shadow p-1"> {score} </p>}
   </div>
 );
 
-const Fixture = ({ canDelete }: Props) => {
+const Fixture = ({ canDelete, canEdit }: Props) => {
   const [matchs, setMatchs] = useState<Match[]>([]);
   const [nextAllowed, setNextAllowed] = useState(true);
   const [from, setFrom] = useState(0);
   const [to, setTo] = useState(STEP);
+  const [match, setMatch] = useState<AddMatchType>();
+  const [id, setId] = useState<string>();
+  const [editing, setEditing] = useState(false);
   const currentUser = useCurrentUser();
 
   const getGames = async () => {
@@ -106,6 +114,13 @@ const Fixture = ({ canDelete }: Props) => {
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const editMatch = (match: Match) => {
+    setId(match._id);
+    const auxMatch = { ...match, time: match.time.toISOString() };
+    setMatch(auxMatch);
+    setEditing(true);
   };
 
   return (
@@ -197,21 +212,31 @@ const Fixture = ({ canDelete }: Props) => {
                   </td>
                   <td>
                     {match.condition == "Local" ? (
-                      <FixtureImage source={clublogo} alt="Pacifico" />
+                      <FixtureImage
+                        source={clublogo}
+                        alt="Pacifico"
+                        score={match?.our_score}
+                      />
                     ) : (
                       <FixtureImage
                         source={match.rival_icon}
                         alt={match.rival_name}
+                        score={match?.rival_score}
                       />
                     )}
                   </td>
                   <td>
                     {match.condition != "Local" ? (
-                      <FixtureImage source={clublogo} alt="Pacifico" />
+                      <FixtureImage
+                        source={clublogo}
+                        alt="Pacifico"
+                        score={match?.our_score}
+                      />
                     ) : (
                       <FixtureImage
                         source={match.rival_icon}
                         alt={match.rival_name}
+                        score={match?.rival_score}
                       />
                     )}
                   </td>
@@ -225,10 +250,19 @@ const Fixture = ({ canDelete }: Props) => {
                   {currentUser && canDelete && (
                     <button
                       onClick={() => deleteMatch(match._id)}
-                      className="bg-white p-2 h-12 shadow-lg mt-8 m-auto"
+                      className="bg-white mx-2 p-2 rounded h-12 shadow-lg mt-8 m-auto"
                     >
                       {" "}
                       Borrar{" "}
+                    </button>
+                  )}
+                  {currentUser && canEdit && (
+                    <button
+                      onClick={() => editMatch(match)}
+                      className="bg-gray bg-opacity-70 rounded mx-2 p-2 h-12 shadow-lg mt-8 m-auto"
+                    >
+                      {" "}
+                      Editar{" "}
                     </button>
                   )}
                 </tr>
@@ -257,6 +291,7 @@ const Fixture = ({ canDelete }: Props) => {
           </button>
         </div>
       </div>
+      {editing && <AddFixture propState={match} id={id} />}
     </div>
   );
 };
