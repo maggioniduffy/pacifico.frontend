@@ -53,14 +53,13 @@ const NewPage = () => {
           subtitle,
         }));
       setOtherNews(auxRes);
+      console.log(auxRes);
     });
   };
 
   useEffect(() => {
     setNewQuery();
-    if (data) {
-      setOtherNewsCall();
-    }
+    setOtherNewsCall();
   }, [router, router.isReady, router.query]);
 
   return (

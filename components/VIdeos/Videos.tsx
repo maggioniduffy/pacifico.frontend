@@ -24,7 +24,8 @@ const PlaylistCard = ({ id, src, text, canDelete, delVideo }: CardProps) => (
       src={src}
       title="YouTube video player"
       frameBorder="2"
-      height="200"
+      height="250"
+      width={"400"}
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowFullScreen
       className="rounded-t-xl"
@@ -47,26 +48,32 @@ const Videos = ({ id, canDelete }: Props) => {
   const [to, setTo] = useState(10);
   const currentUser = useCurrentUser();
 
-  const delVideo = (id: string) => deleteVideo(id, currentUser?.token);
-
-  useEffect(() => {
-    const setYoutubeElems = async () => {
-      try {
-        const res = await fetch(
-          BASE_API_URL + "youtube/?skip=" + from + "&limit=" + to
-        );
-        const data = await res.json();
-        setYoutubeData(data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
+  const delVideo = (id: string) => {
+    deleteVideo(id, currentUser?.token);
     setYoutubeElems();
-  }, [from, to, delVideo]);
+  };
+
+  const setYoutubeElems = async () => {
+    try {
+      const res = await fetch(
+        BASE_API_URL + "youtube/?skip=" + from + "&limit=" + to
+      );
+      const data = await res.json();
+      setYoutubeData(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  useEffect(() => {
+    setYoutubeElems();
+  }, [from, to]);
 
   return (
-    <div id={id} className="mt-8 w-11/12 m-auto rounded justify-start">
-      <div className="flex place-items-center overflow-x-auto space-x-4 pt-2 w-full">
+    <div
+      id={id}
+      className="mt-8 w-11/12 m-auto rounded justify-center place-items-center"
+    >
+      <div className="flex place-items-center justify-center overflow-x-auto space-x-4 pt-2 w-full">
         {youtube.map(({ src, text, _id }) => (
           <PlaylistCard
             key={src}

@@ -1,5 +1,7 @@
 import React, { useReducer } from "react";
+import { useCurrentUser } from "../../../hooks";
 import { Category } from "../../../utils/api";
+import { BASE_API_URL } from "../../../utils/constants";
 import AddComponent from "../AddComponent";
 import { AddMatchType, InputProps } from "./interfaces";
 
@@ -33,11 +35,12 @@ enum ActionType {
   OURSCORE = "OURSCORE",
   RIVALSCORE = "RIVALSCORE",
   RIVALICON = "RIVALICON",
+  CLEAR = "CLEAR",
 }
 
 interface Action {
   type: ActionType;
-  payload: any;
+  payload?: any;
 }
 
 function reducer(state = initialState, action: Action) {
@@ -68,6 +71,8 @@ function reducer(state = initialState, action: Action) {
       return { ...state, rival_score: action.payload };
     case ActionType.RIVALICON:
       return { ...state, rival_icon: action.payload };
+    case ActionType.CLEAR:
+      return initialState;
     default:
       return state;
   }
@@ -75,7 +80,7 @@ function reducer(state = initialState, action: Action) {
 
 const AddFixture = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
-
+  const currentUser = useCurrentUser();
   const uploadImage = (event: any) => {
     if (event.target.files && event.target.files[0]) {
       const i = event.target.files[0];
@@ -176,6 +181,12 @@ const AddFixture = () => {
         dispatch({ type: ActionType.TOURNAMENT, payload: r }),
     },
     {
+      placeholder: "Fecha",
+      value: state.time,
+      setter: (r: string) => dispatch({ type: ActionType.TIME, payload: r }),
+      type: "datetime-local",
+    },
+    {
       placeholder: "Nuestro goleo",
       value: state.our_score,
       setter: (r: string) =>
@@ -202,28 +213,58 @@ const AddFixture = () => {
     {
       placeholder: "Escudo rival",
       value: state.rival_icon,
-      setter: (r: string) =>
-        dispatch({ type: ActionType.RIVALICON, payload: r }),
+      setter: (e: any) => uploadImage(e),
       type: "file",
     },
   ];
 
-  const send = (e: any) => {
+  const send = async (e: any) => {
     e.preventDefault();
     try {
+      const {
+        rival_icon,
+        rival_name,
+        rival_score,
+        played,
+        gender,
+        category,
+        condition,
+        time,
+        field,
+        tournament,
+      } = state;
+      console.log(state.rival_icon);
       const body = new FormData();
-      body.append("file", state.rival_icon);
-    } catch (error) {}
+      body.append("file", rival_icon);
+      body.append("rival_name", rival_name);
+      body.append("field", field);
+      body.append("played", played);
+      body.append("category", category);
+      body.append("gender", gender);
+      const auxTime = time.replace("T", " ") + ":00.000";
+      console.log(auxTime);
+      body.append("time", auxTime);
+      body.append("rival_score", rival_score);
+      body.append("condition", condition);
+      body.append("tournament", tournament);
+      console.log("BODY: ", body.values());
+      const res = await fetch(BASE_API_URL + "matches", {
+        method: "POST",
+        headers: {
+          Authorization: "Bearer " + currentUser?.token,
+        },
+        body,
+      });
+      const data = await res.json();
+      console.log("FIXTURE RES DATA: ", data);
+      dispatch({ type: ActionType.CLEAR });
+      return data;
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  return (
-    <AddComponent
-      submit={(e) => {
-        e.preventDefault();
-      }}
-      inputs={inputs}
-    />
-  );
+  return <AddComponent submit={send} inputs={inputs} />;
 };
 
 export default AddFixture;

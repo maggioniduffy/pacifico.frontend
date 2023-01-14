@@ -81,11 +81,7 @@ const NewsPage = () => {
         <link rel="icon" href="/Logo.png" />
       </Head>
       <>
-        <Header
-          showMenu={false}
-          sections={sections}
-          socialMedia={socialMedia}
-        />
+        <Header showMenu={false} sections={sections} />
         <Search search={search} setSearch={setSearch} />
         <main className="h-screen w-full mt-4">
           <div className="w-full m-auto h-full">

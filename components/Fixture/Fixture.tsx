@@ -10,8 +10,14 @@ import home from "../../public/assets/home.png";
 import gender from "../../public/assets/gender.png";
 import torneo from "../../public/assets/torneo.png";
 import calendar from "../../public/assets/calendar.png";
+import { useCurrentUser } from "../../hooks";
+import { BASE_API_URL } from "../../utils/constants";
 
 const STEP = 5;
+
+interface Props {
+  canDelete: boolean;
+}
 
 interface FixtureImageProps {
   source: string | StaticImageData;
@@ -49,20 +55,23 @@ const FixtureImage = ({ source, alt }: FixtureImageProps) => (
   </div>
 );
 
-const Fixture = () => {
+const Fixture = ({ canDelete }: Props) => {
   const [matchs, setMatchs] = useState<Match[]>([]);
   const [nextAllowed, setNextAllowed] = useState(true);
   const [from, setFrom] = useState(0);
   const [to, setTo] = useState(STEP);
+  const currentUser = useCurrentUser();
+
+  const getGames = async () => {
+    console.log("get games");
+    const res = await getMatchs(0, 50);
+    const auxRes = res?.map((r) => ({ ...r, time: new Date(r.time) }));
+    if (auxRes) {
+      setMatchs(auxRes);
+    }
+  };
+
   useEffect(() => {
-    const getGames = async () => {
-      console.log("get games");
-      const res = await getMatchs(0, 50);
-      const auxRes = res?.map((r) => ({ ...r, time: new Date(r.time) }));
-      if (auxRes) {
-        setMatchs(auxRes);
-      }
-    };
     getGames();
   }, []);
 
@@ -79,6 +88,23 @@ const Fixture = () => {
     setTo(to + STEP);
     if (to + STEP > matchs.length) {
       setNextAllowed(false);
+    }
+  };
+
+  const deleteMatch = async (id: string) => {
+    try {
+      const res = await fetch(BASE_API_URL + "matches/" + id, {
+        method: "DELETE",
+        headers: {
+          Authorization: "Bearer " + currentUser?.token,
+        },
+      });
+      const data = await res.json();
+      alert("Partido borrado!");
+      getGames();
+      return data;
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -136,55 +162,77 @@ const Fixture = () => {
             </tr>
           </thead>
           <tbody className="text-center fixturetxt paragraph-font">
-            {matchs.slice(from, to).map((match, i) => (
-              <tr key={match._id} className="">
-                <td
-                  className={`${
-                    i == matchs.length - 1 && "rounded-bl-xl"
-                  } h-fit w-fit`}
-                >
-                  {" "}
-                  {match.time.getDate()}
-                  {"/"}
-                  {match.time.getMonth() + 1} {match.time.getHours()}
-                  {":"}
-                  {match.time.getMinutes() < 10
-                    ? match.time.getMinutes() + "0"
-                    : match.time.getMinutes()}
-                </td>
-                <td>{match.tournament}</td>
-                <td>
-                  {match.category}
-                  {"-"}
-                  {match.gender}
-                </td>
-                <td>
-                  {match.condition == "Local" ? (
-                    <FixtureImage source={clublogo} alt="Pacifico" />
-                  ) : (
-                    <FixtureImage
-                      source={match.rival_icon}
-                      alt={match.rival_name}
-                    />
+            {matchs
+              //.reverse()
+              .slice(from, to)
+              .map((match, i) => (
+                <tr key={match._id} className="">
+                  <td
+                    className={`${
+                      i == matchs.length - 1 && "rounded-bl-xl"
+                    } h-fit w-fit`}
+                  >
+                    {" "}
+                    {match.time.getDate()}
+                    {"/"}
+                    {match.time.getMonth() + 1}
+                    <p className="font-bold">
+                      {" "}
+                      {" " + match.time.getUTCFullYear()}
+                    </p>
+                    {match.time.getHours()}
+                    {":"}
+                    {match.time.getMinutes() < 10
+                      ? match.time.getMinutes() + "0"
+                      : match.time.getMinutes()}
+                  </td>
+                  <td className="text-clip">
+                    {" "}
+                    <p className="text-clip"> {match.tournament} </p>
+                  </td>
+                  <td>
+                    {match.category}
+                    {"-"}
+                    {match.gender}
+                  </td>
+                  <td>
+                    {match.condition == "Local" ? (
+                      <FixtureImage source={clublogo} alt="Pacifico" />
+                    ) : (
+                      <FixtureImage
+                        source={match.rival_icon}
+                        alt={match.rival_name}
+                      />
+                    )}
+                  </td>
+                  <td>
+                    {match.condition != "Local" ? (
+                      <FixtureImage source={clublogo} alt="Pacifico" />
+                    ) : (
+                      <FixtureImage
+                        source={match.rival_icon}
+                        alt={match.rival_name}
+                      />
+                    )}
+                  </td>
+                  <td>{match.field}</td>
+                  <td>{match.transmission_link}</td>
+                  <td
+                    className={`${i == matchs.length - 1 && "rounded-br-xl"}`}
+                  >
+                    {match.stats_link}
+                  </td>
+                  {currentUser && canDelete && (
+                    <button
+                      onClick={() => deleteMatch(match._id)}
+                      className="bg-white p-2 h-12 shadow-lg mt-8 m-auto"
+                    >
+                      {" "}
+                      Borrar{" "}
+                    </button>
                   )}
-                </td>
-                <td>
-                  {match.condition != "Local" ? (
-                    <FixtureImage source={clublogo} alt="Pacifico" />
-                  ) : (
-                    <FixtureImage
-                      source={match.rival_icon}
-                      alt={match.rival_name}
-                    />
-                  )}
-                </td>
-                <td>{match.field}</td>
-                <td>{match.transmission_link}</td>
-                <td className={`${i == matchs.length - 1 && "rounded-br-xl"}`}>
-                  {match.stats_link}
-                </td>
-              </tr>
-            ))}
+                </tr>
+              ))}
           </tbody>
         </table>
         <div className="flex mt-4 place-items-center h-10 paragraph-font rounded-lg shadow-lg overflow-hidden w-fit m-auto justify-center">
