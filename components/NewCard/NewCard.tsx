@@ -2,30 +2,20 @@ import Link from "next/link";
 import Image from "next/image";
 import { BASE_API_URL } from "../../utils/constants";
 import { useCurrentUser } from "../../hooks";
+import { createRouteLoader } from "next/dist/client/route-loader";
 
 interface Props {
   title: string;
   id: string;
   children: JSX.Element;
   canDelete?: boolean;
+  deleteNew?: (id: string) => void;
+  canEdit?: boolean;
 }
 
-const NewCard = ({ title, id, children, canDelete }: Props) => {
+const NewCard = ({ title, id, children, canDelete, deleteNew }: Props) => {
   const currentUser = useCurrentUser();
-  const deleteNew = async () => {
-    try {
-      const res = await fetch(BASE_API_URL + "news/" + id, {
-        method: "DELETE",
-        headers: {
-          Authorization: "Bearer " + currentUser?.token,
-        },
-      });
-      const data = await res.json();
-      return data;
-    } catch (error) {
-      console.error(error);
-    }
-  };
+
   return (
     <Link
       href={{
@@ -38,8 +28,8 @@ const NewCard = ({ title, id, children, canDelete }: Props) => {
     >
       <>
         <a className={"relative w-fit m-auto h-fit"}>{children}</a>
-        {canDelete && currentUser && (
-          <button onClick={deleteNew}> Borrar </button>
+        {canDelete && currentUser && deleteNew && (
+          <button onClick={() => deleteNew(id)}> Borrar </button>
         )}
       </>
     </Link>

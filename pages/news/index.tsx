@@ -3,11 +3,12 @@ import React, { useEffect, useState } from "react";
 import { Footer, Header } from "../../components";
 import NewCard from "../../components/NewCard";
 import { getNews } from "../../utils/api";
-import { sections, socialMedia } from "../../utils/constants";
+import { BASE_API_URL, sections, socialMedia } from "../../utils/constants";
 import Image from "next/image";
 import MyButton from "../../components/MyButton/MyButton";
 import Search from "./Search";
 import buscar from "../../public/assets/buscar.png";
+import { useCurrentUser } from "../../hooks";
 
 interface NewInfo {
   title: string;
@@ -17,7 +18,7 @@ interface NewInfo {
 }
 
 interface Props {
-  canDelete: boolean;
+  canDelete?: boolean;
 }
 
 const STEP = 9;
@@ -27,6 +28,7 @@ const NewsPage = ({ canDelete }: Props) => {
   const [news, setNews] = useState<NewInfo[]>([]);
   const [from, setFrom] = useState(0);
   const [to, setTo] = useState(9);
+  const currentUser = useCurrentUser();
 
   const setNewsCall = (from: number, to: number) => {
     getNews(from, to, search)
@@ -38,7 +40,7 @@ const NewsPage = ({ canDelete }: Props) => {
           subtitle,
           image,
         }));
-        if (aux) setNews([...news, ...aux]);
+        if (aux) setNews(aux);
       })
       .catch((e) => console.error(e));
   };
@@ -66,6 +68,24 @@ const NewsPage = ({ canDelete }: Props) => {
         if (aux) setNews(aux);
       })
       .catch((e) => console.error(e));
+  };
+
+  const deleteNew = async (id: string) => {
+    try {
+      const res = await fetch(BASE_API_URL + "news/" + id, {
+        method: "DELETE",
+        headers: {
+          Authorization: "Bearer " + currentUser?.token,
+        },
+      });
+      const data = await res.json();
+      const resupdated = news.filter((n) => n.id != id);
+      setNews(resupdated);
+      alert("noticia borrada!");
+      return data;
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   useEffect(() => {
@@ -116,7 +136,8 @@ const NewsPage = ({ canDelete }: Props) => {
                           title={title}
                           id={id}
                           key={Date.now() + id}
-                          canDelete
+                          canDelete={canDelete}
+                          deleteNew={deleteNew}
                         >
                           <div className="relative">
                             <div className="w-96 h-96 rounded-xl">

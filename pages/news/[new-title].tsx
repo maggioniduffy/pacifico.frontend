@@ -10,6 +10,7 @@ import { getNew, getNews } from "../../utils/api";
 import Link from "next/link";
 import left from "../../public/assets/left-arrow.png";
 import { Footer } from "../../components";
+import AddNew from "../../components/Admin/News/AddNew";
 
 interface NewArticle {
   title: string;
@@ -115,6 +116,7 @@ const NewPage = () => {
           <p className="mt-8 indent-3 leading-relaxed text-justify text-sm md:text-lg">
             {data?.body}
           </p>
+          {router.query.edit && <AddNew />}
         </div>
         <div className="bg-realwhite shadow shadow-yellow mt-8 p-4">
           <h4 className="text-center text-sm md:text-lg lg:text-xl mt-2">
