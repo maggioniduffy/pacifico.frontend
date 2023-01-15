@@ -9,6 +9,16 @@ const AddComponent = ({ inputs, submit }: Props) => {
   return (
     <form className="flex flex-col" onSubmit={(e) => submit(e)}>
       {inputs.map(({ placeholder, value, setter, options, type }) => {
+        if (type == "textarea") {
+          return (
+            <textarea
+              key={placeholder}
+              onChange={(e) => setter(e.target.value)}
+              value={value}
+              className="my-2"
+            />
+          );
+        }
         if (type == "file") {
           return (
             <input

@@ -3,14 +3,14 @@ import { useCurrentUser } from "../../../hooks";
 import { Category } from "../../../utils/api";
 import { BASE_API_URL } from "../../../utils/constants";
 import AddComponent from "../AddComponent";
-import { AddMatchType, EditMatchDto, InputProps } from "./interfaces";
+import { AddMatchDto, EditMatchDto, InputProps } from "./interfaces";
 
 interface Props {
-  propState?: AddMatchType;
+  propState?: AddMatchDto;
   id?: string;
 }
 
-const initialState: AddMatchType = {
+const initialState: AddMatchDto = {
   rival_name: "",
   field: "",
   time: "",

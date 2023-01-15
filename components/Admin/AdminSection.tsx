@@ -8,7 +8,7 @@ interface Props {
 const AdminSection = ({ title, children }: Props) => {
   const [show, setShow] = useState(false);
   return (
-    <div className={"flex flex-col place-items-center w-full"}>
+    <div className={"flex flex-col place-items-center w-full m-2"}>
       <>
         <button
           onClick={() => {

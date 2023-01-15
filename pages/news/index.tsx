@@ -16,9 +16,13 @@ interface NewInfo {
   subtitle: string;
 }
 
+interface Props {
+  canDelete: boolean;
+}
+
 const STEP = 9;
 
-const NewsPage = () => {
+const NewsPage = ({ canDelete }: Props) => {
   const [search, setSearch] = useState("");
   const [news, setNews] = useState<NewInfo[]>([]);
   const [from, setFrom] = useState(0);
@@ -108,7 +112,12 @@ const NewsPage = () => {
                         key={Date.now() + id}
                         className={`w-full p-2 rounded-xl overflow-hidden ${w}`}
                       >
-                        <NewCard title={title} id={id} key={Date.now() + id}>
+                        <NewCard
+                          title={title}
+                          id={id}
+                          key={Date.now() + id}
+                          canDelete
+                        >
                           <div className="relative">
                             <div className="w-96 h-96 rounded-xl">
                               <Image

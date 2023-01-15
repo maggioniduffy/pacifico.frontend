@@ -8,7 +8,7 @@ export interface InputProps {
   type?: string;
 }
 
-export interface AddMatchType {
+export interface AddMatchDto {
   gender: Gender;
   category: Category;
   tournament: string;
@@ -32,4 +32,14 @@ export interface EditMatchDto {
   stats_link?: string;
   transmission_link: string;
   tournament?: string;
+}
+
+export interface AddNewDto {
+  time: string;
+  title: string;
+  subtitle: string;
+  body: string;
+  image: any;
+  imageName: string;
+  imageDesc: string;
 }

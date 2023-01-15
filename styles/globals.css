@@ -16,6 +16,10 @@ body {
   scroll-behavior: smooth;
 }
 
+p {
+  white-space: pre-line;
+}
+
 /* width */
 ::-webkit-scrollbar {
   width: 1rem;

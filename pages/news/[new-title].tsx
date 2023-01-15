@@ -112,7 +112,7 @@ const NewPage = () => {
             {", "}
             {data?.time.getFullYear()}
           </h5>
-          <p className="mt-8 indent-3 leading-relaxed text-justify text-sm">
+          <p className="mt-8 indent-3 leading-relaxed text-justify text-sm md:text-lg">
             {data?.body}
           </p>
         </div>
