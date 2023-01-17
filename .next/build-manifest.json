@@ -34,11 +34,6 @@
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/admin.js"
-    ],
-    "/admin/edit/[new-title]": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/admin/edit/[new-title].js"
     ]
   },
   "ampFirstPages": []
