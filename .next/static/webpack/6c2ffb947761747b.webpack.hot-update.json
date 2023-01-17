@@ -1,0 +1,1 @@
+{"c":["pages/admin/edit/[new-title]","webpack"],"r":["pages/news"],"m":["./components/Admin/News/AddNew.tsx","./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?absolutePagePath=%2Fhome%2Ffm%2FDocuments%2FCode%2Fpacifico%2Ffrontend%2Fpages%2Fnews%2Findex.tsx&page=%2Fnews!","./pages/news/index.tsx"]}

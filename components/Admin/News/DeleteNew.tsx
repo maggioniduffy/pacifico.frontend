@@ -1,8 +1,8 @@
 import React from "react";
-import NewsPage from "../../../pages/news";
+import AllNews from "../../AllNews";
 
 const DeleteNew = () => {
-  return <NewsPage canDelete />;
+  return <AllNews canDelete canEdit />;
 };
 
 export default DeleteNew;

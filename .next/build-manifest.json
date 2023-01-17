@@ -35,10 +35,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/admin.js"
     ],
-    "/news/[new-title]": [
+    "/admin/edit/[new-title]": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/news/[new-title].js"
+      "static/chunks/pages/admin/edit/[new-title].js"
     ]
   },
   "ampFirstPages": []

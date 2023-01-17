@@ -1,13 +1,13 @@
 import React from "react";
 import AdminSection from "../AdminSection";
-import AddNew from "./AddNew";
 import DeleteNew from "./DeleteNew";
+import HandleNew from "./HandleNew";
 
 const MainNews = () => {
   return (
     <AdminSection title="News">
       <>
-        <AddNew />
+        <HandleNew />
         <DeleteNew />
       </>
     </AdminSection>

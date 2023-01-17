@@ -10,7 +10,7 @@ import { getNew, getNews } from "../../utils/api";
 import Link from "next/link";
 import left from "../../public/assets/left-arrow.png";
 import { Footer } from "../../components";
-import AddNew from "../../components/Admin/News/AddNew";
+import AddNew from "../../components/Admin/News/HandleNew";
 
 interface NewArticle {
   title: string;
@@ -123,7 +123,7 @@ const NewPage = () => {
             {" "}
             Tambien te puede interesar{" "}
           </h4>
-          <div className="flex flex-row w-full my-4 overflow-x-auto overflow-y-hidden place-items-center justify-start space-x-2">
+          <div className="flex flex-row w-full my-4 overflow-x-auto overflow-y-hidden place-items-center justify-center space-x-2">
             {otherNews?.map(({ title, id, image, subtitle }) => (
               <div key={Date.now() + id} className={`w-56 h-44 p-2 rounded-xl`}>
                 <NewCard title={title} id={id} key={Date.now() + id}>

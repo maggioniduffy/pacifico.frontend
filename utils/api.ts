@@ -7,7 +7,9 @@ export class ApiNew {
     public _id: string,
     public body: string,
     public time: string,
-    public image: string
+    public image: string,
+    public imageName: string,
+    public imageDesc: string
   ) {}
 }
 

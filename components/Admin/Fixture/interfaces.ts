@@ -6,6 +6,7 @@ export interface InputProps {
   setter: (value: any) => void;
   options?: { label: string; value: any }[];
   type?: string;
+  src?: string;
 }
 
 export interface AddMatchDto {
