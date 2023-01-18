@@ -2,7 +2,7 @@ import facebook from "../public/assets/facebook.svg";
 import instagram from "../public/assets/instagram.svg";
 import youtube from "../public/assets/youtube.svg";
 
-export const BASE_API_URL = "http://localhost:5000/";
+export const BASE_API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export const sections = [
   {

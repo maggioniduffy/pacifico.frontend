@@ -20,6 +20,10 @@ p {
   white-space: pre-line;
 }
 
+h {
+  border-color: #212121;
+}
+
 /* width */
 ::-webkit-scrollbar {
   width: 1rem;
