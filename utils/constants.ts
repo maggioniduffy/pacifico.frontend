@@ -41,3 +41,5 @@ export const socialMedia = [
     image: facebook,
   },
 ];
+
+export const url = "https://pacifico-peach.vercel.app/";

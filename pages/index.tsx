@@ -11,12 +11,13 @@ import {
   Newsletter,
   Fixture,
   Videos,
-  Team,
   Footer,
 } from "../components";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { sections, socialMedia } from "../utils/constants";
+import { sections } from "../utils/constants";
+import { url } from "../utils/constants";
+import banner from "../public/assets/footerimg.png";
 
 const Home: NextPage = () => {
   useEffect(() => {
@@ -35,6 +36,7 @@ const Home: NextPage = () => {
           name="description"
           content="Club Pacifico Basquet #DecanoPasion. Neuquen"
         />
+        <meta property="og:image" content={`${url}${banner}`} />
         <link rel="icon" href="/Logo.png" />
       </Head>
       <div>
