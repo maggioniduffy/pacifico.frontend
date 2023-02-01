@@ -36,7 +36,6 @@ const NewPage = () => {
 
   const setNewQuery = async () => {
     getNew(router!.query!.id as string).then((res) => {
-      console.log("QUERY RES: ", res);
       const auxRes = { ...res!, time: new Date(res!.time) };
       setLoaded(true);
       setData(auxRes);
@@ -47,7 +46,6 @@ const NewPage = () => {
     getNews(0, 8).then((res) => {
       const auxRes = res
         ?.filter(({ _id }) => {
-          console.log(_id, data?._id);
           return _id != (router!.query!.id as string);
         })
         .map(({ title, _id, image, subtitle }) => ({
@@ -57,7 +55,6 @@ const NewPage = () => {
           subtitle,
         }));
       setOtherNews(auxRes);
-      console.log(auxRes);
     });
   };
 

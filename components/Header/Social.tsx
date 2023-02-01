@@ -1,19 +1,15 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { socialMedia } from "../../utils/constants";
-import x from "../../public/assets/x.png";
-import world from "../../public/assets/world.png";
 
-const Social = () => {
-  // const [show, setShow] = useState(false);
-
-  // if (show) {
+interface Props {
+  responsive?: string;
+}
+const Social = ({ responsive }: Props) => {
   return (
-    <div className="social-media flex overflow-hidden space-x-2 h-10 justify-end place-items-end text-yellow basis-1/4 m-auto">
-      {/* <button className="w-12 mt-2" onClick={() => setShow(false)}>
-        <Image src={x} width={25} height={25} />
-      </button> */}
-      {/* <div className="w-12 p-1 shadow-xl h-fit bg-yellow rounded-full"> */}
+    <div
+      className={`${responsive} flex overflow-hidden space-x-2 h-10 justify-end place-items-end text-yellow basis-1/4 m-auto`}
+    >
       {socialMedia.map(({ url, image }) => (
         <a
           href={url}
@@ -30,7 +26,6 @@ const Social = () => {
           />
         </a>
       ))}
-      {/* </div> */}
     </div>
   );
 };

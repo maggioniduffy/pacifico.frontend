@@ -86,7 +86,7 @@ const TimelineItem = ({ date, text, i }: TimelineProps) => {
         </div>
       </div>
       <div className="h-12 m-auto rotate-8 w-12 relative">
-        <Image src={down} alt={"Continue"} layout="fill" />
+        <Image src={down} alt={"Continue"} layout="fill" loading="lazy" />
       </div>
     </div>
   );
@@ -96,7 +96,6 @@ const Historia = () => {
   const [hide, setHide] = useState(true);
   const [inf, setInf] = useState("animate__infinite");
   const open = () => {
-    console.log(inf);
     setInf("");
     setHide(false);
   };

@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "export": "next export"
   },
   "dependencies": {
     "animate.css": "^4.1.1",
@@ -21,7 +22,8 @@
     "react-redux": "^8.0.4",
     "react-responsive-carousel": "^3.2.23",
     "redux": "^4.2.0",
-    "redux-thunk": "^2.4.1"
+    "redux-thunk": "^2.4.1",
+    "sharp": "^0.31.3"
   },
   "devDependencies": {
     "@types/aos": "^3.0.4",

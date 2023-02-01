@@ -37,7 +37,6 @@ const AllNews = ({
   const setNewsCall = (from: number, to: number) => {
     getNews(from, to, search)
       .then((res) => {
-        console.log("res: ", res);
         const aux = res?.map(({ _id, title, subtitle, image }) => ({
           id: _id,
           title,
@@ -55,14 +54,12 @@ const AllNews = ({
   };
 
   useEffect(() => {
-    console.log("load more");
     setNewsCall(from, to);
   }, [from, to]);
 
   const setNewsSearch = (from: number, to: number, search: string) => {
     getNews(from, to, search)
       .then((res) => {
-        console.log("res: ", res);
         const aux = res?.map(({ _id, title, subtitle, image }) => ({
           id: _id,
           title,
@@ -160,6 +157,7 @@ const AllNews = ({
                               src={image}
                               layout="fill"
                               alt={title}
+                              loading="lazy"
                               //className="rounded-xl"
                             />
                           </div>

@@ -7,11 +7,12 @@ const nextConfig = {
 const withFonts = require("next-fonts");
 
 module.exports = withFonts({
-  enableSvg: true,
+  //enableSvg: true,
   webpack(config, options) {
     return config;
   },
   images: {
     domains: ["clubimages.s3.amazonaws.com"],
+    formats: ["image/avif", "image/webp"],
   },
 });

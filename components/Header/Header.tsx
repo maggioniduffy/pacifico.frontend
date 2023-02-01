@@ -42,7 +42,7 @@ const Header = ({ sections, showMenu = true }: Props) => {
             </a>
           </Link>
         </div>
-        <Social />
+        <Social responsive="social-media" />
       </nav>
     </div>
   );

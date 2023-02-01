@@ -56,6 +56,7 @@ const FixtureImage = ({ source, alt, score }: FixtureImageProps) => {
         layout="responsive"
         className="shadow m-2"
         alt={alt}
+        loading="lazy"
       />
       {score && <p className="font-bold bg-white shadow p-1"> {score} </p>}
     </div>
@@ -73,7 +74,6 @@ const Fixture = ({ canDelete, canEdit }: Props) => {
   const currentUser = useCurrentUser();
 
   const getGames = async () => {
-    console.log("get games");
     const res = await getMatchs(0, 50);
     const auxRes = res?.map((r) => ({ ...r, time: new Date(r.time) }));
     if (auxRes) {
@@ -142,6 +142,8 @@ const Fixture = ({ canDelete, canEdit }: Props) => {
                   height={40}
                   width={40}
                   className="m-auto"
+                  loading="lazy"
+                  alt="Fecha"
                 />
               </th>
               <th className="p-3 font-thin">
@@ -151,16 +153,39 @@ const Fixture = ({ canDelete, canEdit }: Props) => {
                   height={40}
                   width={40}
                   className="m-auto"
+                  loading="lazy"
+                  alt="Torneo"
                 />{" "}
               </th>
               <th className="p-3 font-thin">
-                <Image src={gender} height={40} width={40} className="m-auto" />
+                <Image
+                  src={gender}
+                  height={40}
+                  width={40}
+                  className="m-auto"
+                  loading="lazy"
+                  alt="Genero"
+                />
               </th>
               <th className="p-3 font-thin">
-                <Image src={home} height={40} width={40} className="m-auto" />
+                <Image
+                  src={home}
+                  height={40}
+                  width={40}
+                  className="m-auto"
+                  loading="lazy"
+                  alt="Local"
+                />
               </th>
               <th className="p-3 font-thin">
-                <Image src={away} height={40} width={40} className="m-auto" />
+                <Image
+                  src={away}
+                  height={40}
+                  width={40}
+                  className="m-auto"
+                  loading="lazy"
+                  alt="Visita"
+                />
               </th>
               <th className="p-3 font-thin">
                 <Image
@@ -168,13 +193,29 @@ const Fixture = ({ canDelete, canEdit }: Props) => {
                   height={30}
                   width={30}
                   className="m-auto"
+                  loading="lazy"
+                  alt="Lugar"
                 />
               </th>
               <th className="p-3 font-thin">
-                <Image src={tv} height={40} width={40} className="m-auto" />
+                <Image
+                  src={tv}
+                  height={40}
+                  width={40}
+                  className="m-auto"
+                  loading="lazy"
+                  alt="Transmision"
+                />
               </th>
               <th className="rounded-tr-xl p-3 font-thin">
-                <Image src={stats} height={40} width={40} className="m-auto" />
+                <Image
+                  src={stats}
+                  height={40}
+                  width={40}
+                  className="m-auto"
+                  loading="lazy"
+                  alt="Estadisticas"
+                />
               </th>
             </tr>
           </thead>

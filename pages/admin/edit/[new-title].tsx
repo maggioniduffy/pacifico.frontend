@@ -16,7 +16,6 @@ const EditNew = () => {
 
   const setNewQuery = async () => {
     getNew(router!.query!.id as string).then((res) => {
-      console.log("QUERY RES: ", res);
       setData(res);
       setId(router!.query!.id as string);
     });

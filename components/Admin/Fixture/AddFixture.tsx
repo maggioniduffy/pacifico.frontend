@@ -45,7 +45,6 @@ interface Action {
 }
 
 function reducer(state = initialState, action: Action) {
-  console.log(state);
   switch (action.type) {
     case ActionType.CATEGORY:
       return { ...state, category: action.payload };
@@ -82,7 +81,6 @@ function reducer(state = initialState, action: Action) {
 }
 
 const AddFixture = ({ id, propState = initialState }: Props) => {
-  console.log("propState: ", propState);
   const [state, dispatch] = useReducer(reducer, propState);
   const currentUser = useCurrentUser();
   const uploadImage = (event: any) => {
@@ -242,10 +240,8 @@ const AddFixture = ({ id, propState = initialState }: Props) => {
         transmission_link,
         stats_link,
       } = state;
-      console.log("state en send: ", state);
 
       const auxTime = time.replace("T", " ") + ":00.000";
-      console.log(auxTime);
       let res;
 
       const body = new FormData();
@@ -271,7 +267,6 @@ const AddFixture = ({ id, propState = initialState }: Props) => {
       if (transmission_link) {
         body.append("transmission_link", transmission_link);
       }
-      console.log("id: ", id);
       if (id) {
         res = await fetch(BASE_API_URL + "matches/" + id, {
           method: "PATCH",
@@ -291,7 +286,6 @@ const AddFixture = ({ id, propState = initialState }: Props) => {
         });
       }
       const data = await res.json();
-      console.log("FIXTURE RES DATA: ", data);
       dispatch({ type: ActionType.CLEAR });
       return data;
     } catch (error) {

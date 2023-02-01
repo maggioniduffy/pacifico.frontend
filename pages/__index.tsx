@@ -27,7 +27,6 @@ const initialState: State = {
 };
 
 const reducer = (state: State, { type, payload }: Action) => {
-  console.log(state);
   switch (type) {
     case "EMAIL":
       return { ...state, email: payload };
@@ -76,7 +75,6 @@ const Home: NextPage = () => {
         body: JSON.stringify(data),
       });
       const response = await res.json();
-      console.log("Res" + response);
       return res;
     } catch (error) {
       console.error(error);

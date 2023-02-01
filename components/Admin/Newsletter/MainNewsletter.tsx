@@ -20,7 +20,6 @@ const MainNewsletter = () => {
         },
       });
       const data = await res.json();
-      console.log("email res: ", data);
       setSubject("");
       setMessage("");
       return data;

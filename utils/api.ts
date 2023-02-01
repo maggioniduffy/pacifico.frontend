@@ -54,7 +54,6 @@ export async function getNews(
       BASE_API_URL + `news?skip=${skip}&limit=${limit}${searchQuery}`
     );
     const mainNews: ApiNew[] = await await res.json();
-    console.log("NEWS: ", mainNews[0]._id);
     return mainNews;
   } catch (error) {
     console.error(error);
@@ -63,10 +62,8 @@ export async function getNews(
 
 export async function getNew(id: string): Promise<ApiNew | undefined> {
   try {
-    console.log("ID: ", id);
     const res = await fetch(BASE_API_URL + `news/` + id);
     const data: ApiNew = await res.json();
-    console.log("NEW DOC: ", data);
     return data;
   } catch (error) {
     console.error(error);

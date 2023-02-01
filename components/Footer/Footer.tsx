@@ -14,13 +14,15 @@ const Footer = () => {
             layout="fill"
             height={9}
             width={16}
+            loading="lazy"
+            alt="Club Pacifico"
           />
         </div>
         <div className="flex bg-black text-sm md:text-lg p-4 shadow rounded-xl m-auto text-white flex-col place-items-center justify-center">
           <div className="flex flex-col my-2">
             <h3 className="font-bold">
               {" "}
-              Sede Social y Estadio "El Viejo Ramirez"
+              Sede Social y Estadio `&quot;`El Viejo Ramirez`&quot;`
             </h3>
             <p> Alberdi 355, Ciudad de Neuquen, Neuquen - 8300</p>
             <p> +54 9 2994488970</p>

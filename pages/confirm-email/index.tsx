@@ -8,9 +8,7 @@ const ConfirmEmailPage = () => {
   const router = useRouter();
 
   const { token } = router.query;
-  console.log(token);
   const confirmEmail = async () => {
-    console.log("confirm email");
     try {
       const res = await fetch(BASE_API_URL + "newsletter/confirm", {
         method: "POST",
@@ -19,8 +17,6 @@ const ConfirmEmailPage = () => {
           "Content-Type": "application/json",
         },
       });
-      // const data = await res.json();
-      // console.log(data);
       router.push("/");
     } catch (error) {
       console.log(error);

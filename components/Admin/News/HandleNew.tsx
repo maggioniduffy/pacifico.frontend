@@ -120,10 +120,8 @@ const HandleNew = ({ id, propState = initialState }: Props) => {
     try {
       const { image, title, subtitle, body, time, imageDesc, imageName } =
         state;
-      console.log("state en send: ", state);
 
       const auxTime = time.replace("T", " ") + ":00.000";
-      console.log(auxTime);
       let res;
 
       const bodyToSend = new FormData();
@@ -154,12 +152,10 @@ const HandleNew = ({ id, propState = initialState }: Props) => {
         });
       }
       const data = await res.json();
-      console.log("NEW RES DATA: ", data);
       dispatch({ type: ActionType.CLEAR });
       router.push("/admin");
       return data;
     } catch (error) {
-      alert(error);
       console.error(error);
     }
   };

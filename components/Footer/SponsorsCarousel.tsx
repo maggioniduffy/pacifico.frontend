@@ -25,6 +25,8 @@ const SponsorsCarousel = () => {
               height={9 * 17}
               width={16 * 17}
               className="object-contain"
+              loading="lazy"
+              alt={sp + ""}
             />
           </div>
         );
