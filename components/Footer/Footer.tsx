@@ -1,5 +1,6 @@
 import Image from "next/image";
 import footerimg from "../../public/assets/PacificoEscudo.png";
+import Social from "../Header/Social";
 import SponsorsCarousel from "./SponsorsCarousel";
 
 const Footer = () => {
@@ -16,7 +17,7 @@ const Footer = () => {
           />
         </div>
         <div className="flex bg-black text-sm md:text-lg p-4 shadow rounded-xl m-auto text-white flex-col place-items-center justify-center">
-          <div className="flex flex-col">
+          <div className="flex flex-col my-2">
             <h3 className="font-bold">
               {" "}
               Sede Social y Estadio "El Viejo Ramirez"
@@ -24,6 +25,7 @@ const Footer = () => {
             <p> Alberdi 355, Ciudad de Neuquen, Neuquen - 8300</p>
             <p> +54 9 2994488970</p>
           </div>
+          <Social />
         </div>
       </div>
       <SponsorsCarousel />

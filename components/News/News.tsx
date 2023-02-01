@@ -12,6 +12,7 @@ const News = () => {
   const [mainNews, setMainNews] = useState<ApiNew[]>();
   const { height, width } = useWindowDimensions();
   let h = width > 768 ? 9 : 16;
+  let lay: "responsive" | "fixed" = width > 1024 ? "responsive" : "fixed";
 
   useEffect(() => {
     const getNews = async () => {
@@ -41,7 +42,7 @@ const News = () => {
               <div className="w-full h-full rounded-xl">
                 <Image
                   src={mainNews[0].image}
-                  layout="responsive"
+                  layout={"responsive"}
                   height={h}
                   width={16}
                   quality={100}
@@ -59,7 +60,7 @@ const News = () => {
               </div>
             </a>
           </Link>
-          <div className="flex">
+          <div className="flex w-full mb-4 space-x-1 overflow-x-auto">
             {mainNews?.slice(1).map((mNew) => {
               return (
                 <Link
@@ -74,15 +75,16 @@ const News = () => {
                   target="_blank"
                   className="w-96 h-96 shadow-xl m-4"
                 >
-                  <a className="rounded-xl h-full">
+                  <a className="rounded-xl h-full w-full">
                     <div className="w-full h-full rounded-xl">
                       <Image
                         src={mNew.image}
-                        layout="responsive"
-                        height={h}
-                        width={16}
+                        layout={lay}
+                        height={9 * 17}
+                        width={16 * 17}
                         quality={100}
                         alt={mNew.subtitle}
+                        className="object-fill"
                       />
                     </div>
                     <div className="overflow-hidden bg-white bg-opacity-80 border-t-6 border-yellow w-full h-fit shadow-inner bottom-0">

@@ -5,14 +5,13 @@ import { useEffect, useState } from "react";
 
 const SponsorsCarousel = () => {
   const [sps, setSponsors] = useState(sponsors);
-  setInterval(() => {
-    // const aux = [...sps];
-    // const last = aux.shift();
-    // aux.push(last!);
-    // setSponsors(aux);
-    const aux = sps.pop();
-    sps.unshift(aux!);
-  }, 10000);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSponsors(sps.slice(1).concat(sps[0]));
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [sps]);
 
   return (
     <div className="flex bg-yellow overflow-x-auto h-fit">

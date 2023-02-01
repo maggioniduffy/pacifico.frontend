@@ -129,12 +129,12 @@ const AllNews = ({
                       <NewCard
                         title={title}
                         id={id}
-                        key={Date.now() + id}
+                        //key={Date.now() + id}
                         canDelete={canDelete}
                         canEdit={canEdit}
                         deleteNew={deleteNew}
                       >
-                        <div className="relative">
+                        {/* <div className="relative">
                           <div className="w-96 h-96 rounded-xl">
                             <Image
                               src={image}
@@ -151,6 +151,25 @@ const AllNews = ({
                             <p className="text-xs md:text-sm text-ellipsis text-center text-gray">
                               {" "}
                               {subtitle}{" "}
+                            </p>
+                          </div>
+                        </div> */}
+                        <div className="w-96">
+                          <div className="w-96 h-96 relative rounded-xl">
+                            <Image
+                              src={image}
+                              layout="fill"
+                              alt={title}
+                              //className="rounded-xl"
+                            />
+                          </div>
+                          <div className="overflow-hidden bg-white bg-opacity-80 border-t-6 border-yellow w-full h-fit shadow-inner bottom-0">
+                            <h2 className="font-bold  drop-shadow-xl mt-2 text-center text-shadow text-black">
+                              {" "}
+                              {title}{" "}
+                            </h2>
+                            <p className="text-xs drop-shadow-xl text-center text-shadow mb-8 font-medium text-gray">
+                              {subtitle}
                             </p>
                           </div>
                         </div>
