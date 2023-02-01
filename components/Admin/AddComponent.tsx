@@ -13,6 +13,7 @@ const AddComponent = ({ inputs, submit }: Props) => {
           return (
             <textarea
               key={placeholder}
+              placeholder={placeholder}
               onChange={(e) => setter(e.target.value)}
               value={value}
               className="my-2"

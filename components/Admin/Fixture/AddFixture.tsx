@@ -19,10 +19,6 @@ const initialState: AddMatchDto = {
   category: Category.FIRST_TEAM,
   played: false,
   tournament: "",
-  stats_link: undefined,
-  transmission_link: undefined,
-  our_score: undefined,
-  rival_score: undefined,
   rival_icon: null,
 };
 
@@ -74,6 +70,7 @@ function reducer(state = initialState, action: Action) {
     case ActionType.OURSCORE:
       return { ...state, our_score: action.payload };
     case ActionType.RIVALSCORE:
+      alert(action.payload);
       return { ...state, rival_score: action.payload };
     case ActionType.RIVALICON:
       return { ...state, rival_icon: action.payload };
@@ -196,26 +193,28 @@ const AddFixture = ({ id, propState = initialState }: Props) => {
     {
       placeholder: "Nuestro goleo",
       value: state.our_score,
-      setter: (r: string) =>
+      setter: (r: number | undefined) =>
         dispatch({ type: ActionType.OURSCORE, payload: r }),
       type: "number",
     },
     {
       placeholder: "Goleo rival",
       value: state.rival_score,
-      setter: (r: string) =>
+      setter: (r: number | undefined) =>
         dispatch({ type: ActionType.RIVALSCORE, payload: r }),
       type: "number",
     },
     {
       placeholder: "Link a estadisticas",
       value: state.stats_link,
-      setter: (r: string) => dispatch({ type: ActionType.STATS, payload: r }),
+      setter: (r: string | undefined) =>
+        dispatch({ type: ActionType.STATS, payload: r }),
     },
     {
       placeholder: "Link a transmision",
       value: state.transmission_link,
-      setter: (r: string) => dispatch({ type: ActionType.TV, payload: r }),
+      setter: (r: string | undefined) =>
+        dispatch({ type: ActionType.TV, payload: r }),
     },
     {
       placeholder: "Escudo rival",
@@ -257,12 +256,21 @@ const AddFixture = ({ id, propState = initialState }: Props) => {
       body.append("category", category);
       body.append("gender", gender);
       body.append("time", auxTime);
-      body.append("rival_score", rival_score);
       body.append("condition", condition);
       body.append("tournament", tournament);
-      body.append("our_score", our_score);
-      body.append("stats_link", stats_link);
-      body.append("transmission_link", transmission_link);
+      if (rival_score) {
+        alert("rival score");
+        body.append("rival_score", rival_score);
+      }
+      if (our_score) {
+        body.append("our_score", our_score);
+      }
+      if (stats_link) {
+        body.append("stats_link", stats_link);
+      }
+      if (transmission_link) {
+        body.append("transmission_link", transmission_link);
+      }
       console.log("id: ", id);
       if (id) {
         res = await fetch(BASE_API_URL + "matches/" + id, {

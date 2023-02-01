@@ -82,6 +82,10 @@ td {
   height: 31%;
 }
 
+.footer-bg {
+  background-image: url("../public/assets/Banner.png");
+  background-size: cover;
+}
 .card-bg {
   background-image: url("../public/assets/fondo.png");
 }

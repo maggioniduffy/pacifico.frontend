@@ -58,7 +58,7 @@ const Newsletter = () => {
   };
 
   return (
-    <div className="bg-gold-400 relative shadow-lg shadow-yellow blob w-8/12 mx-auto my-8 flex justify-center flex-col">
+    <div className="bg-yellow relative shadow-lg shadow-yellow blob w-8/12 mx-auto my-8 flex justify-center flex-col">
       <h3 className="mb-0 font-bold md:font-medium mx-auto md:text-lg text-sm text-center md:text-left">
         {" "}
         Suscribite a nuestro Newsletter
@@ -97,8 +97,14 @@ const Newsletter = () => {
           </div>
         )}
         {sended && (
-          <div className="bg-green h-8 w-full rounded-lg px-2 flex justify-center">
-            <Image src={ok} height={30} width={30} />
+          <div className="flex flex-col w-full justify-center">
+            <div className="bg-green h-8 w-full rounded-lg px-2 flex justify-center">
+              <Image src={ok} height={30} width={30} />
+            </div>
+            <div className="bg-white font-bold rounded w-fit p-2 mt-2 m-auto">
+              {" "}
+              Revisa tu casilla de correo!{" "}
+            </div>
           </div>
         )}
       </form>

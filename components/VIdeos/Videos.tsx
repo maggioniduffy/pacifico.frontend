@@ -73,7 +73,7 @@ const Videos = ({ id, canDelete }: Props) => {
       id={id}
       className="mt-8 w-11/12 m-auto rounded justify-center place-items-center"
     >
-      <div className="flex place-items-center justify-center overflow-x-auto space-x-4 pt-2 w-full">
+      <div className="max-w-fit flex place-items-center justify-start overflow-x-auto space-x-4 pt-2 m-auto">
         {youtube.map(({ src, text, _id }) => (
           <PlaylistCard
             key={src}

@@ -13,7 +13,7 @@ import calendar from "../../public/assets/calendar.png";
 import { useCurrentUser } from "../../hooks";
 import { BASE_API_URL } from "../../utils/constants";
 import AddFixture from "../Admin/Fixture/AddFixture";
-import { AddMatchType } from "../Admin/Fixture/interfaces";
+import { AddMatchDto } from "../Admin/Fixture/interfaces";
 
 const STEP = 5;
 
@@ -45,27 +45,29 @@ interface Match {
   rival_score?: number;
 }
 
-const FixtureImage = ({ source, alt, score }: FixtureImageProps) => (
-  <div className="h-3/6 w-10/12 m-auto md:p-4">
-    <Image
-      src={source}
-      height={40}
-      width={40}
-      quality={100}
-      layout="responsive"
-      className="shadow m-2"
-      alt={alt}
-    />
-    {score && <p className="font-bold bg-white shadow p-1"> {score} </p>}
-  </div>
-);
+const FixtureImage = ({ source, alt, score }: FixtureImageProps) => {
+  return (
+    <div className="h-3/6 w-full m-auto md:p-4 bg-realwhite">
+      <Image
+        src={source}
+        height={40}
+        width={40}
+        quality={100}
+        layout="responsive"
+        className="shadow m-2"
+        alt={alt}
+      />
+      {score && <p className="font-bold bg-white shadow p-1"> {score} </p>}
+    </div>
+  );
+};
 
 const Fixture = ({ canDelete, canEdit }: Props) => {
   const [matchs, setMatchs] = useState<Match[]>([]);
   const [nextAllowed, setNextAllowed] = useState(true);
   const [from, setFrom] = useState(0);
   const [to, setTo] = useState(STEP);
-  const [match, setMatch] = useState<AddMatchType>();
+  const [match, setMatch] = useState<AddMatchDto>();
   const [id, setId] = useState<string>();
   const [editing, setEditing] = useState(false);
   const currentUser = useCurrentUser();
@@ -241,11 +243,35 @@ const Fixture = ({ canDelete, canEdit }: Props) => {
                     )}
                   </td>
                   <td>{match.field}</td>
-                  <td>{match.transmission_link}</td>
+                  <td>
+                    {match?.transmission_link ? (
+                      <a
+                        href={match.transmission_link}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {" "}
+                        Link{" "}
+                      </a>
+                    ) : (
+                      "-"
+                    )}
+                  </td>
                   <td
                     className={`${i == matchs.length - 1 && "rounded-br-xl"}`}
                   >
-                    {match.stats_link}
+                    {match?.stats_link ? (
+                      <a
+                        href={match.stats_link}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {" "}
+                        Link{" "}
+                      </a>
+                    ) : (
+                      "-"
+                    )}
                   </td>
                   {currentUser && canDelete && (
                     <button

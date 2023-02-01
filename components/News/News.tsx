@@ -22,67 +22,94 @@ const News = () => {
   }, []);
 
   return (
-    <div className="pt-10 w-full rounded-xl">
-      <Carousel
-        swipeable
-        stopOnHover
-        dynamicHeight
-        showIndicators
-        autoPlay
-        infiniteLoop
-        emulateTouch
-        showStatus
-        showArrows
-        axis="horizontal"
-        className="overflow-hidden h-full rounded-xl"
-      >
-        {mainNews?.map((mNew) => {
-          return (
-            <Link
-              href={{
-                pathname: "/news/[title]",
-                query: {
-                  title: mNew.title,
-                  id: mNew._id,
-                },
-              }}
-              key={mNew.image}
-              target="_blank"
-              className="w-full h-full relative rounded-xl"
-            >
-              <a className="rounded-xl h-full">
-                <div className="w-full h-full rounded-xl">
-                  <Image
-                    src={mNew.image}
-                    layout="responsive"
-                    height={h}
-                    width={16}
-                    quality={100}
-                    alt={mNew.subtitle}
-                    className="rounded-xl"
-                  />
-                </div>
-                <div className="rounded-tr-2xl rounded-b-xl overflow-hidden bg-white bg-opacity-80 border-t-6 border-yellow w-full h-fit absolute shadow-inner bottom-0">
-                  <h2 className="font-bold md:text-md md:text-3xl drop-shadow-xl mt-2 text-center text-shadow text-black">
-                    {" "}
-                    {mNew.title}{" "}
-                  </h2>
-                  <p className="text-xs md:text-sm drop-shadow-xl text-center text-shadow mb-8 font-medium text-gray">
-                    {mNew.subtitle}
-                  </p>
-                </div>
-              </a>
+    <div className="pt-10 rounded-xl">
+      {mainNews && (
+        <>
+          <Link
+            href={{
+              pathname: "/news/[title]",
+              query: {
+                title: mainNews[0].title,
+                id: mainNews[0]._id,
+              },
+            }}
+            key={mainNews[0].image}
+            target="_blank"
+            className="w-96 h-56 shadow-xl m-4"
+          >
+            <a className="rounded-xl h-full">
+              <div className="w-full h-full rounded-xl">
+                <Image
+                  src={mainNews[0].image}
+                  layout="responsive"
+                  height={h}
+                  width={16}
+                  quality={100}
+                  alt={mainNews[0].subtitle}
+                />
+              </div>
+              <div className="overflow-hidden bg-white bg-opacity-80 border-t-6 border-yellow w-full h-fit shadow-inner bottom-0">
+                <h2 className="font-bold  drop-shadow-xl mt-2 text-center text-shadow text-black">
+                  {" "}
+                  {mainNews[0].title}{" "}
+                </h2>
+                <p className="text-xs drop-shadow-xl text-center text-shadow mb-8 font-medium text-gray">
+                  {mainNews[0].subtitle}
+                </p>
+              </div>
+            </a>
+          </Link>
+          <div className="flex">
+            {mainNews?.slice(1).map((mNew) => {
+              return (
+                <Link
+                  href={{
+                    pathname: "/news/[title]",
+                    query: {
+                      title: mNew.title,
+                      id: mNew._id,
+                    },
+                  }}
+                  key={mNew.image}
+                  target="_blank"
+                  className="w-96 h-96 shadow-xl m-4"
+                >
+                  <a className="rounded-xl h-full">
+                    <div className="w-full h-full rounded-xl">
+                      <Image
+                        src={mNew.image}
+                        layout="responsive"
+                        height={h}
+                        width={16}
+                        quality={100}
+                        alt={mNew.subtitle}
+                      />
+                    </div>
+                    <div className="overflow-hidden bg-white bg-opacity-80 border-t-6 border-yellow w-full h-fit shadow-inner bottom-0">
+                      <h2 className="font-bold  drop-shadow-xl mt-2 text-center text-shadow text-black">
+                        {" "}
+                        {mNew.title}{" "}
+                      </h2>
+                      <p className="text-xs drop-shadow-xl text-center text-shadow mb-8 font-medium text-gray">
+                        {mNew.subtitle}
+                      </p>
+                    </div>
+                  </a>
+                </Link>
+              );
+            })}
+          </div>
+          {mainNews && (
+            <Link href="/news" className="w-full h-12 mt-1">
+              <div className="w-full flex justify-center">
+                <MyButton>
+                  <h4 className="text-xs md:text-sm">Ver todas las noticias</h4>
+                </MyButton>
+              </div>
             </Link>
-          );
-        })}
-      </Carousel>
-      <Link href="/news" className="w-full h-12 mt-1">
-        <div className="w-full flex justify-center">
-          <MyButton>
-            <h4 className="text-xs md:text-sm">Ver todas las noticias</h4>
-          </MyButton>
-        </div>
-      </Link>
+          )}
+        </>
+      )}
     </div>
   );
 };

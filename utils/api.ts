@@ -45,7 +45,7 @@ export class ApiMatch {
 
 export async function getNews(
   skip: number = 0,
-  limit: number = 3,
+  limit: number = 4,
   search = ""
 ): Promise<ApiNew[] | undefined> {
   try {
