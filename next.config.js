@@ -16,3 +16,9 @@ module.exports = withFonts({
     formats: ["image/avif", "image/webp"],
   },
 });
+
+module.exports = {
+  env: {
+    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
+  },
+};
