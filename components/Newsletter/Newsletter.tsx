@@ -72,7 +72,7 @@ const Newsletter = () => {
         {!failed && !sended && (
           <>
             <input
-              className={`p-2 w-full h-8 rounded-lg shadow email-inputs`}
+              className={`p-2 w-full h-8 rounded-lg shadow bg-white text-black email-inputs`}
               placeholder="Tu email"
               value={email}
               onChange={handleChange}
