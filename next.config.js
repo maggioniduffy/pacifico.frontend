@@ -15,10 +15,7 @@ module.exports = withFonts({
     domains: ["clubimages.s3.amazonaws.com"],
     formats: ["image/avif", "image/webp"],
   },
-});
-
-module.exports = {
   env: {
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
   },
-};
+});

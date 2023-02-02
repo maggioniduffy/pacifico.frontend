@@ -24,17 +24,17 @@ const News = () => {
 
   return (
     <div className="pt-10 rounded-xl">
-      {mainNews && (
+      {mainNews && mainNews.length > 0 && (
         <>
           <Link
             href={{
               pathname: "/news/[title]",
               query: {
-                title: mainNews[0].title,
-                id: mainNews[0]._id,
+                title: mainNews[0]?.title,
+                id: mainNews[0]?._id,
               },
             }}
-            key={mainNews[0].image}
+            key={mainNews[0]?.image}
             target="_blank"
             className="w-96 h-56 shadow-xl m-4"
           >
