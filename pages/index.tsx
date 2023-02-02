@@ -27,7 +27,7 @@ const Home: NextPage = () => {
   }, []);
 
   const main = useRef<null | HTMLDivElement>(null);
-  console.log("url: " + BASE_API_URL);
+  console.log("url : " + BASE_API_URL);
   return (
     <div>
       <Head>
