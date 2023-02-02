@@ -31,8 +31,8 @@ const Footer = () => {
         </div>
       </div>
       <SponsorsCarousel />
-      <div className="shadow shadow-yellow h-12 w-full text-sm p-auto bg-gray flex flex-col justify-center">
-        <h5 className="text-black text-center m-auto">
+      <div className="shadow shadow-yellow h-12 w-full text-sm p-auto bg-black flex flex-col justify-center">
+        <h5 className="text-gray text-center m-auto">
           {" "}
           Made by{" "}
           <a
@@ -42,7 +42,7 @@ const Footer = () => {
             rel="noreferrer"
           >
             {" "}
-            Faustino Maggioni Duffy{" "}
+            @maggioniduffy{" "}
           </a>
         </h5>
       </div>
