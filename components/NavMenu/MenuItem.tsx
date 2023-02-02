@@ -10,7 +10,7 @@ const MenuItem = ({ section, name }: Option) => {
   return (
     <div className="shadow">
       <CustomLink url={section} target="_self">
-        <h3 className="font-medium text-center"> {name} </h3>
+        <h3 className="font-medium text-center text-black"> {name} </h3>
       </CustomLink>
     </div>
   );
