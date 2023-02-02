@@ -42,7 +42,7 @@ const Home: NextPage = () => {
       <div>
         <>
           <Header sections={sections} />
-          <main className="min-h-screen mt-10" ref={main}>
+          <main className="min-h-screen mt-10 bg-white" ref={main}>
             <Section id="inicio">
               <News />
             </Section>
