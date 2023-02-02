@@ -76,7 +76,7 @@ const TimelineItem = ({ date, text, i }: TimelineProps) => {
   const flexOrder = i! % 2 == 0 ? "" : "flex-row-reverse";
   const fade = i! % 2 == 0 ? "fade-left" : "fade-right";
   return (
-    <div className="flex place-items-center justify-center flex-col">
+    <div className="flex place-items-center text-black  justify-center flex-col">
       <div className={"flex place-items-center flex-col md:" + flexOrder}>
         <div className="timelineitem shadow-xl h-32 w-32 bg-black m-8 flex flex-col justify-center p-8">
           <h3 className="m-auto text-left text-yellow font-bold">{date}</h3>
@@ -116,7 +116,7 @@ const Historia = () => {
     );
   }
   return (
-    <div className="mt-8">
+    <div className="mt-8 text-black">
       <button
         className="text-black header-font font-bold text-left text-xl md:text-3xl"
         onClick={close}
@@ -136,7 +136,7 @@ const Historia = () => {
               className="shadow w-full m-auto h-16 shadow-yellow rounded-xl flex place-items-center px-2 overflow-auto"
             >
               {" "}
-              <h3 className="w-full text-center text-xs md:text-sm">
+              <h3 className="w-full text-center text-black text-xs md:text-sm">
                 {socio}{" "}
               </h3>{" "}
             </div>
