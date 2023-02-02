@@ -50,6 +50,7 @@ export async function getNews(
 ): Promise<ApiNew[] | undefined> {
   try {
     const searchQuery = search.length > 2 ? `&search=${search}` : "";
+    console.log("base api url: ", BASE_API_URL);
     const res = await fetch(
       BASE_API_URL + `news?skip=${skip}&limit=${limit}${searchQuery}`
     );

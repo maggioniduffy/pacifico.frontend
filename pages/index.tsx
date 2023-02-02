@@ -15,7 +15,7 @@ import {
 } from "../components";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { sections } from "../utils/constants";
+import { BASE_API_URL, sections } from "../utils/constants";
 import { url } from "../utils/constants";
 import banner from "../public/assets/footerimg.png";
 
@@ -27,7 +27,7 @@ const Home: NextPage = () => {
   }, []);
 
   const main = useRef<null | HTMLDivElement>(null);
-
+  alert("url: " + BASE_API_URL);
   return (
     <div>
       <Head>
