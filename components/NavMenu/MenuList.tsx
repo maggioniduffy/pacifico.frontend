@@ -40,7 +40,9 @@ const MenuList = ({ visible, options, toggleVisible }: Props) => {
                   target="_self"
                   onClick={toggleVisible}
                 >
-                  <p className="font-medium text-sm md:text-lg">{name}</p>
+                  <p className="font-medium text-black text-sm md:text-lg">
+                    {name}
+                  </p>
                 </CustomLink>
               </span>
             );
