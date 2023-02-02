@@ -34,15 +34,14 @@ const Footer = () => {
       <div className="shadow shadow-yellow h-12 w-full text-sm p-auto bg-black flex flex-col justify-center">
         <h5 className="text-gray text-center m-auto">
           {" "}
-          Made by{" "}
+          by{" "}
           <a
-            className="font-medium text-white hover:text-yellow hover:font-bold"
+            className="font-medium text-white flex hover:text-yellow hover:font-bold"
             target={"_blank"}
             href="https://www.linkedin.com/in/maggioniduffy/"
             rel="noreferrer"
           >
-            {" "}
-            @maggioniduffy{" "}
+            <h5 className="font-bold">@maggioniduffy</h5>
           </a>
         </h5>
       </div>

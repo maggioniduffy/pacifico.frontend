@@ -42,4 +42,4 @@ export const socialMedia = [
   },
 ];
 
-export const url = "https://pacifico-peach.vercel.app/";
+export const url = "https://basquet.clubpacificonqn.com.ar/";
