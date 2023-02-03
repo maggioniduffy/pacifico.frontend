@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useCurrentUser } from "../../hooks";
 import { deleteVideo } from "../../utils/api";
