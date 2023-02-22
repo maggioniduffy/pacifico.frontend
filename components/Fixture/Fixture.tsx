@@ -18,7 +18,7 @@ import { AddMatchDto } from "../Admin/Fixture/interfaces";
 const STEP = 5;
 
 interface Props {
-  matchs?: Match[];
+  matchs: Match[];
   canDelete?: boolean;
   canEdit?: boolean;
 }
@@ -232,120 +232,111 @@ const Fixture = ({ canDelete, canEdit, matchs }: Props) => {
             </tr>
           </thead>
           <tbody className="text-center fixturetxt paragraph-font">
-            {matchs
-              //.reverse()
-              .slice(from, to)
-              .map((match, i) => (
-                <tr key={match._id} className="">
-                  <td
-                    className={`${
-                      i == matchs.length - 1 && "rounded-bl-xl"
-                    } h-fit w-fit`}
-                  >
+            {matchs?.slice(from, to).map((match, i) => (
+              <tr key={match._id} className="">
+                <td
+                  className={`${
+                    i == matchs.length - 1 && "rounded-bl-xl"
+                  } h-fit w-fit`}
+                >
+                  {" "}
+                  {match.time.getDate()}
+                  {"/"}
+                  {match.time.getMonth() + 1}
+                  <p className="font-bold">
                     {" "}
-                    {match.time.getDate()}
-                    {"/"}
-                    {match.time.getMonth() + 1}
-                    <p className="font-bold">
-                      {" "}
-                      {" " + match.time.getUTCFullYear()}
-                    </p>
-                    {match.time.getHours()}
-                    {":"}
-                    {match.time.getMinutes() < 10
-                      ? match.time.getMinutes() + "0"
-                      : match.time.getMinutes()}
-                  </td>
-                  <td className="text-clip">
-                    {" "}
-                    <p className="text-clip"> {match.tournament} </p>
-                  </td>
-                  <td>
-                    {match.category}
-                    {"-"}
-                    {match.gender}
-                  </td>
-                  <td>
-                    {match.condition == "Local" ? (
-                      <FixtureImage
-                        source={clublogo}
-                        alt="Pacifico"
-                        score={match?.our_score}
-                      />
-                    ) : (
-                      <FixtureImage
-                        source={match.rival_icon}
-                        alt={match.rival_name}
-                        score={match?.rival_score}
-                      />
-                    )}
-                  </td>
-                  <td>
-                    {match.condition != "Local" ? (
-                      <FixtureImage
-                        source={clublogo}
-                        alt="Pacifico"
-                        score={match?.our_score}
-                      />
-                    ) : (
-                      <FixtureImage
-                        source={match.rival_icon}
-                        alt={match.rival_name}
-                        score={match?.rival_score}
-                      />
-                    )}
-                  </td>
-                  <td>{match.field}</td>
-                  <td>
-                    {match?.transmission_link ? (
-                      <a
-                        href={match.transmission_link}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        {" "}
-                        Link{" "}
-                      </a>
-                    ) : (
-                      "-"
-                    )}
-                  </td>
-                  <td
-                    className={`${i == matchs.length - 1 && "rounded-br-xl"}`}
-                  >
-                    {match?.stats_link ? (
-                      <a
-                        href={match.stats_link}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        {" "}
-                        Link{" "}
-                      </a>
-                    ) : (
-                      "-"
-                    )}
-                  </td>
-                  {currentUser && canDelete && (
-                    <button
-                      onClick={() => deleteMatch(match._id)}
-                      className="bg-white mx-2 p-2 rounded h-12 shadow-lg mt-8 m-auto"
+                    {" " + match.time.getUTCFullYear()}
+                  </p>
+                  {match.time.getHours()}
+                  {":"}
+                  {match.time.getMinutes() < 10
+                    ? match.time.getMinutes() + "0"
+                    : match.time.getMinutes()}
+                </td>
+                <td className="text-clip">
+                  {" "}
+                  <p className="text-clip"> {match.tournament} </p>
+                </td>
+                <td>
+                  {match.category}
+                  {"-"}
+                  {match.gender}
+                </td>
+                <td>
+                  {match.condition == "Local" ? (
+                    <FixtureImage
+                      source={clublogo}
+                      alt="Pacifico"
+                      score={match?.our_score}
+                    />
+                  ) : (
+                    <FixtureImage
+                      source={match.rival_icon}
+                      alt={match.rival_name}
+                      score={match?.rival_score}
+                    />
+                  )}
+                </td>
+                <td>
+                  {match.condition != "Local" ? (
+                    <FixtureImage
+                      source={clublogo}
+                      alt="Pacifico"
+                      score={match?.our_score}
+                    />
+                  ) : (
+                    <FixtureImage
+                      source={match.rival_icon}
+                      alt={match.rival_name}
+                      score={match?.rival_score}
+                    />
+                  )}
+                </td>
+                <td>{match.field}</td>
+                <td>
+                  {match?.transmission_link ? (
+                    <a
+                      href={match.transmission_link}
+                      target="_blank"
+                      rel="noreferrer"
                     >
                       {" "}
-                      Borrar{" "}
-                    </button>
+                      Link{" "}
+                    </a>
+                  ) : (
+                    "-"
                   )}
-                  {currentUser && canEdit && (
-                    <button
-                      onClick={() => editMatch(match)}
-                      className="bg-gray bg-opacity-70 rounded mx-2 p-2 h-12 shadow-lg mt-8 m-auto"
-                    >
+                </td>
+                <td className={`${i == matchs.length - 1 && "rounded-br-xl"}`}>
+                  {match?.stats_link ? (
+                    <a href={match.stats_link} target="_blank" rel="noreferrer">
                       {" "}
-                      Editar{" "}
-                    </button>
+                      Link{" "}
+                    </a>
+                  ) : (
+                    "-"
                   )}
-                </tr>
-              ))}
+                </td>
+                {currentUser && canDelete && (
+                  <button
+                    onClick={() => deleteMatch(match._id)}
+                    className="bg-white mx-2 p-2 rounded h-12 shadow-lg mt-8 m-auto"
+                  >
+                    {" "}
+                    Borrar{" "}
+                  </button>
+                )}
+                {currentUser && canEdit && (
+                  <button
+                    onClick={() => editMatch(match)}
+                    className="bg-gray bg-opacity-70 rounded mx-2 p-2 h-12 shadow-lg mt-8 m-auto"
+                  >
+                    {" "}
+                    Editar{" "}
+                  </button>
+                )}
+              </tr>
+            ))}
           </tbody>
         </table>
         <div className="flex mt-4 place-items-center h-10 paragraph-font rounded-lg shadow-lg overflow-hidden w-fit m-auto justify-center">

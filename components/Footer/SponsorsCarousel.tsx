@@ -17,7 +17,7 @@ const SponsorsCarousel = () => {
     <div className="flex bg-yellow overflow-x-auto h-fit">
       {sps.map((sp) => {
         return (
-          <div className="m-2" key={sp + ""}>
+          <div className="m-2" key={sp.toString() + ""}>
             <Image
               quality={100}
               src={sp}
