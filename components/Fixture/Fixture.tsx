@@ -18,7 +18,7 @@ import { AddMatchDto } from "../Admin/Fixture/interfaces";
 const STEP = 5;
 
 interface Props {
-  matchs: Match[];
+  //matchs: Match[];
   canDelete?: boolean;
   canEdit?: boolean;
 }
@@ -46,16 +46,16 @@ interface Match {
   rival_score?: number;
 }
 
-export async function getStaticProps() {
-  const res = await getMatchs(0, 50);
-  const matchs = res?.map((r) => ({ ...r, time: new Date(r.time) }));
-  return {
-    props: {
-      matchs,
-    },
-    revalidate: 30,
-  };
-}
+// export async function getStaticProps() {
+//   const res = await getMatchs(0, 50);
+//   const matchs = res?.map((r) => ({ ...r, time: new Date(r.time) }));
+//   return {
+//     props: {
+//       matchs,
+//     },
+//     revalidate: 30,
+//   };
+// }
 
 const FixtureImage = ({ source, alt, score }: FixtureImageProps) => {
   return (
@@ -75,8 +75,8 @@ const FixtureImage = ({ source, alt, score }: FixtureImageProps) => {
   );
 };
 
-const Fixture = ({ canDelete, canEdit, matchs }: Props) => {
-  //const [matchs, setMatchs] = useState<Match[]>([]);
+const Fixture = ({ canDelete, canEdit }: Props) => {
+  const [matchs, setMatchs] = useState<Match[]>([]);
   const [nextAllowed, setNextAllowed] = useState(true);
   const [from, setFrom] = useState(0);
   const [to, setTo] = useState(STEP);
@@ -85,17 +85,17 @@ const Fixture = ({ canDelete, canEdit, matchs }: Props) => {
   const [editing, setEditing] = useState(false);
   const currentUser = useCurrentUser();
 
-  // const getGames = async () => {
-  //   const res = await getMatchs(0, 50);
-  //   const auxRes = res?.map((r) => ({ ...r, time: new Date(r.time) }));
-  //   if (auxRes) {
-  //     setMatchs(auxRes);
-  //   }
-  // };
+  const getGames = async () => {
+    const res = await getMatchs(0, 50);
+    const auxRes = res?.map((r) => ({ ...r, time: new Date(r.time) }));
+    if (auxRes) {
+      setMatchs(auxRes);
+    }
+  };
 
-  // useEffect(() => {
-  //   getGames();
-  // }, []);
+  useEffect(() => {
+    getGames();
+  }, []);
 
   const back = () => {
     setFrom(from - STEP);
