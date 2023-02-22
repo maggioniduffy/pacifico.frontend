@@ -18,7 +18,7 @@ import { AddMatchDto } from "../Admin/Fixture/interfaces";
 const STEP = 5;
 
 interface Props {
-  matchs: Match[];
+  matchs?: Match[];
   canDelete?: boolean;
   canEdit?: boolean;
 }
