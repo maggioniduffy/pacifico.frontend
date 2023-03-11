@@ -17,7 +17,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { BASE_API_URL, sections } from "../utils/constants";
 import { url } from "../utils/constants";
-import banner from "../public/assets/footerimg.png";
+import banner from "../public/footerimg.png";
 
 const Home: NextPage = () => {
   useEffect(() => {
