@@ -20,7 +20,7 @@ interface CardProps {
 }
 
 const PlaylistCard = ({ id, src, text, canDelete, delVideo }: CardProps) => (
-  <div className="h-fit shadow-xl rounded-b-xl w-fit border-b-2 border-yellow p-4">
+  <div className="h-fit shadow-xl rounded-b-xl w-fit border-b-2 border-yellow">
     <iframe
       src={src}
       title="YouTube video player"
