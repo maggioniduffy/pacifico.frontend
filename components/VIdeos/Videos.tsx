@@ -20,7 +20,7 @@ interface CardProps {
 }
 
 const PlaylistCard = ({ id, src, text, canDelete, delVideo }: CardProps) => (
-  <div className="h-fit m-2 shadow-xl rounded-b-xl w-fit border-b-2 border-yellow">
+  <div className="h-fit shadow-xl rounded-b-xl w-fit border-b-2 border-yellow p-4">
     <iframe
       src={src}
       title="YouTube video player"
@@ -31,8 +31,13 @@ const PlaylistCard = ({ id, src, text, canDelete, delVideo }: CardProps) => (
       allowFullScreen
       className="rounded-t-xl"
     ></iframe>
-    <div className="h-12 flex w-full rounded-b-xl justify-center border-yellow border-r-2 border-l-2 place-items-center">
-      <h5 className="text-gray text-sm md:text-lg">{text}</h5>
+    <div
+      className="h-12 flex w-full rounded-b-xl justify-center 
+      border-yellow border-r-2 border-l-2 overflow-hidden px-2"
+    >
+      <p className="text-gray font-bold text-sm md:text-lg text-ellipsis overflow-hidden">
+        {text}
+      </p>
     </div>
     {canDelete && <button onClick={() => delVideo(id)}> Borrar </button>}
   </div>
