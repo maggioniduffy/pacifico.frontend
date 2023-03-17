@@ -33,7 +33,7 @@ const PlaylistCard = ({ id, src, text, canDelete, delVideo }: CardProps) => (
     ></iframe>
     <div
       className="h-12 flex w-full rounded-b-xl justify-center 
-      border-yellow border-r-2 border-l-2 overflow-hidden px-2"
+      overflow-hidden p-2"
     >
       <p className="text-gray font-bold text-sm md:text-lg text-ellipsis overflow-hidden">
         {text}
