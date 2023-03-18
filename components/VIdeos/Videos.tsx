@@ -20,7 +20,7 @@ interface CardProps {
 }
 
 const PlaylistCard = ({ id, src, text, canDelete, delVideo }: CardProps) => (
-  <div className="h-fit shadow-xl rounded-b-xl w-fit border-b-2 border-yellow">
+  <div className="h-fit shadow-xl rounded-b-xl w-fit border-b-2 border-yellow ">
     <iframe
       src={src}
       title="YouTube video player"
@@ -33,7 +33,7 @@ const PlaylistCard = ({ id, src, text, canDelete, delVideo }: CardProps) => (
     ></iframe>
     <div
       className="h-12 flex w-full rounded-b-xl justify-center 
-      overflow-hidden p-2"
+      border-yellow border-r-2 border-l-2 overflow-hidden p-2"
     >
       <p className="text-gray font-bold text-sm md:text-lg text-ellipsis overflow-hidden">
         {text}
@@ -79,7 +79,7 @@ const Videos = ({ id, canDelete }: Props) => {
       id={id}
       className="mt-8 w-11/12 m-auto rounded justify-center place-items-center"
     >
-      <div className="max-w-fit flex place-items-center justify-start overflow-x-auto space-x-4 pt-2 m-auto">
+      <div className="max-w-fit flex place-items-center justify-start overflow-x-auto space-x-4 pt-2 py-2 m-auto">
         {youtube.map(({ src, text, _id }) => (
           <PlaylistCard
             key={src}

@@ -10,3 +10,4 @@ export { default as Videos } from "./VIdeos";
 export { default as Team } from "./Team";
 export { default as Footer } from "./Footer";
 export { default as AllNews } from "./AllNews";
+export { default as Players } from "./Players";

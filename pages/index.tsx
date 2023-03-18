@@ -12,6 +12,7 @@ import {
   Fixture,
   Videos,
   Footer,
+  Players,
 } from "../components";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -50,6 +51,7 @@ const Home: NextPage = () => {
               <Fixture />
             </Section>
             <Videos id="videos" />
+            <Players id="planteles" />
             <Section id="historia">
               <Historia />
             </Section>
