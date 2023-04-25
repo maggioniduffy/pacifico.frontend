@@ -31,19 +31,32 @@ const Footer = () => {
         </div>
       </div>
       <SponsorsCarousel />
-      <div className="shadow shadow-yellow h-12 w-full text-sm p-auto bg-black flex flex-col justify-center">
-        <h5 className="text-gray text-center m-auto">
-          {" "}
-          by{" "}
-          <a
-            className="font-medium text-white flex hover:text-yellow hover:font-bold"
-            target={"_blank"}
-            href="https://www.linkedin.com/in/maggioniduffy/"
-            rel="noreferrer"
-          >
-            <h5 className="font-bold">@maggioniduffy</h5>
-          </a>
-        </h5>
+      <div className="shadow shadow-yellow h-12 w-full text-sm p-auto bg-black flex justify-center">
+        <div className="flex">
+          <h5 className="text-white flex text-center m-auto">
+            {" "}
+            Hecha por{" "}
+            <a
+              className="font-medium text-white flex hover:text-yellow hover:font-bold mx-1"
+              target={"_blank"}
+              href="https://www.linkedin.com/in/maggioniduffy/"
+              rel="noreferrer"
+            >
+              <h5 className="font-bold">@maggioniduffy</h5>
+            </a>
+          </h5>
+          <div className="border-l px-1  border-yellow m-auto">
+            <a
+              className="text-white text-center m-auto flex hover:font-bold mx-1"
+              target={"_blank"}
+              href="https://cafecito.app/maggioniduffy"
+              rel="noreferrer"
+            >
+              {" "}
+              Invitame un cafecito!
+            </a>
+          </div>
+        </div>
       </div>
     </footer>
   );

@@ -20,7 +20,7 @@ const Player = ({ nombre, image }: PlayerCard) => {
             width={40}
             layout="fixed"
             quality={100}
-            className="fixed z-40 right-5 m-2"
+            className="fixed right-5 m-2"
           />
 
           <div className="w-full relative overflow-hidden">
